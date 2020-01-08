@@ -7,9 +7,9 @@ require "model/version"
 Gem::Specification.new do |spec|
   spec.name        = "model"
   spec.version     = Model::VERSION
-  spec.authors     = ["Eric Park"]
-  spec.email       = ["spb828@naver.com"]
-  spec.homepage    = "https://github.com/Play-The-World/kr.playtheworld.rails.azeroth"
+  spec.authors     = ["Play The World"]
+  spec.email       = ["info@playthe.world"]
+  spec.homepage    = "https://github.com/Play-The-World/kr.playtheworld.rails.model"
   spec.summary     = "Model for PlayTheWorld"
   spec.description = "Model for PlayTheWorld"
   spec.license     = "MIT"
