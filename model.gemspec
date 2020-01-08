@@ -28,7 +28,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", "~> 6.0.1"
 
   spec.add_dependency "rails-i18n", "~> 6.0.0"
-  spec.add_dependency "globalize", "~> 5.3.0"
+  spec.add_dependency "globalize", "~> 5.3.0" # https://github.com/globalize/globalize
+  spec.add_dependency "config", "~> 2.1.0"  # https://github.com/railsconfig/config
+  spec.add_dependency "enumerize", "~> 2.3.0"  # https://github.com/brainspec/enumerize
 
   spec.add_dependency "mysql2"
 end
