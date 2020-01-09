@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "enumerize", "~> 2.3.0"  # https://github.com/brainspec/enumerize
   
   spec.add_dependency "devise"  # https://github.com/plataformatec/devise
-  spec.add_dependency "devise_token_auth"  # https://github.com/lynndylanhurley/devise_token_auth
+  # spec.add_dependency "devise_token_auth"  # https://github.com/lynndylanhurley/devise_token_auth
 
   spec.add_dependency "mysql2"
 end
