@@ -3,6 +3,10 @@ class CreateModelSuperThemes < ActiveRecord::Migration[6.0]
     create_table :model_super_themes do |t|
       # Attributes
       t.string :status
+      t.string :themes_type
+      t.integer :price, null: false, default: 0
+      t.integer :play_time, null: false, default: 0
+      t.integer :data_size, null: false, default: 0
       
       t.timestamps
 

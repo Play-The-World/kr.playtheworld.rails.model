@@ -11,5 +11,23 @@ module Model
     # Relations
     belongs_to :super_theme
     has_many :stage_lists, dependent: :destroy
+
+    # Callbacks
+    before_validation :set_theme_type
+
+    # Validations
+    DIFFICULTIES = %w(easy normal hard)
+    validates :theme_type, 
+      inclusion: { in: DIFFICULTIES, message: "%{value} is not a valid difficulty" }, 
+      if: -> { super_theme.themes_type == :difficulty }
+
+    private
+      def set_theme_type
+        case super_theme.themes_type
+        when :numbered
+          self.theme_type = self.theme_type.to_i.to_s
+
+        end
+      end
   end
 end
