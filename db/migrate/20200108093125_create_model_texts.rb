@@ -11,17 +11,17 @@ class CreateModelTexts < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :text_type
+    end
+    
+    reversible do |dir|
+      dir.up do
+        Model::Text.create_translation_table!({
+          value: :text
+        })
+      end
 
-      reversible do |dir|
-        dir.up do
-          Model::Text.create_translation_table!({
-            value: :text
-          })
-        end
-  
-        dir.down do
-          Model::Text.drop_translation_table!
-        end
+      dir.down do
+        Model::Text.drop_translation_table!
       end
     end
   end

@@ -15,17 +15,17 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :status
+    end
 
-      reversible do |dir|
-        dir.up do
-          Model::Theme.create_translation_table!({
-            content: :text, caution: :text
-          })
-        end
-  
-        dir.down do
-          Model::Theme.drop_translation_table!
-        end
+    reversible do |dir|
+      dir.up do
+        Model::Theme.create_translation_table!({
+          content: :text, caution: :text
+        })
+      end
+
+      dir.down do
+        Model::Theme.drop_translation_table!
       end
     end
   end

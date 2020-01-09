@@ -8,17 +8,17 @@ class CreateModelMakerTeams < ActiveRecord::Migration[6.0]
 
       # Index
       t.index :status
+    end
 
-      reversible do |dir|
-        dir.up do
-          Model::MakerTeam.create_translation_table!({
-            name: :string, content: :text
-          })
-        end
-  
-        dir.down do
-          Model::MakerTeam.drop_translation_table!
-        end
+    reversible do |dir|
+      dir.up do
+        Model::MakerTeam.create_translation_table!({
+          name: :string, content: :text
+        })
+      end
+
+      dir.down do
+        Model::MakerTeam.drop_translation_table!
       end
     end
   end

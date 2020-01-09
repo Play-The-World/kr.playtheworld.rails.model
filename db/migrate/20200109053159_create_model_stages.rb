@@ -8,17 +8,17 @@ class CreateModelStages < ActiveRecord::Migration[6.0]
       t.string :stage_type
 
       t.timestamps
+    end
 
-      reversible do |dir|
-        dir.up do
-          Model::Stage.create_translation_table!({
-            title: :string, content: :text
-          })
-        end
-  
-        dir.down do
-          Model::Stage.drop_translation_table!
-        end
+    reversible do |dir|
+      dir.up do
+        Model::Stage.create_translation_table!({
+          title: :string, content: :text
+        })
+      end
+
+      dir.down do
+        Model::Stage.drop_translation_table!
       end
     end
   end
