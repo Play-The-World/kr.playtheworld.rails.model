@@ -20,6 +20,8 @@ module Model
     validates :theme_type, 
       inclusion: { in: DIFFICULTIES, message: "%{value} is not a valid difficulty" }, 
       if: -> { super_theme.themes_type == :difficulty }
+    validates :theme_type,
+      uniqueness: { scope: :super_theme_id, message: "should be unique to super_theme" }
 
     private
       def set_theme_type
