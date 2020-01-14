@@ -6,8 +6,9 @@ module Model
     # Enums
     include Enumerize
     TYPES = {
+      user_name: "%{user_name}"
       nth_review: "%{nth_review}"
     }
-    enumerize :value_type, in: TYPES.map { |k, v| k.to_sym }
+    enumerize :interpolation_type, in: TYPES.map { |k, v| k.to_sym }
   end
 end

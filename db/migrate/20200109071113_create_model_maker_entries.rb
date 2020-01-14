@@ -6,6 +6,9 @@ class CreateModelMakerEntries < ActiveRecord::Migration[6.0]
       t.references :model_maker_team
 
       t.timestamps
+
+      # Indexes
+      t.index [:model_maker, :model_maker_team], unique: true
     end
   end
 end

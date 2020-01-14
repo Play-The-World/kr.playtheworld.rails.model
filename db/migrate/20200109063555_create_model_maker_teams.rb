@@ -6,7 +6,7 @@ class CreateModelMakerTeams < ActiveRecord::Migration[6.0]
 
       t.timestamps
 
-      # Index
+      # Indexes
       t.index :status
     end
 

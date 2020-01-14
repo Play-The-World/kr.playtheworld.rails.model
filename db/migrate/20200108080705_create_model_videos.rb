@@ -6,11 +6,12 @@ class CreateModelVideos < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :video_type
+      t.integer :order, default: 1
 
       t.timestamps
 
       # Indexes
-      t.index :video_type
+      t.index [:videoable, :video_type, :order], unique: true
     end
   end
 end

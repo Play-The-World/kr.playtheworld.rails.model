@@ -6,11 +6,12 @@ class CreateModelImages < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :image_type
+      t.integer :order, default: 1
       
       t.timestamps
 
       # Indexes
-      t.index :image_type
+      t.index [:imageable, :image_type, :order], unique: true
     end
   end
 end

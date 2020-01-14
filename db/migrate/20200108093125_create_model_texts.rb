@@ -6,11 +6,12 @@ class CreateModelTexts < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :text_type
+      t.integer :order, default: 1
 
       t.timestamps
 
       # Indexes
-      t.index :text_type
+      t.index [:textable, :text_type, :order], unique: true
     end
     
     reversible do |dir|

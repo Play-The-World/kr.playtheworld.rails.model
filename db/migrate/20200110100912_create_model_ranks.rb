@@ -9,6 +9,9 @@ class CreateModelRanks < ActiveRecord::Migration[6.0]
       t.float :value, null: false, default: 0
 
       t.timestamps
+
+      # Indexes
+      t.index [:rankable, :ranker], unique: true
     end
   end
 end

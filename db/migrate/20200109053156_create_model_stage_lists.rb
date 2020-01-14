@@ -4,6 +4,9 @@ class CreateModelStageLists < ActiveRecord::Migration[6.0]
       # Relations
       t.references :theme
 
+      # Attributes
+      t.integer :stage_list_number, null: false, default: 1
+
       t.timestamps
     end
 

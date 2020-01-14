@@ -6,6 +6,9 @@ class CreateModelAchievements < ActiveRecord::Migration[6.0]
       t.boolean :stackable
       
       t.timestamps
+
+      # Indexes
+      t.index :level
     end
 
     reversible do |dir|

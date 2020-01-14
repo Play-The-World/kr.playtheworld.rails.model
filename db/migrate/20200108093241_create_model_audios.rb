@@ -6,11 +6,12 @@ class CreateModelAudios < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :audio_type
+      t.integer :order, default: 1
 
       t.timestamps
 
       # Indexes
-      t.index :audio_type
+      t.index [:audioable, :audio_type, :order], unique: true
     end
   end
 end

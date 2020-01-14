@@ -5,9 +5,12 @@ class CreateModelInterpolations < ActiveRecord::Migration[6.0]
       t.references :interpolatable, polymorphic: true
 
       # Attributes
-      t.string :value_type
+      t.string :interpolation_type
 
       t.timestamps
+
+      # Indexes
+      t.index [:interpolatable, :interpolation_type], unique: true
     end
   end
 end
