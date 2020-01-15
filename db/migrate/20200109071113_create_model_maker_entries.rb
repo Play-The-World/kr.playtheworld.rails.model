@@ -8,7 +8,7 @@ class CreateModelMakerEntries < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:model_maker, :model_maker_team], unique: true
+      t.index [:model_maker_id, :model_maker_team_id], name: "maker_entry_index", unique: true
     end
   end
 end

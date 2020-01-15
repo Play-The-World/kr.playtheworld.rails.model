@@ -4,6 +4,7 @@ Gem.loaded_specs['model'].dependencies.each do |d|
 end
 
 require "model/engine"
+require "model/current"
 
 module Model
   # Your code goes here...

@@ -5,12 +5,13 @@ class CreateModelEvents < ActiveRecord::Migration[6.0]
       t.references :eventable, polymorphic: true
 
       # Attributes
-      t.string :event_type
+      t.string :type
 
       t.timestamps
 
       # Indexes
-      t.index [:eventable, :event_type]
+      t.index [:eventable_id, :eventable_type, :type], name: "event_index"
+      t.index :type
     end
   end
 end

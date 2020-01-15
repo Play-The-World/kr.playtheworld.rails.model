@@ -7,8 +7,8 @@ module Model
     # Constants
     MAX_VALUE = 1000000
 
-    # Scope
-    default_scope order(value: :desc)
+    # Scopes
+    default_scope { order(value: :desc) }
 
     def computed_value
       (value * MAX_VALUE).to_i

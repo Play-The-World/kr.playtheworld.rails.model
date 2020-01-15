@@ -11,7 +11,7 @@ class CreateModelRanks < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:rankable, :ranker], unique: true
+      t.index [:rankable_id, :rankable_type, :ranker_id, :ranker_type], name: "rank_index", unique: true
     end
   end
 end

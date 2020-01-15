@@ -1,17 +1,10 @@
-module Model
-  class Coordinate < ApplicationRecord
-    # Relations
-    belongs_to :coordinatable, polymorphic: true
-
-    # Enums
-    include Enumerize
-    enumerize :coordinate_type, in: %i(map), default: :map
-
+module Model::Coordinates
+  class MapCoordinate < Model::Coordinates::Coordinate
     # Callbacks
-    before_create :convert_coordinate
+    before_save :convert_values
 
     private
-      def convert_coordinate
+      def convert_values
         x1 = self.x
         y1 = self.y
 

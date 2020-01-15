@@ -6,7 +6,7 @@ class CreateModelTokens < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :status
-      t.string :token_type
+      t.string :type
       t.string :value, default: "", null: false
       t.datetime :revoked_at
 
@@ -14,7 +14,7 @@ class CreateModelTokens < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index [:status, :value]
-      t.index :token_type
+      t.index :type
     end
   end
 end

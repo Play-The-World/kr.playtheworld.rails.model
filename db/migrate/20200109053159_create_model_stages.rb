@@ -5,24 +5,24 @@ class CreateModelStages < ActiveRecord::Migration[6.0]
       t.references :model_stage, index: false
 
       # Attributes
-      t.string :stage_type
+      t.string :type
       t.integer :order, null: false, default: 1
 
       t.timestamps
 
       # Indexes
-      t.index [:model_stage, :order], unique: true
+      t.index [:model_stage_id, :order], unique: true
     end
 
     reversible do |dir|
       dir.up do
-        Model::Stage.create_translation_table!({
+        Model::Stages::Stage.create_translation_table!({
           title: :string, content: :text
         })
       end
 
       dir.down do
-        Model::Stage.drop_translation_table!
+        Model::Stages::Stage.drop_translation_table!
       end
     end
   end

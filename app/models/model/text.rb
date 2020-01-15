@@ -6,10 +6,14 @@ module Model
 
     # Relations
     belongs_to :textable, polymorphic: true
+    belongs_to :interpolation, class_name: "Model::Interpolations::Interpolation", optional: true
 
-    # Enum
+    # Enums
     extend Enumerize
-    enumerize :text_type, in: %i(default), default: :default
+    enumerize :text_type, in: %i(default interpolation), default: :default
+
+    # Scopes
+    scope :interpolation, -> { where(text_type: :interpolation) }
     
   end
 end

@@ -6,7 +6,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :status
-      t.string :theme_type, null: false
+      t.string :type
       t.string :render_type
       t.integer :price, null: false, default: 0
       t.integer :play_time, null: false, default: 0
@@ -16,18 +16,18 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :status
-      t.index [:model_super_theme, :theme_type]
+      t.index [:model_super_theme_id, :type]
     end
 
     reversible do |dir|
       dir.up do
-        Model::Theme.create_translation_table!({
+        Model::Themes::Theme.create_translation_table!({
           content: :text, caution: :text
         })
       end
 
       dir.down do
-        Model::Theme.drop_translation_table!
+        Model::Themes::Theme.drop_translation_table!
       end
     end
   end

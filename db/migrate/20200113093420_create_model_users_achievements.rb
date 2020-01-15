@@ -11,7 +11,7 @@ class CreateModelUsersAchievements < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:model_user, :model_achievement], unique: true
+      t.index [:model_user_id, :model_achievement_id], name: "users_achievement_index", unique: true
     end
   end
 end
