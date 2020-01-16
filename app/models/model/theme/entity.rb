@@ -1,6 +1,8 @@
 module Model
-  module Themes
-    class Theme < ApplicationRecord
+  module Theme
+    class Entity < ApplicationRecord
+      self.table_name = "model_themes"
+
       # Translations
       include Model::Translatable
       translates :content, :caution

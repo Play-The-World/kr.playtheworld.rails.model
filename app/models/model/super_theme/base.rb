@@ -1,6 +1,6 @@
 module Model
-  module SuperThemes
-    class SuperTheme < ApplicationRecord
+  module SuperTheme
+    class Base < ApplicationRecord
       # Translations
       include Model::Translatable
       translates :title, :summary, :content, :caution

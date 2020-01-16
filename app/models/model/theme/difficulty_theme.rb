@@ -1,4 +1,4 @@
-module Model::Themes
+module Model::Theme
   class DifficultyTheme < Theme
     # Constants
     DIFFICULTIES = %w(easy normal hard)
