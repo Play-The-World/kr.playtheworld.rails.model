@@ -1,4 +1,4 @@
 module Model::SuperTheme
-  class SeriesSuperTheme < Base
+  class Difficulty < Base
   end
 end

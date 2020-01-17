@@ -1,5 +1,5 @@
 module Model::SuperTheme
-  class NumberedSuperTheme < Base
+  class Numbered < Base
     
   end
 end

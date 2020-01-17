@@ -1,5 +1,5 @@
 module Model::Theme
-  class RolePlayTheme < Entity
+  class RolePlay < Base
     
   end
 end

@@ -3,7 +3,7 @@ module Model
     extend ActiveSupport::Concern
 
     included do
-      has_many :interpolations, as: :interpolatable, dependent: :destroy
+      has_many :interpolations, as: :interpolatable, class_name: Model.config.interpolation.class_name, dependent: :destroy
     end
   end
 end

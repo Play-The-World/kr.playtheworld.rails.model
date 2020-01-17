@@ -1,5 +1,5 @@
 module Model::Stage
-  class ScriptStage < Base
-
+  class End < Base
+      
   end
 end

@@ -1,6 +1,9 @@
 module Model
   module Stage
     class Base < ApplicationRecord
+      # Table Name
+      self.table_name = Model.config.stage.table_name
+
       # Translations
       include Model::Translatable
       translates :title, :content

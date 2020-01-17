@@ -1,7 +1,8 @@
 module Model
   module Theme
-    class Entity < ApplicationRecord
-      self.table_name = "model_themes"
+    class Base < ApplicationRecord
+      # Table Name
+      self.table_name = Model.config.theme.table_name
 
       # Translations
       include Model::Translatable
@@ -12,8 +13,8 @@ module Model
       set_status %i(hidden blocked)
 
       # Relations
-      belongs_to :super_theme
-      has_many :stage_lists, class_name: "Model::StageList", dependent: :destroy
+      belongs_to :super_theme, class_name: Model.config.super_theme.class_name
+      has_many :stage_lists, dependent: :destroy
 
       # Callbacks
       before_validation :set_theme_type
@@ -21,6 +22,11 @@ module Model
       # Validations
       validates :theme_type,
         uniqueness: { scope: :super_theme_id, message: "should be unique to super_theme" }
+
+      # Repository
+      def self.repo
+        Model::Repository::Theme.new
+      end
 
       protected
         def set_theme_type

@@ -1,4 +1,4 @@
 module Model::SuperTheme
-  class RolePlaySuperTheme < Base
+  class RolePlay < Base
   end
 end

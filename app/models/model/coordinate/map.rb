@@ -1,5 +1,5 @@
-module Model::Coordinates
-  class MapCoordinate < Model::Coordinates::Coordinate
+module Model::Coordinate
+  class Map < Base
     # Callbacks
     before_save :convert_values
 

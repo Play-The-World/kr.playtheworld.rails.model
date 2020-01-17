@@ -1,5 +1,8 @@
-module Model::Coordinates
-  class Coordinate < ApplicationRecord
+module Model::Coordinate
+  class Base < ApplicationRecord
+    # Table Name
+    self.table_name = Model.config.coordinate.table_name
+
     # Relations
     belongs_to :coordinatable, polymorphic: true
 

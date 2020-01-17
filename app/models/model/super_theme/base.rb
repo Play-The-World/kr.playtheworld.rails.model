@@ -1,6 +1,9 @@
 module Model
   module SuperTheme
     class Base < ApplicationRecord
+      # Table Name
+      self.table_name = Model.config.super_theme.table_name
+
       # Translations
       include Model::Translatable
       translates :title, :summary, :content, :caution
@@ -8,7 +11,7 @@ module Model
       # Relations
       belongs_to :category, optional: true
       belongs_to :genre, optional: true
-      has_many :themes, class_name: "Model::Themes::Theme", dependent: :destroy
+      has_many :themes, class_name: Model.config.theme.class_name, dependent: :destroy
 
       # Status
       include Model::HasStatus

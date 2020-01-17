@@ -17,13 +17,13 @@ class CreateModelSuperThemes < ActiveRecord::Migration[6.0]
 
     reversible do |dir|
       dir.up do
-        Model::SuperTheme.create_translation_table!({
+        Model.config.super_theme.constant.create_translation_table!({
           title: :string, content: :text, summary: :text, caution: :text
         })
       end
 
       dir.down do
-        Model::SuperTheme.drop_translation_table!
+        Model.config.super_theme.constant.drop_translation_table!
       end
     end
   end

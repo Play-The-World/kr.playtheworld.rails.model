@@ -1,5 +1,5 @@
 module Model::Theme
-  class SeriesTheme < Entity
+  class Series < Base
     
   end
 end

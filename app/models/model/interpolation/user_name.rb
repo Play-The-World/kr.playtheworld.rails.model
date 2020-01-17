@@ -1,5 +1,5 @@
-module Model::Interpolations
-  class UserNameInterpolation < Interpolation
+module Model::Interpolation
+  class UserName < Base
     def target
       "%{}"
     end

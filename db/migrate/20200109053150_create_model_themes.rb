@@ -21,13 +21,13 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
 
     reversible do |dir|
       dir.up do
-        Model::Themes::Theme.create_translation_table!({
+        Model.config.theme.constant.create_translation_table!({
           content: :text, caution: :text
         })
       end
 
       dir.down do
-        Model::Themes::Theme.drop_translation_table!
+        Model.config.theme.constant.drop_translation_table!
       end
     end
   end

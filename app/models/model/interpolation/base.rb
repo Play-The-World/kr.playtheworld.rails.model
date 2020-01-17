@@ -1,6 +1,9 @@
 module Model
-  module Interpolations
-    class Interpolation < ApplicationRecord
+  module Interpolation
+    class Base < ApplicationRecord
+      # Table Name
+      self.table_name = Model.config.interpolation.table_name
+
       # Relations
       belongs_to :interpolatable, polymorphic: true
       has_many :texts, dependent: :destroy

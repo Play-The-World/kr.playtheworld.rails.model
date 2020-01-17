@@ -1,5 +1,5 @@
 module Model::Stage
-  class QuizStage < Base
+  class Quiz < Base
     
   end
 end
