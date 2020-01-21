@@ -4,6 +4,8 @@ module Model
   module Current
     MODELS = %i(
       user
+      team
+      play
     )
 
     MODELS.each do |accessor|

@@ -25,7 +25,10 @@ module Model
       interpolation: ModelConfiguration.new("Model::Interpolation::Base", "model_interpolations"),
       stage: ModelConfiguration.new("Model::Stage::Base", "model_stages"),
       super_theme: ModelConfiguration.new("Model::SuperTheme::Base", "model_super_themes"),
-      theme: ModelConfiguration.new("Model::Theme::Base", "model_themes")
+      theme: ModelConfiguration.new("Model::Theme::Base", "model_themes"),
+      token: ModelConfiguration.new("Model::Token::Base", "model_tokens"),
+      otp_digits: 6,
+      otp_expiry_time: 3.minutes
     }
     CONFIGS.each do |k, v|
       config_accessor(k) { v }

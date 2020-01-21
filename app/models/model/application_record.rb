@@ -5,6 +5,6 @@ module Model
     def self.repo
       Model::Repository::Base.new(self)
     end
-    def repo; self.repo end
+    def repo; self.class.repo end
   end
 end
