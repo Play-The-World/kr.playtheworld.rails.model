@@ -27,6 +27,10 @@ module Model
       super_theme: ModelConfiguration.new("Model::SuperTheme::Base", "model_super_themes"),
       theme: ModelConfiguration.new("Model::Theme::Base", "model_themes"),
       token: ModelConfiguration.new("Model::Token::Base", "model_tokens"),
+      board: ModelConfiguration.new("Model::Board::Base", "model_boards"),
+      post: ModelConfiguration.new("Model::Post::Base", "model_posts"),
+      comment: ModelConfiguration.new("Model::Comment::Base", "model_comments"),
+      review: ModelConfiguration.new("Model::Review::Base", "model_reviews"),
       otp_digits: 6,
       otp_expiry_time: 3.minutes
     }

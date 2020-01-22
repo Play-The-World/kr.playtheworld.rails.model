@@ -3,6 +3,7 @@ module Model
     # Relations
     belongs_to :rankable, polymorphic: true
     belongs_to :ranker, polymorphic: true
+    belongs_to :rank_season, counter_cache: true
 
     # Constants
     MAX_VALUE = 1000000

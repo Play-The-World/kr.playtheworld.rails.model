@@ -13,6 +13,8 @@ module Model
     has_many :achievements, foreign_key: "user_id", class_name: "Model::UsersAchievement"
     has_many :entries, dependent: :destroy
     has_many :teams, through: :entries
+    include Model::Reviewer
+    include Model::Commenter
 
     # Status
     include Model::HasStatus
