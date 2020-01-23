@@ -4,7 +4,7 @@
 # end
 namespace :model do
   namespace :seed do
-    task :test_theme do
+    task :test_theme => :environment do
       filename = File.join(Model::Engine.root, 'seeds', 'test_theme.rb')
       load(filename)
     end
