@@ -9,6 +9,9 @@ class CreateModelViewTypes < ActiveRecord::Migration[6.0]
       t.integer :views_count, default: 0
 
       t.timestamps
+
+      # Indexes
+      t.index :type
     end
   end
 end

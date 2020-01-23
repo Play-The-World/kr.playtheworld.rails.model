@@ -3,6 +3,7 @@ class CreateModelTeams < ActiveRecord::Migration[6.0]
     create_table :model_teams do |t|
       # Attributes
       t.string :status
+      t.integer :super_plays_count, default: 0
       
       t.timestamps
 

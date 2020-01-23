@@ -2,12 +2,17 @@ class CreateModelPosts < ActiveRecord::Migration[6.0]
   def change
     create_table :model_posts do |t|
       # Relations
-      t.references :board
+      t.references :model_board
 
       # Attirbutes
       t.string :type
+      t.string :status
 
       t.timestamps
+
+      # Indexes
+      t.index :type
+      t.index :status
     end
 
     reversible do |dir|

@@ -6,6 +6,7 @@ class CreateModelInterpolations < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :type
+      t.string :target_value
 
       t.timestamps
 

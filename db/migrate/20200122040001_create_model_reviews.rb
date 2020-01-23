@@ -7,8 +7,13 @@ class CreateModelReviews < ActiveRecord::Migration[6.0]
 
       # Attirbutes
       t.string :type
+      t.string :status
 
       t.timestamps
+
+      # Indexes
+      t.index :type
+      t.index :status
     end
 
     reversible do |dir|

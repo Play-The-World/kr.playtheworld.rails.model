@@ -6,7 +6,7 @@ module Model
 
     # Relations
     belongs_to :textable, polymorphic: true
-    belongs_to :interpolation, class_name: "Model::Interpolations::Interpolation", optional: true
+    belongs_to :interpolation, class_name: Model.config.interpolation.class_name, optional: true
 
     # Enums
     extend Enumerize

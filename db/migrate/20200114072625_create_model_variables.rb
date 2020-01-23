@@ -12,6 +12,7 @@ class CreateModelVariables < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
+      t.index :type
       t.index [:object_id, :object_type, :name], name: "variable_index", unique: true
     end
   end

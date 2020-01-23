@@ -31,6 +31,8 @@ module Model
       post: ModelConfiguration.new("Model::Post::Base", "model_posts"),
       comment: ModelConfiguration.new("Model::Comment::Base", "model_comments"),
       review: ModelConfiguration.new("Model::Review::Base", "model_reviews"),
+      play: ModelConfiguration.new("Model::Play::Base", "model_plays"),
+      super_play: ModelConfiguration.new("Model::SuperPlay::Base", "model_super_plays"),
       otp_digits: 6,
       otp_expiry_time: 3.minutes
     }

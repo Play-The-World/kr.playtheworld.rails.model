@@ -6,9 +6,14 @@ class CreateModelBoards < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :type
+      t.string :status
       t.integer :posts_count, default: 0
 
       t.timestamps
+
+      # Indexes
+      t.index :type
+      t.index :status
     end
 
     reversible do |dir|
