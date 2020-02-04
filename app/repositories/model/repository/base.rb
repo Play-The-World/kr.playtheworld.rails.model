@@ -5,7 +5,8 @@
 module Model
   module Repository
     class RecordNotFoundError < StandardError; end
-
+    
+    # TODO Model별 Repository만들기
     class Base
       attr_reader :entity
 

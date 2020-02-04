@@ -5,7 +5,7 @@ module Model
     included do
       has_many :tokens, as: :tokenable, class_name: Model.config.token.class_name, dependent: :destroy
 
-      # TODO
+      # TESTME 의도한대로 작동하는 지 확인
       def token(token_type = Model.config.token.constant)
         tokens.where(status: :default, token_type: token_type).take
       end

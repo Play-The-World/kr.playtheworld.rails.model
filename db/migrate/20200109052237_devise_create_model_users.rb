@@ -33,6 +33,9 @@ class DeviseCreateModelUsers < ActiveRecord::Migration[6.0]
       # t.datetime :locked_at
 
       # Custom Attributes
+      t.string :name
+      t.string :nickname
+      t.string :phonenumber
       t.string :status
 
       t.timestamps null: false

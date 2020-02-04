@@ -5,6 +5,8 @@ class CreateModelPlays < ActiveRecord::Migration[6.0]
       t.references :model_super_play
 
       # Attirbutes
+      t.integer :stage_list_index
+      t.integer :stage_index
       t.string :status
       t.string :type
 

@@ -3,12 +3,13 @@ module Model
     # Relations
     belongs_to :stage_list
 
-    # Enums
-    include Enumerize
-    TYPES = %i(
-      form1
-      choice1
-    )
-    enumerize :component_type, in: TYPES, default: TYPES.first
+    # Component Type
+    COMPONENT_TYPE = Model::ComponentType
+    serialize :component_type, COMPONENT_TYPE::Base
+    alias_attribute :component, :component_type
+
+    def component_types
+      COMPONENT_TYPE.constants.select { |k| COMPONENT_TYPE.const_get(k).instance_of? Class } - [:Base]
+    end
   end
 end

@@ -11,8 +11,6 @@ module Model
     has_many :teams, through: :entries
     has_one :maker, dependent: :destroy
     has_many :achievements, foreign_key: "user_id", class_name: "Model::UsersAchievement"
-    has_many :entries, dependent: :destroy
-    has_many :teams, through: :entries
     include Model::Reviewer
     include Model::Commenter
 
@@ -22,6 +20,10 @@ module Model
 
     # Tokenable
     include Model::Tokenable
-    
+
+    # Set Serializer
+    def self.serializer
+      Model::Serializer::User
+    end
   end
 end

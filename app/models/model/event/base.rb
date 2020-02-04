@@ -12,8 +12,7 @@ module Model
       default_scope { includes(:conditions) }
 
       def triggerable?
-        conditions.each { |c| return false unless c.cleared? }
-        true
+        all_cleared?
       end
 
       def trigger

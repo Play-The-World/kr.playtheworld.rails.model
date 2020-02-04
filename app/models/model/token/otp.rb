@@ -1,5 +1,7 @@
 module Model::Token
   class Otp < Base
+    # One Time Password
+    
     private
       # 토큰 생성
       def generate_access_token
