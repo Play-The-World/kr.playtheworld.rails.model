@@ -11,6 +11,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.integer :price, null: false, default: 0
       t.integer :play_time, null: false, default: 0
       t.integer :data_size, null: false, default: 0
+      t.integer :super_plays_count, null: false, default: 0
 
       t.timestamps
 

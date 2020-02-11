@@ -8,8 +8,16 @@ module Model
       # Callbacks
       after_create :create_view_type
 
-      def view_count
+      # 조회수 => Integer
+      def views_count
         view_type.views.size
+      rescue
+        0
+      end
+
+      # 조회
+      def viewed_by(viewer)
+        view_type.viewed_by(viewer)
       end
     end
   end

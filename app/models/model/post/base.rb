@@ -8,6 +8,7 @@ module Model
       belongs_to :board, class_name: Model.config.board.class_name, counter_cache: true
       include Model::Commentable
       belongs_to :poster, polymorphic: true
+      include Model::Viewable
 
       # Translations
       include Model::Translatable

@@ -12,6 +12,7 @@ module Model
       belongs_to :category, optional: true
       belongs_to :genre, optional: true
       has_many :themes, class_name: Model.config.theme.class_name, dependent: :destroy
+      include Model::Viewable
 
       # Status
       include Model::HasStatus

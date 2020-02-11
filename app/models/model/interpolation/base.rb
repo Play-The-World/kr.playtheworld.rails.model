@@ -9,10 +9,11 @@ module Model
       has_many :texts, dependent: :destroy
 
       # Enums
-      # include Enumerize
+      # extend Enumerize
       # TYPES = {
-      #   user_name: "%{user_name}"
-      #   nth_review: "%{nth_review}"
+      #   user_name: "%{user_name}",
+      #   nth_review: "%{nth_review}",
+      #   ...
       # }
       # enumerize :interpolation_type, in: TYPES.map { |k, v| k.to_sym }
 

@@ -15,6 +15,8 @@ module Model
       # Relations
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
       has_many :stage_lists, dependent: :destroy
+      include Model::Viewable
+      has_many :super_plays, dependent: :destroy, counter_cache: true
       # TODO SQL query를 사용해서 stages 추가하기
 
       # Callbacks

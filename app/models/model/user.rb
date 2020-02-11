@@ -10,9 +10,11 @@ module Model
     has_many :entries, dependent: :destroy
     has_many :teams, through: :entries
     has_one :maker, dependent: :destroy
-    has_many :achievements, foreign_key: "user_id", class_name: "Model::UsersAchievement"
+    has_many :achievements, class_name: Model::UsersAchievement.to_s
     include Model::Reviewer
     include Model::Commenter
+    include Model::Viewer
+    include Model::Poster
 
     # Status
     include Model::HasStatus
