@@ -2,6 +2,7 @@ module Model
   class StageListType < ApplicationRecord
     # Relations
     belongs_to :stage_list
+    has_many :answers, class_name: Model.config.answer.class_name, dependent: :destroy
 
     # Component Type
     COMPONENT_TYPE = Model::ComponentType

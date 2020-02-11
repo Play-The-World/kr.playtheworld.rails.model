@@ -10,7 +10,7 @@ module Model
     has_one :stage_list_type, dependent: :destroy
 
     # Scopes
-    default_scope { includes(stage_list_type: [:answers], :stages) }
+    default_scope { includes(stage_list_type: [:answers], stages: []) }
 
     # 유효성 검사 => Bool
     def valid?

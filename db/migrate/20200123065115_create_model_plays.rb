@@ -9,6 +9,11 @@ class CreateModelPlays < ActiveRecord::Migration[6.0]
       t.integer :stage_index
       t.string :status
       t.string :type
+      t.datetime :finished_at
+
+      t.integer :wrong_answer_count, default: 0
+      t.integer :used_hint_count, default: 0
+      t.integer :used_answer_count, default: 0
 
       t.timestamps
 

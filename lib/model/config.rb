@@ -33,6 +33,7 @@ module Model
       review: ModelConfiguration.new("Model::Review::Base", "model_reviews"),
       play: ModelConfiguration.new("Model::Play::Base", "model_plays"),
       super_play: ModelConfiguration.new("Model::SuperPlay::Base", "model_super_plays"),
+      answer: ModelConfiguration.new("Model::Answer::Base", "model_answers"),
       otp_digits: 6,
       otp_expiry_time: 3.minutes
     }
