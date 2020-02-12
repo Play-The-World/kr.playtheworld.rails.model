@@ -1,5 +1,23 @@
 module Model
   module Board
+    #
+    # 기본 게시판 클래스
+    #
+    # == Relations
+    #
+    # ==== belongs_to
+    #
+    # * Boardable(polymorphic)
+    #
+    # ==== has_many
+    #
+    # * Post
+    # 
+    # == Translations
+    # 
+    # * +:title+
+    # * +:content+
+    #
     class Base < ApplicationRecord
       # Table Name
       self.table_name = Model.config.board.table_name

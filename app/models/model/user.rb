@@ -1,4 +1,29 @@
 module Model
+  #
+  # 사용자 클래스입니다.
+  #
+  # == Relations
+  #
+  # ==== has_many
+  #
+  # * Entry
+  # * Team
+  # * UsersAchievement
+  # * Review
+  # * Comment
+  # * View
+  # * Post
+  # * ConditionClear
+  #
+  # ==== has_one
+  #
+  # * Maker
+  #
+  # == Status
+  #
+  # * +:removed+ - 탈퇴한 사용자
+  # * +:blocked+ - 정지된 사용자
+  #
   class User < ApplicationRecord
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -6,7 +31,7 @@ module Model
     devise :database_authenticatable, :registerable,
            :recoverable, :validatable, :trackable
 
-    #  Relations
+    # Relations
     has_many :entries, dependent: :destroy
     has_many :teams, through: :entries
     has_one :maker, dependent: :destroy
@@ -15,6 +40,7 @@ module Model
     include Model::Commenter
     include Model::Viewer
     include Model::Poster
+    include Model::Clearer
 
     # Status
     include Model::HasStatus
@@ -23,7 +49,11 @@ module Model
     # Tokenable
     include Model::Tokenable
 
-    # Set Serializer
+    # 기본 serializer 설정
+    #
+    # ==== Return
+    #
+    # * Model::Serializer::User
     def self.serializer
       Model::Serializer::User
     end

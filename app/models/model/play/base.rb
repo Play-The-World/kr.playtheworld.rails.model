@@ -9,6 +9,7 @@ module Model
       has_many :tracks
       has_many :stage_lists, -> { order('tracks.id': :asc) }, through: :tracks
       # TODO stages 메소드 작성하거나 Relation으로 설정하기
+      include Model::Clearer
 
       # 현재 스테이지 => Stage?
       def current_stage

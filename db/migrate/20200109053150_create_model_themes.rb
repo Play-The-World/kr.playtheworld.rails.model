@@ -5,6 +5,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.references :model_super_theme
 
       # Attributes
+      t.string :fake_id
       t.string :status
       t.string :type
       t.string :render_type

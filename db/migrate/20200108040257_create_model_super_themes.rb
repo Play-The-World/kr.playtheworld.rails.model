@@ -2,6 +2,7 @@ class CreateModelSuperThemes < ActiveRecord::Migration[6.0]
   def change
     create_table :model_super_themes do |t|
       # Attributes
+      t.string :fake_id
       t.string :status
       t.string :type
       t.integer :price, null: false, default: 0
