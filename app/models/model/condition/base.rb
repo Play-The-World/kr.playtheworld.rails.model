@@ -21,9 +21,11 @@ module Model
       has_many :condition_clears
 
       def cleared?; false end
-      def clear!
+      def clear
+        clear! if cleared?
         event&.trigger
       end
+      def clear!; end
 
       private
         # conditionable이 Event가 맞으면 Event를 반환한다.
