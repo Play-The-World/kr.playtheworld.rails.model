@@ -11,3 +11,23 @@ s.interpolations.create!(type: "Model::Interpolation::NthPlay")
 
 puts s
 
+t = s.create_theme({
+  render_type: Model::RenderType::Swiper.new,
+  play_time: 10,
+  data_size: 10
+})
+
+puts t
+
+sl = t.stage_lists.create!({
+  stage_list_number: 1
+})
+
+puts sl
+
+sl.stages.create!([
+  {
+    title: "안녕",
+    content: "테스트"
+  }
+])

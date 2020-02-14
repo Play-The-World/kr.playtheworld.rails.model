@@ -2,7 +2,7 @@ class CreateModelBranches < ActiveRecord::Migration[6.0]
   def change
     create_table :model_branches do |t|
       # Relations
-      t.references :model_answers
+      t.references :answers
       t.bigint :target_stage_list_id
 
       t.timestamps

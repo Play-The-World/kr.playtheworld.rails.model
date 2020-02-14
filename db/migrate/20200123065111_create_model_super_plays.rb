@@ -2,8 +2,8 @@ class CreateModelSuperPlays < ActiveRecord::Migration[6.0]
   def change
     create_table :model_super_plays do |t|
       # Relations
-      t.references :model_team
-      t.references :model_super_theme
+      t.references :team
+      t.references :super_theme
 
       # Attirbutes
       t.string :status

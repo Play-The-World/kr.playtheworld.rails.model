@@ -1,6 +1,6 @@
 module Model
   #
-  # 사용자 클래스입니다.
+  # 사용자 클래스
   #
   # == Relations
   #
@@ -23,6 +23,7 @@ module Model
   #
   # * +:removed+ - 탈퇴한 사용자
   # * +:blocked+ - 정지된 사용자
+  # * +:temp+ - 임시 사용자(비로그인)
   #
   class User < ApplicationRecord
     # Include default devise modules. Others available are:
@@ -44,7 +45,7 @@ module Model
 
     # Status
     include Model::HasStatus
-    set_status %i(removed blocked)
+    set_status %i(removed blocked temp)
 
     # Tokenable
     include Model::Tokenable

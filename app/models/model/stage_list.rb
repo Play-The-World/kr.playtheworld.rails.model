@@ -8,6 +8,7 @@ module Model
     belongs_to :theme
     has_many :stages, class_name: Model.config.stage.class_name, dependent: :destroy
     has_one :stage_list_type, dependent: :destroy
+    has_many :tracks
 
     # Scopes
     default_scope { includes(stage_list_type: [:answers], stages: []) }

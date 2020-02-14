@@ -13,6 +13,7 @@ module Model
       belongs_to :genre, optional: true
       has_many :themes, class_name: Model.config.theme.class_name, dependent: :destroy
       include Model::Viewable
+      include Model::Interpolatable
 
       # Status
       include Model::HasStatus
@@ -21,6 +22,10 @@ module Model
       # Enums
       # extend Enumerize
       # enumerize :themes_type, in: %i(difficulty numbered series role), default: :difficulty
+
+      def create_theme(params)
+        themes.create(params)
+      end
 
       def category_title
         category.nil? ? "" : category.title

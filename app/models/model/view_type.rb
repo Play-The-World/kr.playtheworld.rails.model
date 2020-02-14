@@ -1,5 +1,7 @@
 module Model
   class ViewType < ApplicationRecord
+    self.inheritance_column = "not_sti"
+    
     # Relations
     belongs_to :viewable, polymorphic: true
     has_many :views

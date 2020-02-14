@@ -2,12 +2,15 @@ class CreateModelStageLists < ActiveRecord::Migration[6.0]
   def change
     create_table :model_stage_lists do |t|
       # Relations
-      t.references :model_theme
+      t.references :theme
 
       # Attributes
       t.integer :stage_list_number, null: false, default: 1
 
       t.timestamps
+
+      # Indexes
+      t.index [:theme, :stage_list_number], unique: true
     end
 
     reversible do |dir|

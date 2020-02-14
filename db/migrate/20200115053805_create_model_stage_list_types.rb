@@ -2,7 +2,7 @@ class CreateModelStageListTypes < ActiveRecord::Migration[6.0]
   def change
     create_table :model_stage_list_types do |t|
       # Relations
-      t.references :model_stage_list
+      t.references :stage_list
 
       # Attirbutes
       t.string :component_type

@@ -4,7 +4,7 @@ class CreateModelComments < ActiveRecord::Migration[6.0]
       # Relations
       t.references :commentable, polymorphic: true
       t.references :commenter, polymorphic: true
-      t.references :model_board
+      t.references :board
 
       # Attributes
       t.string :title

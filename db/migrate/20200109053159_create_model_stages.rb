@@ -2,7 +2,7 @@ class CreateModelStages < ActiveRecord::Migration[6.0]
   def change
     create_table :model_stages do |t|
       # Relations
-      t.references :model_stage, index: false
+      t.references :stage_list, index: false
 
       # Attributes
       t.string :type
@@ -11,7 +11,7 @@ class CreateModelStages < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:model_stage_id, :order], unique: true
+      t.index [:stage_list_id, :order], unique: true
     end
 
     reversible do |dir|

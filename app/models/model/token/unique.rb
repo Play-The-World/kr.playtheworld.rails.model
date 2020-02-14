@@ -9,7 +9,7 @@ module Model::Token
       def generate_access_token
         begin
           self.value = SecureRandom.hex
-        end while self.class.exists?(value: value)
+        end while self.class.exists?(value: self.value)
       end
   end
 end

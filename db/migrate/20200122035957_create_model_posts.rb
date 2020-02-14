@@ -2,7 +2,7 @@ class CreateModelPosts < ActiveRecord::Migration[6.0]
   def change
     create_table :model_posts do |t|
       # Relations
-      t.references :model_board
+      t.references :board
 
       # Attirbutes
       t.string :type

@@ -3,7 +3,7 @@ class CreateModelTexts < ActiveRecord::Migration[6.0]
     create_table :model_texts do |t|
       # Relations
       t.references :textable, polymorphic: true
-      t.references :model_interpolation
+      t.references :interpolation
 
       # Attributes
       t.string :text_type
