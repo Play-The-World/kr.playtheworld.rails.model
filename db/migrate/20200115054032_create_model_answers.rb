@@ -7,8 +7,8 @@ class CreateModelAnswers < ActiveRecord::Migration[6.0]
       # Attirbutes
       t.string :type
       t.string :value
-      t.boolean :ordered
-      t.boolean :case_sensitive
+      t.boolean :ordered, default: false
+      t.boolean :case_sensitive, default: false
 
       t.timestamps
 

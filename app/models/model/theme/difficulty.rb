@@ -10,6 +10,7 @@ module Model::Theme
       # Note that the SQL is built by hand and therefore injection is possible,
       # however since we're declaring the priorities in a constant above it's
       # safe.
+      # Will be deprecated in Rails 6.1
       def order_by_case
         ret = "CASE"
         DIFFICULTIES.each_with_index do |p, i|

@@ -1,7 +1,7 @@
 module Model::SuperTheme
   class Difficulty < Base
-    def create_theme(params)
-      Model::Theme::Difficulty.create(params)
+    def theme_class
+      Model::Theme::Difficulty
     end
   end
 end

@@ -5,8 +5,8 @@ module Model
     included do
       has_many: :views, as: :viewer, dependent: :destroy
 
-      def viewed(viewable)
-        viewable.viewed_by(self)
+      def viewed(viewable:)
+        viewable&.viewed_by(viewer: self)
       end
     end
   end

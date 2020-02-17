@@ -6,7 +6,7 @@ module Model
 
       # Relations
       belongs_to :team
-      has_many :plays, class_name: Model.config.play.class_name, dependent: :destroy
+      has_many :plays, class_name: Model.config.play.class_name, dependent: :destroy, foreign_key: "super_play_id"
     end
   end
 end

@@ -5,7 +5,7 @@ module Model
     translates :title
 
     # Relations
-    has_many :super_themes, class_name: "Model::SuperThemes::SuperTheme", dependent: :nullify
+    has_many :super_themes, class_name: Model.config.super_theme.class_name, dependent: :nullify
     
   end
 end

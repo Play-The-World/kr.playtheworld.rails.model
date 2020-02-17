@@ -19,7 +19,7 @@ module Model
 
       # Relations
       belongs_to :stage_list_type
-      has_many :branches, dependent: :destroy
+      has_many :branches, dependent: :destroy, foreign_key: "answer_id"
 
       # 틀린 정답인지 확인
       # 

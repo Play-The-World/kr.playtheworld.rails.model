@@ -1,7 +1,7 @@
 module Model::SuperTheme
   class RolePlay < Base
-    def create_theme(params)
-      Model::Theme::RolePlay.create(params)
+    def theme_class
+      Model::Theme::RolePlay
     end
   end
 end

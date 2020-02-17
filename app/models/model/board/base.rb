@@ -24,7 +24,7 @@ module Model
 
       # Relations
       belongs_to :boardable, polymorphic: true
-      has_many :posts, class_name: Model.config.post.class_name, dependent: :destroy
+      has_many :posts, class_name: Model.config.post.class_name, dependent: :destroy, foreign_key: "board_id"
 
       # Translations
       include Model::Translatable

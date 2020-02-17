@@ -1,6 +1,7 @@
 module Model
   class Track < ApplicationRecord
     # Relations
-    has_many :stage_list
+    belongs_to :stage_list
+    belongs_to :play
   end
 end

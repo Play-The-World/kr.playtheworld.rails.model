@@ -1,7 +1,7 @@
 module Model::SuperTheme
   class Series < Base
-    def create_theme(params)
-      Model::Theme::Series.create(params)
+    def theme_class
+      Model::Theme::Series
     end
   end
 end

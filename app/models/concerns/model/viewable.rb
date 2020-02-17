@@ -16,8 +16,8 @@ module Model
       end
 
       # 조회
-      def viewed_by(viewer)
-        view_type.viewed_by(viewer)
+      def viewed_by(viewer:)
+        view_type.viewed_by(viewer: viewer)
       end
     end
   end

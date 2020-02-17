@@ -14,9 +14,9 @@ module Model
 
       # Relations
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
-      has_many :stage_lists, dependent: :destroy
+      has_many :stage_lists, dependent: :destroy, foreign_key: "theme_id"
       include Model::Viewable
-      has_many :super_plays, dependent: :destroy, counter_cache: true
+      has_many :super_plays, dependent: :destroy, counter_cache: true, foreign_key: "theme_id"
       # TODO SQL query를 사용해서 stages 추가하기
       include Model::Interpolatable
 

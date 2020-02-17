@@ -5,8 +5,8 @@ module Model
     translates :title, :content
     
     # Relations
-    belongs_to :theme
-    has_many :stages, class_name: Model.config.stage.class_name, dependent: :destroy
+    belongs_to :theme, class_name: Model.config.theme.class_name
+    has_many :stages, -> { order(order: :asc) }, class_name: Model.config.stage.class_name, dependent: :destroy
     has_one :stage_list_type, dependent: :destroy
     has_many :tracks
 
@@ -14,7 +14,7 @@ module Model
     default_scope { includes(stage_list_type: [:answers], stages: []) }
 
     # 유효성 검사 => Bool
-    def valid?
+    def is_valid?
       # 가장 마지막 스테이지가 Quiz or End 스테이지인지 검사
       stages.last.is_a?(Model::Stage::Quiz) or stages.last.is_a?(Model::Stage::End)
     rescue # ActiveRecord::RecordNotFound => e

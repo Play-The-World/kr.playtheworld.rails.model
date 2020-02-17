@@ -11,7 +11,7 @@ module Model
       # Relations
       belongs_to :category, optional: true
       belongs_to :genre, optional: true
-      has_many :themes, class_name: Model.config.theme.class_name, dependent: :destroy
+      has_many :themes, class_name: Model.config.theme.class_name, dependent: :destroy, foreign_key: "super_theme_id"
       include Model::Viewable
       include Model::Interpolatable
 
@@ -23,8 +23,13 @@ module Model
       # extend Enumerize
       # enumerize :themes_type, in: %i(difficulty numbered series role), default: :difficulty
 
+      def theme_class
+        Model.config.theme.constant
+      end
       def create_theme(params)
-        themes.create(params)
+        params[:type] = theme_class.to_s
+        puts params
+        themes.create!(params)
       end
 
       def category_title

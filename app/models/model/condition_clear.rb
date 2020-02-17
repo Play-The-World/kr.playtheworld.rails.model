@@ -11,6 +11,6 @@ module Model
   class ConditionClear < ApplicationRecord
     # Relations
     belongs_to :clearer, polymorphic: true
-    belongs_to :condition
+    belongs_to :condition, class_name: Model.config.condition.class_name
   end
 end

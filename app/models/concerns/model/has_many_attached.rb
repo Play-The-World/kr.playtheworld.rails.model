@@ -5,7 +5,7 @@ module Model
     included do
       has_many_attached :files
 
-      def attach(*params)
+      def attach(params)
         files.attach(params)
       end
       def attached?
