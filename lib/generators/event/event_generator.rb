@@ -1,0 +1,42 @@
+class EventGenerator < Rails::Generators::NamedBase
+  source_root File.expand_path('templates', __dir__)
+  def create_condition_file
+    create_file(
+      "app/models/model/event/#{file_name}.rb", 
+      <<-FILE
+module Model::Event # :nodoc:
+  #
+  # #{file_name.camelize} 이벤트 클래스
+  # TODO 이벤트에 대한 설명
+  #
+  # == Relations
+  #
+  # ==== belongs_to
+  #
+  # * Eventable(polymorphic)
+  #
+  # ==== has_many
+  # 
+  # * Condition
+  class #{file_name.camelize} < Base
+    # 실행 가능 여부
+    # 
+    # ==== Return
+    # 
+    # * Bool
+    def triggerable?
+      super
+      # just use super or code here if you have specific conditions
+    end
+
+    # 실행
+    def trigger!
+      # do something
+      # ...
+    end
+  end
+end
+      FILE
+    )
+  end
+end

@@ -6,6 +6,8 @@ class CreateModelVideos < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :video_type
+      t.string :store_type
+      t.string :value
       t.integer :order, default: 1
 
       t.timestamps

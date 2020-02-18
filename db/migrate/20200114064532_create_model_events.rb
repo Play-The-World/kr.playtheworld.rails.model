@@ -5,6 +5,10 @@ class CreateModelEvents < ActiveRecord::Migration[6.0]
       t.references :eventable, polymorphic: true
 
       # Attributes
+      t.string :value1
+      t.string :value2
+      t.string :value3
+      t.string :value4
       t.string :type
 
       t.timestamps

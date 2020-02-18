@@ -8,7 +8,7 @@ module Model
 
     # Enum
     extend Enumerize
-    enumerize :image_type, in: %i(default background thumbnail poster), default: :default
-    
+    enumerize :image_type, in: %i(default background thumbnail poster map), default: :default
+    enumerize :store_type, in: %i(default external), default: :default
   end
 end

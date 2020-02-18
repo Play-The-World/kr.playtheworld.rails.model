@@ -6,7 +6,7 @@ module Model
 
       # Translations
       include Model::Translatable
-      translates :content, :caution
+      translates :content, :caution, :start_address, :start_position
 
       # Status
       include Model::HasStatus

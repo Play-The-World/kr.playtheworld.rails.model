@@ -10,7 +10,7 @@ class CreateModelStageLists < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:theme, :stage_list_number], unique: true
+      t.index [:theme_id, :stage_list_number], unique: true
     end
 
     reversible do |dir|

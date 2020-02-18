@@ -2,8 +2,8 @@ class CreateModelAchievements < ActiveRecord::Migration[6.0]
   def change
     create_table :model_achievements do |t|
       # Attributes
-      t.string :level
-      t.boolean :stackable
+      t.integer :level, null: false, default: 0
+      t.boolean :stackable, default: false
       
       t.timestamps
 

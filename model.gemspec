@@ -35,5 +35,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "devise"  # https://github.com/plataformatec/devise
   # spec.add_dependency "devise_token_auth"  # https://github.com/lynndylanhurley/devise_token_auth
 
+  # Google API
+  spec.add_dependency "google-api-client", "~> 0.36" # https://github.com/googleapis/google-api-ruby-client
+
   spec.add_dependency "mysql2"
 end

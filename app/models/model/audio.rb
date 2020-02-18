@@ -9,6 +9,6 @@ module Model
     # Enums
     extend Enumerize
     enumerize :audio_type, in: %i(default background effect), default: :default
-    
+    enumerize :store_type, in: %i(default external), default: :default
   end
 end

@@ -25,7 +25,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
     reversible do |dir|
       dir.up do
         Model.config.theme.constant.create_translation_table!({
-          content: :text, caution: :text
+          content: :text, caution: :text, start_address: :string, start_position: :string
         })
       end
 

@@ -6,6 +6,7 @@ class CreateModelAudios < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :audio_type
+      t.string :store_type
       t.integer :order, default: 1
 
       t.timestamps
