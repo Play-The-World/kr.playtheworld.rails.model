@@ -26,6 +26,9 @@ module Model
       # enumerize :themes_type, in: %i(difficulty numbered series role), default: :difficulty
 
       def theme_class
+        self.class.theme_class
+      end
+      def self.theme_class
         Model.config.theme.constant
       end
       def create_theme(params)

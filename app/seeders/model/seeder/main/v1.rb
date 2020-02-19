@@ -5,15 +5,15 @@ module Model::Seeder::Main
     attr_accessor :base_url
   
     KEYS = {
-      theme: "테마정보",
-      makers: "제작자정보",
-      stages: "스테이지정보",
-      images: "추가 이미지 정보",
-      items: "아이템 정보",
-      events: "이벤트 정보",
-      conditions: "조건 정보",
-      achievements: "업적 정보",
-      sounds: "사운드 정보"
+      theme: "테마",
+      makers: "제작자",
+      stages: "스테이지",
+      images: "이미지",
+      items: "아이템",
+      events: "이벤트",
+      conditions: "조건",
+      achievements: "업적",
+      sounds: "사운드"
     }
   
     def initialize(id)

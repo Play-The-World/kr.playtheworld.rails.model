@@ -1,6 +1,6 @@
 module Model::SuperTheme
   class RolePlay < Base
-    def theme_class
+    def self.theme_class
       Model::Theme::RolePlay
     end
   end

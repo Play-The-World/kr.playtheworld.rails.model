@@ -1,6 +1,6 @@
 module Model::SuperTheme
   class Difficulty < Base
-    def theme_class
+    def self.theme_class
       Model::Theme::Difficulty
     end
   end

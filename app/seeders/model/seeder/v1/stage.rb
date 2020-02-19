@@ -1,6 +1,8 @@
 module Model::Seeder::V1
   class Stage < Base
     KEYS = {
+      stage_list_number: "스테이지 리스트 번호",
+      order: "순서",
       stage_number: "스테이지 번호",
       file_path: "파일 이름",
       stage_type: "타입",

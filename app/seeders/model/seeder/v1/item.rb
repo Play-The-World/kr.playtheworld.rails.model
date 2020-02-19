@@ -33,28 +33,23 @@ module Model::Seeder::V1
 
         # Item
         item = Model::Item.find_or_create_by!(
+          theme: @theme,
           title: v[@keys[:title]],
-          contents: v[@keys[:contents]]
+          content: v[@keys[:contents]]
         )
 
         # Out Image
-        item.images.where(
+        item.images.find_or_create_by!(
+          image_type: :item_out,
           store_type: :external,
           value: "#{@base_url}#{v[@keys[:out_image_url]]}"
-        ).first_or_create!
-        
-        # Theme Item
-        in_theme = @theme.items_in_themes
-          .find_or_create_by!(
-            item_id: item.id,
-            is_permanent: count == 0,
-            count: count
-          )
+        )
 
         # In Image
-        in_theme.events.create!(
-          event_type: "image",
-          value: "#{@base_url}#{v[@keys[:in_image_url]]}"
+        item.images.find_or_create_by!(
+          image_type: :item_in,
+          store_type: :external,
+          value: "#{@base_url}#{v[@keys[:out_image_url]]}"
         )
         
         @items << in_theme

@@ -1,6 +1,6 @@
 module Model::SuperTheme
   class Numbered < Base
-    def theme_class
+    def self.theme_class
       Model::Theme::Numbered
     end
   end

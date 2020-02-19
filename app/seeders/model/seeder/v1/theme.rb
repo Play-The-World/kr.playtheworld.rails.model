@@ -10,12 +10,14 @@ module Model::Seeder::V1
       start_position: "시작 위치 설명",
       location_name: "지역 이름",
       contents: "테마 설명",
-      difficulty: "난이도",
+      theme_type: "테마 표시 타입",
+      theme_type_value: "테마 타입",
       play_time: "플레이 시간",
       data_size: "사용 데이터양",
       thumbnail_url: "테마 썸네일 주소",
       poster_url: "테마 포스터 주소",
-      render_type: "테마 타입",
+      render_type: "테마 플레이 타입",
+      start_stage_list_number: "시작 스테이지 리스트 번호",
       s3_dirname: "Amazon S3 폴더 이름"
     }
     attr_reader :theme
@@ -54,16 +56,32 @@ module Model::Seeder::V1
       puts "Create SuperTheme and Theme."
       # SuperTheme and Theme
       play_time = @values[:play_time].to_i * 60 rescue 0
-      @theme = Model::Theme::Difficulty.new(
+      
+      case @values[:theme_type]
+      when "시리즈"
+        super_theme_class = Model::SuperTheme::Series
+      when "난이도"
+        super_theme_class = Model::SuperTheme::Difficulty
+      when "RPG"
+        super_theme_class = Model::SuperTheme::RolePlay
+      when "연재"
+        super_theme_class = Model::SuperTheme::Numbered
+      else
+        puts "[FATAL] Wrong theme type #{@values[:theme_type]}." and return
+      end
+      theme_class = super_theme_class.theme_class
+
+      @theme = theme_class.new(
         render_type: render_type,
         play_time: play_time,
         data_size: @values[:data_size],
         start_address: @values[:start_address],
         start_position: @values[:start_position],
         content: @values[:contents],
-        theme_type: @values[:difficulty].downcase
+        start_stage_list_number: @values[:start_stage_list_number],
+        theme_type: @values[:theme_type_value].downcase
       )
-      Model::SuperTheme::Difficulty.find_or_create_by!(
+      super_theme_class.find_or_create_by!(
         title: @values[:title],
         summary: @values[:summary],
         genre: Model::Genre.find_or_create_by!(title: @values[:genre]),

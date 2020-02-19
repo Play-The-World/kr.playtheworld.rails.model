@@ -5,6 +5,7 @@ module Model
     has_many :item_in_inventories, dependent: :destroy
     has_many :inventory, through: :item_in_inventories
     include Model::Imageable
+    include Model::Eventable
 
     # Translations
     include Model::Translatable
