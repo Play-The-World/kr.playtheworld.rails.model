@@ -7,6 +7,9 @@ module Model::Seeder::Main
     KEYS = {
       theme: "테마",
       makers: "제작자",
+      stage_lists: "스테이지 리스트",
+      answers: "정답",
+      branches: "갈래",
       stages: "스테이지",
       images: "이미지",
       items: "아이템",

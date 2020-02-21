@@ -18,6 +18,7 @@ module Model::Event # :nodoc:
   # ==== has_many
   # 
   # * Condition
+  # * Occurrence
   class #{file_name.camelize} < Base
     # 실행 가능 여부
     # 
@@ -33,6 +34,11 @@ module Model::Event # :nodoc:
     def trigger!
       # do something
       # ...
+    end
+
+    # 이벤트가 실행되는 대상 (기본값은 Play)
+    def clearer
+      super
     end
   end
 end

@@ -28,5 +28,10 @@ module Model::Event # :nodoc:
       # do something
       # ...
     end
+
+    # 이벤트가 실행되는 대상 (기본값은 Play)
+    def clearer
+      super
+    end
   end
 end

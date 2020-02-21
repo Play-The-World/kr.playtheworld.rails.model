@@ -6,7 +6,7 @@ module Model
 
       # Translations
       include Model::Translatable
-      translates :title, :content
+      translates :content
 
       # Relations
       belongs_to :stage_list

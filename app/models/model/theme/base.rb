@@ -19,6 +19,7 @@ module Model
       has_many :super_plays, dependent: :destroy, counter_cache: true, foreign_key: "theme_id"
       # TODO SQL query를 사용해서 stages 추가하기
       include Model::Interpolatable
+      include Model::Eventable
 
       # Render Type
       RENDER_TYPE = Model::RenderType
@@ -49,9 +50,7 @@ module Model
         end
 
       protected
-        def set_theme_type
-          nil
-        end
+        def set_theme_type; end
     end
   end
 end

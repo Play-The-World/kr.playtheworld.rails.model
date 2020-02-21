@@ -6,6 +6,7 @@ module Model
       user
       team
       play
+      theme
     )
 
     MODELS.each do |accessor|

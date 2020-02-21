@@ -18,7 +18,7 @@ class CreateModelStages < ActiveRecord::Migration[6.0]
     reversible do |dir|
       dir.up do
         Model.config.stage.constant.create_translation_table!({
-          title: :string, content: :text
+          content: :text
         })
       end
 

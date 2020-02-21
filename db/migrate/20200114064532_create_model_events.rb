@@ -5,6 +5,7 @@ class CreateModelEvents < ActiveRecord::Migration[6.0]
       t.references :eventable, polymorphic: true
 
       # Attributes
+      t.boolean :repeatable, default: false
       t.string :value1
       t.string :value2
       t.string :value3
