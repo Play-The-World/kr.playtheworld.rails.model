@@ -6,7 +6,7 @@ class CreateModelChatMessages < ActiveRecord::Migration[6.0]
       t.references :chatter, polymorphic: true
 
       # Attributes
-      t.text :value
+      t.text :content
 
       t.timestamps
     end

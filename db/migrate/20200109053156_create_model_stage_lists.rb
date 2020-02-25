@@ -16,7 +16,7 @@ class CreateModelStageLists < ActiveRecord::Migration[6.0]
     reversible do |dir|
       dir.up do
         Model::StageList.create_translation_table!({
-          title: :string, content: :text
+          title: :string
         })
       end
 

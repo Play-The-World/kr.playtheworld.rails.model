@@ -16,8 +16,8 @@ module Model::Seeder::V1
       hint1_image_path: "힌트 1 이미지",
       hint2_contents: "힌트 2 내용",
       hint2_image_path: "힌트 2 이미지",
-      hint3_contents: "힌트 3 내용 (정답 해설)",
-      hint3_image_path: "힌트 3 이미지 (정답 해설)",
+      hint3_contents: "힌트 3 내용",
+      hint3_image_path: "힌트 3 이미지",
       coordinates: "문제 위치 좌표"
     }
 

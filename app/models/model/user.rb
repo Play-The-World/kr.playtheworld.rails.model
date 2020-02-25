@@ -42,6 +42,7 @@ module Model
     include Model::Viewer
     include Model::Poster
     include Model::Clearer
+    include Model::Chatter
 
     # Status
     include Model::HasStatus

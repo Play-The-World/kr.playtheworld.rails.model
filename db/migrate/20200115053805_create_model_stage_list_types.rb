@@ -7,6 +7,7 @@ class CreateModelStageListTypes < ActiveRecord::Migration[6.0]
       # Attirbutes
       t.string :component_type
       t.integer :chance_count, null: false, default: 0
+      t.integer :hints_count, null: false, default: 0
 
       t.timestamps
 

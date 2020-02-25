@@ -2,7 +2,7 @@ module Model
   class StageList < ApplicationRecord
     # Translations
     include Model::Translatable
-    translates :title, :content
+    translates :title
     
     # Relations
     belongs_to :theme, class_name: Model.config.theme.class_name
@@ -11,7 +11,7 @@ module Model
     has_many :tracks
 
     # Scopes
-    default_scope { includes(stage_list_type: [:answers], stages: []) }
+    default_scope { includes(stage_list_type: [:answers, :hints, :coordinate], stages: []) }
 
     # 유효성 검사 => Bool
     def is_valid?

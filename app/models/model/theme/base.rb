@@ -12,6 +12,9 @@ module Model
       include Model::HasStatus
       set_status %i(hidden blocked)
 
+      # PlayType
+      # enumerize :play_type, in: %i(default random), default: :default
+
       # Relations
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
       has_many :stage_lists, dependent: :destroy, foreign_key: "theme_id"
