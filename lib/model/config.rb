@@ -37,6 +37,7 @@ module Model
       item: ModelConfiguration.new("Model::Item", "model_items"),
       location: ModelConfiguration.new("Model::Location", "model_locations"),
       expression: ModelConfiguration.new("Model::Expression", "model_expressions"),
+      topic: ModelConfiguration.new("Model::Topic::Base", "model_topics"),
       otp_digits: 6,
       otp_expiry_time: 3.minutes
     }

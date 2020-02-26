@@ -12,8 +12,8 @@ class CreateModelChatRoomEntries < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:chat_room, :status]
-      t.index [:chatter_id, :chatter_type, :status]
+      t.index [:chat_room_id, :status]
+      t.index [:chatter_id, :chatter_type, :status], name: "chat_room_entry_index"
     end
   end
 end

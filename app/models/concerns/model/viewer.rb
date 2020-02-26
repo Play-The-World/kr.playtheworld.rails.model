@@ -3,7 +3,7 @@ module Model
     extend ActiveSupport::Concern
 
     included do
-      has_many: :views, as: :viewer, dependent: :destroy
+      has_many :views, as: :viewer, dependent: :destroy
 
       def viewed(viewable:)
         viewable&.viewed_by(viewer: self)

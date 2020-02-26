@@ -45,6 +45,15 @@ module Model
         Model::Repository::Theme.new
       end
 
+      # 기본 serializer 설정
+      #
+      # ==== Return
+      #
+      # * Model::Serializer::Theme
+      def self.serializer
+        Model::Serializer::Theme
+      end
+
       private
         def generate_fake_id
           begin

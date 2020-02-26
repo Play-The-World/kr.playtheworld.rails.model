@@ -18,5 +18,7 @@ module Model
     def serialized_json
       serializer.new(self).serialized_json
     end
+
+    def nothing; end
   end
 end

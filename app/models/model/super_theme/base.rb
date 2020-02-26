@@ -16,6 +16,8 @@ module Model
       include Model::Viewable
       include Model::Interpolatable
       include Model::Imageable
+      has_many :super_theme_in_topics, dependent: :destroy, foreign_key: "super_theme_id"
+      has_many :topics, through: :super_theme_in_topics, class_name: Model.config.topic.class_name
 
       # Status
       include Model::HasStatus
@@ -33,15 +35,16 @@ module Model
       end
       def create_theme(params)
         params[:type] = theme_class.to_s
-        puts params
         themes.create!(params)
       end
 
-      def category_title
-        category.nil? ? "" : category.title
-      end
-      def genre_title
-        genre.nil? ? "" : genre.title
+      # 기본 serializer 설정
+      #
+      # ==== Return
+      #
+      # * Model::Serializer::SuperTheme
+      def self.serializer
+        Model::Serializer::SuperTheme
       end
     end
   end

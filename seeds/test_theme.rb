@@ -39,19 +39,16 @@ puts sl
 #   }
 # ])
 sl.stages << Model::Stage::Script.new({
-    title: "안녕",
     order: 1
   }) << Model::Stage::Script.new({
-    title: "냥톡을 확인해 봐",
     order: 2
   }) << Model::Stage::Quiz.new({
-    title: "나의 이름은",
     order: 3
   })
 
 puts sl.stages
 
-slt = sl.stage_list_type.create!({
+slt = sl.create_stage_list_type!({
     component_type: Model::ComponentType::Form1.new
   })
 
