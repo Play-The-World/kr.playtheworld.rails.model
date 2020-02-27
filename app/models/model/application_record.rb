@@ -15,8 +15,8 @@ module Model
     def serializer
       self.class.serializer
     end
-    def serialized_json
-      serializer.new(self).serialized_json
+    def as_json(options = {})
+      serializer.new(self).serializable_hash
     end
 
     def nothing; end

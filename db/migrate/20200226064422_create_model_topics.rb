@@ -2,7 +2,7 @@ class CreateModelTopics < ActiveRecord::Migration[6.0]
   def change
     create_table :model_topics do |t|
       # Relations
-      # t.references :topic_list
+      # t.references :setting
 
       # Attirbutes
       t.string :type

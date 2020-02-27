@@ -1,6 +1,6 @@
 module Model::Condition # :nodoc:
   #
-  # Review_on_theme 조건 클래스
+  # PlayedTheme 조건 클래스
   # TODO 조건에 대한 설명
   #
   # == Relations
@@ -12,15 +12,16 @@ module Model::Condition # :nodoc:
   # ==== has_many
   # 
   # * ConditionClear
-  class ReviewOnTheme < Base
+  class PlayedTheme < Base
     # 조건을 만족하는 지 여부
     # 
     # ==== Return
     # 
     # * Bool
     def cleared?
-      # TODO 조건 명세
-      true
+      Model.current.user.plays.finished.exists?(theme: theme)
+    rescue
+      super
     end
 
     # 조건을 만족했다는 것을 표시하는 함수
@@ -28,5 +29,10 @@ module Model::Condition # :nodoc:
     def clear!
       
     end
+
+    private
+      def theme
+        Model.config.theme.constant.find_by(id: value1)
+      end
   end
 end

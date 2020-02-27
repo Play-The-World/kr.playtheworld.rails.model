@@ -6,6 +6,9 @@ class CreateModelSuperThemeInTopics < ActiveRecord::Migration[6.0]
       t.references :super_theme
 
       t.timestamps
+
+      # Index
+      t.index [:topic_id, :super_theme_id], unique: true
     end
   end
 end

@@ -5,11 +5,16 @@ module Model
       self.table_name = Model.config.play.table_name
   
       # Relations
+      belonsg_to :user
+      belonsg_to :theme, class_name: Model.config.theme.class_name
       belongs_to :super_play, class_name: Model.config.super_play.class_name, counter_cache: true
       has_many :tracks, foreign_key: "play_id"
       has_many :stage_lists, -> { order('tracks.id': :asc) }, through: :tracks
       # TODO stages 메소드 작성하거나 Relation으로 설정하기
       include Model::Clearer
+
+      # Scopes
+      scope :finished, -> { where.not(finished_at: nil) }
 
       # 현재 스테이지 => Stage?
       def current_stage

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 module Model
-  class TopicListTest < ActiveSupport::TestCase
+  class TopicInSettingTest < ActiveSupport::TestCase
     # test "the truth" do
     #   assert true
     # end

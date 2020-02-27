@@ -37,12 +37,14 @@ module Model
     has_many :teams, through: :entries
     has_one :maker, dependent: :destroy
     has_many :achievements, class_name: Model::UsersAchievement.to_s
+    has_many :plays, dependent: :destroy, class_name: Model.config.play.class_name
     include Model::Reviewer
     include Model::Commenter
     include Model::Viewer
     include Model::Poster
     include Model::Clearer
     include Model::Chatter
+    include Model::HasSetting
 
     # Status
     include Model::HasStatus

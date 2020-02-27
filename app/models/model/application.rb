@@ -1,7 +1,7 @@
 module Model
   class Application < ApplicationRecord
     # Relations
-    has_one :topic_list, dependent: :destroy
+    include Model::HasSetting
     include Model::HasVariables
     include Model::Textable
     include Model::Eventable
