@@ -1,8 +1,13 @@
 # requires all dependencies
-Gem.loaded_specs['model'].dependencies.each do |d|
-  next if d.name.eql?('google-api-client')
-  require d.name
-end
+skip = [
+  'google-api-client'
+]
+Gem.loaded_specs['model']
+  .dependencies
+  .select { |d| !skip.include?(d.name) }
+  .each do |d|
+    require d.name
+  end
 
 # Google API
 require "google/apis/sheets_v4"
