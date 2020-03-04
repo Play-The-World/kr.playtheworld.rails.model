@@ -9,6 +9,9 @@ class CreateModelSettings < ActiveRecord::Migration[6.0]
       t.integer :topics_count, default: 0
       
       t.timestamps
+
+      # Indexes
+      t.index :title
     end
   end
 end
