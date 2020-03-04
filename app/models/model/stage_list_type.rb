@@ -19,5 +19,9 @@ module Model
     def self.component_types
       COMPONENT_TYPE.constants.select { |k| COMPONENT_TYPE.const_get(k).instance_of? Class } - [:Base]
     end
+
+    def self.serializer
+      Model::Serializer::StageListType
+    end
   end
 end

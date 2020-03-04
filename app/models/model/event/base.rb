@@ -45,6 +45,10 @@ module Model
       def clearer
         Model.current.play
       end
+
+      def self.serializer
+        Model::Serializer::Event
+      end
     end
   end
 end

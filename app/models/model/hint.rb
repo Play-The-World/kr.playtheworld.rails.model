@@ -13,5 +13,9 @@ module Model
     # Enums
     extend Enumerize
     enumerize :type, in: %i(default answer), default: :default
+
+    def self.serializer
+      Model::Serializer::Hint
+    end
   end
 end

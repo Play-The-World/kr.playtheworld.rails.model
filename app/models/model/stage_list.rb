@@ -8,7 +8,8 @@ module Model
     belongs_to :theme, class_name: Model.config.theme.class_name
     has_many :stages, -> { order(order: :asc) }, class_name: Model.config.stage.class_name, dependent: :destroy
     has_one :stage_list_type, dependent: :destroy
-    has_many :tracks
+    has_many :tracks, dependent: :destroy
+    has_many :plays, through: :tracks, class_name: Model.config.play.class_name
 
     # Scopes
     default_scope { includes(stage_list_type: [:answers, :hints, :coordinate], stages: []) }
@@ -28,6 +29,10 @@ module Model
       _answer
     rescue
       nil
+    end
+
+    def self.serializer
+      Model::Serializer::StageList
     end
 
     private

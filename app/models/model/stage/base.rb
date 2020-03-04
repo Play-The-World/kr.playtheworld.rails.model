@@ -23,6 +23,9 @@ module Model
       # Scopes
       default_scope { order(order: :asc) }
 
+      def self.serializer
+        Model::Serializer::Stage
+      end
     end
   end
 end

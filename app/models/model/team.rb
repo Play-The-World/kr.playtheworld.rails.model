@@ -32,5 +32,8 @@ module Model
     include Model::HasStatus
     set_status %i(removed blocked)
     
+    def self.serializer
+      Model::Serializer::Team
+    end
   end
 end

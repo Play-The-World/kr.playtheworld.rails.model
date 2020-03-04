@@ -44,6 +44,10 @@ module Model
           return branch if branch.reachable?
         end and nil
       end
+
+      def self.serializer
+        Model::Serializer::Answer
+      end
     end
   end
 end

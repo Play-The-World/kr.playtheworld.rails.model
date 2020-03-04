@@ -31,6 +31,10 @@ module Model
       # Status
       include Model::HasStatus
       set_status %i(removed blocked)
+
+      def self.serializer
+        Model::Serializer::Comment
+      end
     end
   end
 end

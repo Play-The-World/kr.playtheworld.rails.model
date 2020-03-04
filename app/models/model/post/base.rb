@@ -14,6 +14,10 @@ module Model
       include Model::Translatable
       translates :title, :content
 
+
+      def self.serializer
+        Model::Serializer::Post
+      end
     end
   end
 end

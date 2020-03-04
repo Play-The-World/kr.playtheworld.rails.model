@@ -37,6 +37,10 @@ module Model
         Model::Repository::Token.new(self)
       end
 
+      def self.serializer
+        Model::Serializer::Token
+      end
+
       protected
         # 토큰 생성
         def generate_access_token; end

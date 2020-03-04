@@ -5,8 +5,8 @@ module Model
       self.table_name = Model.config.play.table_name
   
       # Relations
-      belonsg_to :user
-      belonsg_to :theme, class_name: Model.config.theme.class_name
+      belongs_to :user
+      belongs_to :theme, class_name: Model.config.theme.class_name
       belongs_to :super_play, class_name: Model.config.super_play.class_name, counter_cache: true
       has_many :tracks, foreign_key: "play_id"
       has_many :stage_lists, -> { order('tracks.id': :asc) }, through: :tracks
@@ -37,6 +37,10 @@ module Model
       end
       def count_used_answer(n = 1)
         update(used_answer_count: used_answer_count + n)
+      end
+
+      def self.serializer
+        Model::Serializer::Play
       end
     end
   end

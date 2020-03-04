@@ -7,5 +7,8 @@ module Model
     # Relations
     has_many :super_themes, class_name: Model.config.super_theme.class_name, dependent: :nullify
     
+    def self.serializer
+      Model::Serializer::Genre
+    end
   end
 end

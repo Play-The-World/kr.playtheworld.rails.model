@@ -9,5 +9,9 @@ module Model
     has_many :users, through: :users_achievements
     include Model::Imageable
     include Model::Interpolatable
+
+    def self.serializer
+      Model::Serializer::Achievement
+    end
   end
 end

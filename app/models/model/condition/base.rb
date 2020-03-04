@@ -27,6 +27,10 @@ module Model
       end
       def clear!; end
 
+      def self.serializer
+        Model::Serializer::Condition
+      end
+
       private
         # conditionable이 Event가 맞으면 Event를 반환한다.
         #

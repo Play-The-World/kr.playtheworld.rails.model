@@ -6,5 +6,9 @@ module Model
     include Model::Conditionable
 
     def reachable?; all_cleared? end
+
+    def self.serializer
+      Model::Serializer::Branch
+    end
   end
 end

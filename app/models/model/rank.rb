@@ -14,5 +14,9 @@ module Model
     def computed_value
       (value * MAX_VALUE).to_i
     end
+
+    def self.serializer
+      Model::Serializer::Rank
+    end
   end
 end

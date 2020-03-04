@@ -7,5 +7,9 @@ module Model
     # Translations
     include Model::Translatable
     translates :title
+
+    def self.serializer
+      Model::Serializer::Location
+    end
   end
 end

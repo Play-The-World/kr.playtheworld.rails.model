@@ -8,5 +8,9 @@ module Model
     # Status
     include Model::HasStatus
     set_status %i(removed blocked disabled)
+
+    def self.serializer
+      Model::Serializer::ChatRoom
+    end
   end
 end
