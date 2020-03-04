@@ -12,5 +12,9 @@ module Model
     # Status
     include Model::HasStatus
     set_status %i(blocked)
+
+    def self.serializer
+      Model::Serializer::Maker
+    end
   end
 end

@@ -24,5 +24,9 @@ module Model
       end
       views.create(viewer: viewer) and return true
     end
+
+    def self.serializer
+      Model::Serializer::ViewType
+    end
   end
 end

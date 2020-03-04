@@ -30,6 +30,10 @@ module Model
       nil
     end
 
+    def self.serializer
+      Model::Serializer::StageList
+    end
+
     private
       # Helper methods
       def answers

@@ -29,6 +29,10 @@ module Model
       # Translations
       include Model::Translatable
       translates :title, :content
+
+      def self.serializer
+        Model::Serializer::Board
+      end
     end
   end
 end

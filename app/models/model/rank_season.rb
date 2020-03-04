@@ -11,5 +11,9 @@ module Model
     def self.current
       self.find_or_create_by(title: "시즌 1")
     end
+
+    def self.serializer
+      Model::Serializer::RankSeason
+    end
   end
 end

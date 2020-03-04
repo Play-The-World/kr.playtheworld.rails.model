@@ -7,5 +7,8 @@ module Model
     include Enumerize
     enumerize :variable_type, in: %i(default), default: :default
     
+    def self.serializer
+      Model::Serializer::Variable
+    end
   end
 end
