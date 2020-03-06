@@ -56,7 +56,7 @@ a = slt.answers << Model::Answer::Correct.new({
     value: "곽두팔"
   })
 
-a.branches.create!({
+a.take.branches.create!({
   target_stage_list_id: 2
 })
 
