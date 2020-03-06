@@ -10,6 +10,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.string :status
       t.string :type
       t.string :theme_type
+      t.integer :difficulty, default: 1
       t.string :render_type
       t.integer :price, null: false, default: 0
       t.integer :play_time, null: false, default: 0
