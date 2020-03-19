@@ -23,6 +23,9 @@ module Model
       # TODO SQL query를 사용해서 stages 추가하기
       include Model::Interpolatable
       include Model::Eventable
+      has_one :creation, as: :product, dependent: :destroy
+      has_one :maker, through: :creation, source: :creator, source_type: Model::Maker.to_s
+      has_one :maker_team, through: :creation, source: :creator, source_type: Model::MakerTeam.to_s
 
       # Render Type
       RENDER_TYPE = Model::RenderType

@@ -8,7 +8,7 @@ PATH
       globalize (~> 5.3.0)
       google-api-client (~> 0.36)
       mysql2
-      rails (~> 6.0.1)
+      rails (~> 6.0.2)
       rails-i18n (~> 6.0.0)
 
 GEM
@@ -211,4 +211,4 @@ DEPENDENCIES
   model!
 
 BUNDLED WITH
-   2.0.2
+   2.1.2
