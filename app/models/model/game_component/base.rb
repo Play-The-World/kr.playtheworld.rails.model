@@ -1,5 +1,5 @@
 module Model
-  module ComponentType
+  module GameComponent
     # 
     # 콤포넌트 타입의 기본 클래스
     #
@@ -17,7 +17,7 @@ module Model
 
       def to_s
         {
-          class_name: self.class.to_s,
+          type: self.class.to_s,
           options: @options
         }.to_json
       end
@@ -31,7 +31,7 @@ module Model
         def load(data)
           # Make sure data is compliant with our expected data format
           json = JSON.parse(data)
-          json["class_name"].constantize.new(json["options"])
+          "Model::GameComponent::#{json["type"]}".constantize.new(json["options"])
         rescue
           self.new
         end
@@ -48,7 +48,7 @@ module Model
 
       def to_s
         {
-          class_name: self.class.to_s,
+          type: self.class.to_s.split("::").last,
           options: nil
         }.to_json
       end

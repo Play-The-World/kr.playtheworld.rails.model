@@ -7,17 +7,17 @@ module Model
     include Model::Coordinatable
     include Model::Imageable
 
-    # Component Type
-    COMPONENT_TYPE = Model::ComponentType
-    serialize :component_type, COMPONENT_TYPE::Base
-    alias_attribute :component, :component_type
+    # Game Component
+    GAME_COMPONENT = Model::GameComponent
+    serialize :game_component, GAME_COMPONENT::Base 
+    alias_attribute :component, :game_component
 
-    def self.component_type(of:)
-      "#{COMPONENT_TYPE.to_s}::#{of}".constantize rescue nil
+    def self.game_component(of:)
+      "#{GAME_COMPONENT.to_s}::#{of.to_s.camelize}".constantize rescue nil
     end
     
-    def self.component_types
-      COMPONENT_TYPE.constants.select { |k| COMPONENT_TYPE.const_get(k).instance_of? Class } - [:Base]
+    def self.game_components
+      GAME_COMPONENT.constants.select { |k| GAME_COMPONENT.const_get(k).instance_of? Class } - [:Base]
     end
 
     def self.serializer
