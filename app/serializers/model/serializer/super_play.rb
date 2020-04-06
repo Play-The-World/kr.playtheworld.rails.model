@@ -1,5 +1,5 @@
 module Model::Serializer
-  class < Base
+  class SuperPlay < Base
     # Attributes
     attributes :status, :type, :plays_count
 

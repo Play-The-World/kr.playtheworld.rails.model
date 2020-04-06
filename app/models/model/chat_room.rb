@@ -3,7 +3,7 @@ module Model
     # Relations
     belongs_to :chattable, polymorphic: true
     has_many :chat_messages, dependent: :destroy
-    has_many :chat_room_entries, dependent: :destory
+    has_many :chat_room_entries, dependent: :destroy
 
     # Status
     include Model::HasStatus

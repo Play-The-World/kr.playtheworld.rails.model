@@ -3,7 +3,7 @@ module Model
     extend ActiveSupport::Concern
 
     included do
-      has_many: :expressions, as: :expresser, dependent: :destroy
+      has_many :expressions, as: :expresser, dependent: :destroy
 
       def liked(expresser:)
         expression_type&.liked_by(expresser: self)
