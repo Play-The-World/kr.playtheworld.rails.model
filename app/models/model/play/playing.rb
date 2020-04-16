@@ -1,5 +1,10 @@
 module Model::Play
   class Playing < Base
+
+    # Validations
+    validates :finished_at,
+      absence: { message: "Finished_at must be nil" }
+
     # 플레이 완료시 호출
     # 현재 플레이를 변환시킨다.
     # 
@@ -7,8 +12,9 @@ module Model::Play
     # 
     # * Model::Play::Finished
     def finish!
-      data = attributes.except('id', 'status')
-      Model::Play::Finished.create(data.merge(finished_at: Time.now))
+      # data = attributes.except('id', 'status')
+      # Model::Play::Finished.create(data.merge(finished_at: Time.now))
+      update(type: "#{Model::Play::Finished}", finished_at: Time.now)
     end
 
     # 정답 찾기

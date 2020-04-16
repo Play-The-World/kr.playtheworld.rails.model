@@ -14,7 +14,7 @@ module Model
       include Model::Clearer
 
       # Scopes
-      scope :finished, -> { where.not(finished_at: nil) }
+      # scope :finished, -> { where.not(finished_at: nil) }
 
       # 현재 스테이지 => Stage?
       def current_stage
