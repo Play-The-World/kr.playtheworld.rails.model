@@ -2,7 +2,7 @@ class CreateModelReviews < ActiveRecord::Migration[6.0]
   def change
     create_table :model_reviews do |t|
       # Relations
-      t.references :reviewable, polymorphic: true
+      t.references :reviewable, polymorphic: true, index: false
       t.references :reviewer, polymorphic: true
 
       # Attirbutes
@@ -12,8 +12,7 @@ class CreateModelReviews < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index :type
-      t.index :status
+      t.index [:reviewable_id, :reviewable_type, :status], name: "reviews_index"
     end
 
     reversible do |dir|

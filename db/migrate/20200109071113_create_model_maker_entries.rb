@@ -2,7 +2,7 @@ class CreateModelMakerEntries < ActiveRecord::Migration[6.0]
   def change
     create_table :model_maker_entries do |t|
       # Relations
-      t.references :maker
+      t.references :maker, index: false
       t.references :maker_team
 
       t.timestamps

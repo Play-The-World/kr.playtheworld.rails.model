@@ -2,7 +2,7 @@ class CreateModelMakers < ActiveRecord::Migration[6.0]
   def change
     create_table :model_makers do |t|
       # Relations
-      t.references :user
+      t.references :user, index: false
 
       # Attributes
       t.string :status
@@ -10,7 +10,7 @@ class CreateModelMakers < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index :status
+      t.index [:user, :status]
     end
 
     reversible do |dir|

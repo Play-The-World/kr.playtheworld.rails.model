@@ -2,8 +2,8 @@ class CreateModelChatRoomEntries < ActiveRecord::Migration[6.0]
   def change
     create_table :model_chat_room_entries do |t|
       # Relations
-      t.references :chat_room
-      t.references :chatter, polymorphic: true
+      t.references :chat_room, index: false
+      t.references :chatter, polymorphic: true, index: false
 
       # Attributes
       # t.string :type

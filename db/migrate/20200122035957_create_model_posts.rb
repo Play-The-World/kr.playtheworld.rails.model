@@ -2,7 +2,7 @@ class CreateModelPosts < ActiveRecord::Migration[6.0]
   def change
     create_table :model_posts do |t|
       # Relations
-      t.references :board
+      t.references :board, index: false
 
       # Attirbutes
       t.string :type
@@ -11,8 +11,7 @@ class CreateModelPosts < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index :type
-      t.index :status
+      t.index [:board_id, :status]
     end
 
     reversible do |dir|

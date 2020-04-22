@@ -10,9 +10,6 @@ class CreateModelStageListTypes < ActiveRecord::Migration[6.0]
       t.integer :hints_count, null: false, default: 0
 
       t.timestamps
-
-      # Indexes
-      # t.index :component_type
     end
   end
 end

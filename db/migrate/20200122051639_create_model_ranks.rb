@@ -2,7 +2,7 @@ class CreateModelRanks < ActiveRecord::Migration[6.0]
   def change
     create_table :model_ranks do |t|
       # Relations
-      t.references :rankable, polymorphic: true
+      t.references :rankable, polymorphic: true, index: false
       t.references :ranker, polymorphic: true
       t.references :rank_season
 
@@ -13,6 +13,7 @@ class CreateModelRanks < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index [:rank_season_id, :rankable_id, :rankable_type, :ranker_id, :ranker_type], name: "rank_index", unique: true
+      t.index [:rankable_id, :rankable_type, :value]
     end
   end
 end

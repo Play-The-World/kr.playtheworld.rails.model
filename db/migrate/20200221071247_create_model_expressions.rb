@@ -2,8 +2,8 @@ class CreateModelExpressions < ActiveRecord::Migration[6.0]
   def change
     create_table :model_expressions do |t|
       # Relations
-      t.references :expression_type
-      t.references :expresser, polymorphic: true
+      t.references :expression_type, index: false
+      t.references :expresser, polymorphic: true, index: false
 
       # Attributes
       t.string :type
@@ -11,7 +11,8 @@ class CreateModelExpressions < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index :type
+      t.index [:expression_type, :type]
+      t.index [:expresser_id, :expresser_type, :type], name: "expressions_index"
     end
   end
 end

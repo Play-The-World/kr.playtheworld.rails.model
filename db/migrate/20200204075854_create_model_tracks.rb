@@ -5,6 +5,10 @@ class CreateModelTracks < ActiveRecord::Migration[6.0]
       t.references :play
       t.references :stage_list
 
+      t.integer :wrong_answer_count, default: 0
+      t.integer :used_hint_count, default: 0
+      t.integer :used_answer_count, default: 0
+
       t.timestamps
     end
   end

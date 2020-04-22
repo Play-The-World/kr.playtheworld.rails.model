@@ -12,8 +12,7 @@ class CreateModelBoards < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index :type
-      t.index :status
+      t.index [:boardable_id, :boardable_type, :status]
     end
 
     reversible do |dir|

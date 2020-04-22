@@ -2,7 +2,7 @@ class CreateModelUsersAchievements < ActiveRecord::Migration[6.0]
   def change
     create_table :model_users_achievements do |t|
       # Relataions
-      t.references :user
+      t.references :user, index: false
       t.references :achievement
 
       # Attirbutes

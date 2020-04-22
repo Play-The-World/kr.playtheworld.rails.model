@@ -2,7 +2,7 @@ class CreateModelChatRooms < ActiveRecord::Migration[6.0]
   def change
     create_table :model_chat_rooms do |t|
       # Relations
-      t.references :chattable, polymorphic: true
+      t.references :chattable, polymorphic: true, index: false
 
       # Attributes
       t.string :title
@@ -12,7 +12,7 @@ class CreateModelChatRooms < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index :status
+      t.index [:chattable_id, :chattable_type, :status], name: "chat_rooms_index"
     end
   end
 end

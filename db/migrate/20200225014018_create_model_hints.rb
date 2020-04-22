@@ -2,7 +2,7 @@ class CreateModelHints < ActiveRecord::Migration[6.0]
   def change
     create_table :model_hints do |t|
       # Relations
-      t.references :stage_list_type
+      t.references :stage_list_type, index: false
 
       # Attributes
       t.integer :order, null: false, default: 1

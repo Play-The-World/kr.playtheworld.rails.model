@@ -2,7 +2,7 @@ class CreateModelTokens < ActiveRecord::Migration[6.0]
   def change
     create_table :model_tokens do |t|
       # Relations
-      t.references :tokenable, polymorphic: true
+      t.references :tokenable, polymorphic: true, index: false
 
       # Attributes
       t.string :type
@@ -13,7 +13,7 @@ class CreateModelTokens < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :value
-      t.index [:tokenable_id, :tokenable_type, :type, :value], name: "token_index"
+      t.index [:tokenable_id, :tokenable_type, :type, :value], name: "tokens_index"
     end
   end
 end

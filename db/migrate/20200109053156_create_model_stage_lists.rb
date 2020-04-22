@@ -2,7 +2,7 @@ class CreateModelStageLists < ActiveRecord::Migration[6.0]
   def change
     create_table :model_stage_lists do |t|
       # Relations
-      t.references :theme
+      t.references :theme, index: false
 
       # Attributes
       t.integer :stage_list_number, null: false, default: 1

@@ -29,16 +29,6 @@ module Model
         stage_lists.first
       end
 
-      def count_wrong_answer(n = 1)
-        update(wrong_answer_count: wrong_answer_count + n)
-      end
-      def count_used_hint(n = 1)
-        update(used_hint_count: used_hint_count + n)
-      end
-      def count_used_answer(n = 1)
-        update(used_answer_count: used_answer_count + n)
-      end
-
       def self.serializer
         Model::Serializer::Play
       end

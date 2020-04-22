@@ -2,7 +2,7 @@ class CreateModelTexts < ActiveRecord::Migration[6.0]
   def change
     create_table :model_texts do |t|
       # Relations
-      t.references :textable, polymorphic: true
+      t.references :textable, polymorphic: true, index: false
       t.references :interpolation
 
       # Attributes
@@ -12,7 +12,7 @@ class CreateModelTexts < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:textable_id, :textable_type, :text_type, :order], name: "textable_index", unique: true
+      t.index [:textable_id, :textable_type, :text_type, :order], name: "textables_index", unique: true
     end
     
     reversible do |dir|

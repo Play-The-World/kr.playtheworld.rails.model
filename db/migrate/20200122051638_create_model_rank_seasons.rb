@@ -7,6 +7,9 @@ class CreateModelRankSeasons < ActiveRecord::Migration[6.0]
       t.integer :ranks_count, default: 0
 
       t.timestamps
+
+      # Index
+      t.index [:start_date, :end_date]
     end
 
     reversible do |dir|

@@ -2,7 +2,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
   def change
     create_table :model_themes do |t|
       # Relations
-      t.references :super_theme
+      t.references :super_theme, index: false
 
       # Attributes
       t.string :fake_id
@@ -21,7 +21,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :status
-      t.index [:super_theme_id, :type]
+      t.index [:super_theme_id, :status]
     end
 
     reversible do |dir|

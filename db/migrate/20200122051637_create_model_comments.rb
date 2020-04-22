@@ -2,7 +2,7 @@ class CreateModelComments < ActiveRecord::Migration[6.0]
   def change
     create_table :model_comments do |t|
       # Relations
-      t.references :commentable, polymorphic: true
+      t.references :commentable, polymorphic: true, index: false
       t.references :commenter, polymorphic: true
       t.references :board
 
@@ -15,8 +15,7 @@ class CreateModelComments < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index :type
-      t.index :status
+      t.index [:commentable_id, :commentable_type, :type], name: "comments_index"
     end
   end
 end
