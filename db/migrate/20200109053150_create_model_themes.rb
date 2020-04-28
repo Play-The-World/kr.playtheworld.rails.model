@@ -16,12 +16,14 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.integer :play_time, null: false, default: 0
       t.integer :data_size, null: false, default: 0
       t.integer :super_plays_count, null: false, default: 0
+      t.integer :current_version, null: false, deafult: 1
 
       t.timestamps
 
       # Indexes
       t.index :status
       t.index [:super_theme_id, :status]
+      t.index [:super_theme_id, :theme_type], unique: true
     end
 
     reversible do |dir|

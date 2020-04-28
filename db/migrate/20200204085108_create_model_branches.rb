@@ -10,7 +10,7 @@ class CreateModelBranches < ActiveRecord::Migration[6.0]
 
       t.timestamps
 
-      t.index [:answer, :type]
+      t.index [:answer_id, :type]
     end
   end
 end

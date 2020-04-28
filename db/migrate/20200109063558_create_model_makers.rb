@@ -10,7 +10,7 @@ class CreateModelMakers < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:user, :status]
+      t.index [:user_id, :status]
     end
 
     reversible do |dir|

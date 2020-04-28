@@ -2,7 +2,7 @@ class CreateModelExpressionTypes < ActiveRecord::Migration[6.0]
   def change
     create_table :model_expression_types do |t|
       # Relations
-      t.references :expressable, polymorphic: true
+      t.references :expressable, polymorphic: true, index: { name: "expression_types_index" }
       
       # Attributes
       t.integer :basis_count, default: 0

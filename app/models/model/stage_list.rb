@@ -5,7 +5,7 @@ module Model
     translates :title
     
     # Relations
-    belongs_to :theme, class_name: Model.config.theme.class_name
+    belongs_to :theme_data
     has_many :stages, -> { order(order: :asc) }, class_name: Model.config.stage.class_name, dependent: :destroy
     has_one :stage_list_type, dependent: :destroy
     has_many :tracks, dependent: :destroy

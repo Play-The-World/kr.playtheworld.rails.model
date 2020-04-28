@@ -17,12 +17,9 @@ module Model
 
       # Relations
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
-      has_many :stage_lists, dependent: :destroy, foreign_key: "theme_id"
       include Model::Viewable
-      has_many :super_plays, dependent: :destroy, counter_cache: true, foreign_key: "theme_id"
       # TODO SQL query를 사용해서 stages 추가하기
       include Model::Interpolatable
-      include Model::Eventable
       has_one :creation, as: :product, dependent: :destroy
       has_one :maker, through: :creation, source: :creator, source_type: Model::Maker.to_s
       has_one :maker_team, through: :creation, source: :creator, source_type: Model::MakerTeam.to_s
@@ -30,6 +27,9 @@ module Model
       # Render Type
       RENDER_TYPE = Model::RenderType
       serialize :render_type, RENDER_TYPE::Base
+
+      # Constants
+      FAKE_ID_LENGTH = 10
 
       def render_types
         RENDER_TYPE.constants.select { |k| RENDER_TYPE.const_get(k).instance_of? Class } - [:Base]
@@ -60,7 +60,7 @@ module Model
       private
         def generate_fake_id
           begin
-            self.fake_id = SecureRandom.hex(8)
+            self.fake_id = SecureRandom.hex(FAKE_ID_LENGTH)
           end while self.class.exists?(fake_id: self.fake_id)
         end
 
