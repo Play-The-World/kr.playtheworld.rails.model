@@ -3,6 +3,7 @@ module Model
     extend ActiveSupport::Concern
 
     included do
+      include Rails.application.routes.url_helpers
       has_one_attached :file
 
       def attach(params)
@@ -10,6 +11,9 @@ module Model
       end
       def attached?
         file.attached?
+      end
+      def url
+        polymorphic_url(file)
       end
     end
   end

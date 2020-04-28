@@ -31,30 +31,34 @@ module Model
       # Constants
       FAKE_ID_LENGTH = 10
 
-      def render_types
-        RENDER_TYPE.constants.select { |k| RENDER_TYPE.const_get(k).instance_of? Class } - [:Base]
-      end
-
       # Callbacks
       before_validation :set_theme_type
       before_create :generate_fake_id
 
       # Validations
       validates :theme_type,
-        uniqueness: { scope: :super_theme_id, message: "should be unique to super_theme" }
+        uniqueness: { scope: :super_theme_id, message: "theme_type should be unique to super_theme" }
+      validates :fake_id, 
+        uniqueness: { message: "fake_id should be unique" }
 
-      # Repository
-      def self.repo
-        Model::Repository::Theme.new
-      end
+      class << self
+        def render_types
+          RENDER_TYPE.constants.select { |k| RENDER_TYPE.const_get(k).instance_of? Class } - [:Base]
+        end
 
-      # 기본 serializer 설정
-      #
-      # ==== Return
-      #
-      # * Model::Serializer::Theme
-      def self.serializer
-        Model::Serializer::Theme
+        # Repository
+        def repo
+          Model::Repository::Theme.new
+        end
+
+        # 기본 serializer 설정
+        #
+        # ==== Return
+        #
+        # * Model::Serializer::Theme
+        def serializer
+          Model::Serializer::Theme
+        end
       end
 
       private

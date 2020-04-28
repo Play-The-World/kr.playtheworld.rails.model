@@ -5,7 +5,7 @@ module Model
     translates :name, :content
     
     # Relations
-    belongs_to :user
+    belongs_to :user, optional: true
     has_many :maker_entries, dependent: :destroy
     has_many :maker_teams, through: :maker_entries
     has_many :creations, as: :creator, dependent: :destroy
