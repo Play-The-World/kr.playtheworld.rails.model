@@ -9,9 +9,10 @@ module Model
       translates :title, :summary, :content, :caution
       
       # Relations
-      belongs_to :category, optional: true
-      belongs_to :genre, optional: true
-      belongs_to :location, optional: true
+      include Model::Classifiable
+      # belongs_to :category, optional: true
+      # belongs_to :genre, optional: true
+      # belongs_to :location, optional: true
       has_many :themes, class_name: Model.config.theme.class_name, dependent: :destroy, foreign_key: "super_theme_id"
       include Model::Viewable
       include Model::Interpolatable

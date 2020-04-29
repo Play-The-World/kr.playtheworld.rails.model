@@ -2,9 +2,9 @@ class CreateModelSuperThemes < ActiveRecord::Migration[6.0]
   def change
     create_table :model_super_themes do |t|
       # Relations
-      t.references :location
-      t.references :genre
-      t.references :category
+      # t.references :location
+      # t.references :genre
+      # t.references :category
 
       # Attributes
       t.string :fake_id
