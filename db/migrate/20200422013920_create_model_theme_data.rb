@@ -6,6 +6,7 @@ class CreateModelThemeData < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.integer :version, default: 1, null: false
+      t.string :memo
 
       t.timestamps
 
