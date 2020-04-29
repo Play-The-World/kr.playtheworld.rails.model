@@ -13,7 +13,7 @@ class CreateModelVideos < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:videoable_id, :videoable_type, :video_type, :order], name: "videoables_index", unique: true
+      t.index [:videoable_id, :videoable_type, :video_type, :order], name: "videos_index", unique: true
     end
   end
 end

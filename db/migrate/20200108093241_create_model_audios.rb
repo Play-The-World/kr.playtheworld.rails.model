@@ -12,7 +12,7 @@ class CreateModelAudios < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:audioable_id, :audioable_type, :audio_type, :order], name: "audioables_index", unique: true
+      t.index [:audioable_id, :audioable_type, :audio_type, :order], name: "audios_index", unique: true
     end
   end
 end
