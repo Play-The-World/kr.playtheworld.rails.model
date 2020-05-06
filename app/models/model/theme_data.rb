@@ -9,6 +9,13 @@ module Model
     # Callbacks
     before_create :set_version
 
+    def stages
+      Model.config.stage.constant
+        .with_translations
+        .joins(stage_list: :theme_data)
+        .where("#{table_name}": { id: id } )
+    end
+
     private
       def set_version
         version = theme.theme_data.size + 1

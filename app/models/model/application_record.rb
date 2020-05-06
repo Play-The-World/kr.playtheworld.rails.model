@@ -20,5 +20,9 @@ module Model
     end
 
     def nothing; end
+
+    def table_name
+      self.class.table_name
+    end
   end
 end

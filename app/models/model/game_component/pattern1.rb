@@ -1,5 +1,5 @@
 module Model::GameComponent
-  class Form1 < Base
+  class Pattern1 < Base
     
   end
 end
