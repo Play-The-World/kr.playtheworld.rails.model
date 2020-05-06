@@ -11,7 +11,7 @@ module Model
       # 옵션을 담을 Hash 객체
       attr_reader :options
 
-      def initialize(options = nil)
+      def initialize(options = {})
         @options = options
       end
 
