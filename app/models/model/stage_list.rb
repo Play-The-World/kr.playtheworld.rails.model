@@ -14,6 +14,9 @@ module Model
     # Scopes
     default_scope { includes(stage_list_type: [:answers, :hints, :coordinate], stages: []) }
 
+    # Callbacks
+    before_create :set_stage_list_number
+
     # 유효성 검사 => Bool
     def is_valid?
       # 가장 마지막 스테이지가 Quiz or End 스테이지인지 검사
@@ -36,6 +39,10 @@ module Model
     end
 
     private
+      # Set default stage_list_number
+      def set_stage_list_number
+        stage_list_number = theme_data.stage_lists.size + 1 if stage_list_number.nil? or stage_list_number == 1
+      end
       # Helper methods
       def answers
         stage_list_type.answers

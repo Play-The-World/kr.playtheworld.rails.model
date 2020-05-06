@@ -16,6 +16,9 @@ class CreateModelSuperThemes < ActiveRecord::Migration[6.0]
       
       t.timestamps
 
+      # CounterCache
+      t.integer :super_plays_count, default: 0, null: false
+
       # Indexes
       t.index :status
       t.index :type

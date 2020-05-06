@@ -17,6 +17,7 @@ module Model
 
       # Relations
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
+      has_many :theme_data, dependent: :destroy
       include Model::Viewable
       # TODO SQL query를 사용해서 stages 추가하기
       include Model::Interpolatable

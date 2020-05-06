@@ -4,7 +4,7 @@ class CreateModelPlays < ActiveRecord::Migration[6.0]
       # Relations
       t.references :user
       t.references :super_play
-      t.references :theme
+      t.references :theme_data
 
       # Attirbutes
       t.integer :stage_list_index
@@ -17,6 +17,7 @@ class CreateModelPlays < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :type
+      # Index 추가하기
     end
   end
 end

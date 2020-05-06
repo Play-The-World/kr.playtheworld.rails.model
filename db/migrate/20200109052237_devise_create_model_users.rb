@@ -38,6 +38,9 @@ class DeviseCreateModelUsers < ActiveRecord::Migration[6.0]
       t.string :phonenumber
       t.string :status
 
+      # CounterCache
+      t.integer :plays_count, default: 0, null: false
+
       t.timestamps null: false
 
       # Custom Indexes

@@ -6,7 +6,8 @@ module Model
 
       # Relations
       belongs_to :team
-      belongs_to :theme_data
+      # belongs_to :theme_data
+      belongs_to :super_theme, counter_cache: true
       has_many :plays, class_name: Model.config.play.class_name, dependent: :destroy, foreign_key: "super_play_id"
 
       def self.serializer
