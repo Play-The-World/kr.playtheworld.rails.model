@@ -10,7 +10,6 @@ module Model
     # Game Component
     GAME_COMPONENT = Model::GameComponent
     serialize :game_component, GAME_COMPONENT::Base 
-    alias_attribute :component, :game_component
 
     def self.game_component(of:)
       "#{GAME_COMPONENT.to_s}::#{of.to_s.camelize}".constantize rescue nil

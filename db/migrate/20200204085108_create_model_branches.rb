@@ -6,7 +6,7 @@ class CreateModelBranches < ActiveRecord::Migration[6.0]
       t.references :target_stage_list
 
       # Attributes
-      t.string :type
+      # t.string :type
 
       t.timestamps
 

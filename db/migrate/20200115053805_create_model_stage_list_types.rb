@@ -5,7 +5,7 @@ class CreateModelStageListTypes < ActiveRecord::Migration[6.0]
       t.references :stage_list
 
       # Attirbutes
-      t.string :component_type
+      t.string :game_component
       t.integer :chance_count, null: false, default: 0
       t.integer :hints_count, null: false, default: 0
 

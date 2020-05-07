@@ -34,6 +34,15 @@ module Model
       nil
     end
 
+    # TEST용
+    def next_stage_lists
+      Model::StageListType.where(
+        id: Model::Branch.joins(answer: { stage_list_type: :stage_list })
+          .where("#{table_name}": { id: id })
+          .pluck(:target_stage_list_id)
+        )
+    end
+
     def self.serializer
       Model::Serializer::StageList
     end
