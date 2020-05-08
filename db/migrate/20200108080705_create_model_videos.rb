@@ -5,7 +5,7 @@ class CreateModelVideos < ActiveRecord::Migration[6.0]
       t.references :videoable, polymorphic: true, index: false
 
       # Attributes
-      t.string :video_type
+      t.string :type
       t.string :store_type
       t.string :value
       t.integer :order, default: 1
@@ -13,7 +13,7 @@ class CreateModelVideos < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:videoable_id, :videoable_type, :video_type, :order], name: "videos_index", unique: true
+      t.index [:videoable_id, :videoable_type, :type, :order], name: "videos_index", unique: true
     end
   end
 end

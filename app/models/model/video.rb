@@ -1,5 +1,7 @@
 module Model
   class Video < ApplicationRecord
+    self.inheritance_column = "not_sti"
+
     # ActiveStorage
     include Model::HasOneAttached
 
@@ -8,7 +10,7 @@ module Model
 
     # Enum
     extend Enumerize
-    enumerize :video_type, in: %i(default background), default: :default
+    enumerize :type, in: %i(default background), default: :default
     enumerize :store_type, in: %i(default external), default: :default
   end
 end

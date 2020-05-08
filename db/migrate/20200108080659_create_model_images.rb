@@ -5,7 +5,7 @@ class CreateModelImages < ActiveRecord::Migration[6.0]
       t.references :imageable, polymorphic: true, index: false
 
       # Attributes
-      t.string :image_type
+      t.string :image
       t.string :store_type, null: false, default: "external"
       t.string :value
       t.integer :order, default: 1
@@ -13,7 +13,7 @@ class CreateModelImages < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:imageable_id, :imageable_type, :image_type, :order], name: "images_index", unique: true
+      t.index [:imageable_id, :imageable_type, :type, :order], name: "images_index", unique: true
     end
   end
 end

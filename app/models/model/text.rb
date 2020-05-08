@@ -1,5 +1,7 @@
 module Model
   class Text < ApplicationRecord
+    self.inheritance_column = "not_sti"
+
     # Translations
     include Model::Translatable
     translates :value
@@ -10,7 +12,7 @@ module Model
 
     # Enums
     extend Enumerize
-    enumerize :text_type, in: %i(default interpolation), default: :default
+    enumerize :type, in: %i(default interpolation), default: :default
 
     # Scopes
     scope :interpolation, -> { where(text_type: :interpolation) }
