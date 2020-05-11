@@ -5,8 +5,8 @@ class CreateModelImages < ActiveRecord::Migration[6.0]
       t.references :imageable, polymorphic: true, index: false
 
       # Attributes
-      t.string :image
-      t.string :store_type, null: false, default: "external"
+      t.string :type
+      t.string :store_type
       t.string :value
       t.integer :order, default: 1
       
