@@ -12,7 +12,7 @@ module Model
     has_many :plays, through: :tracks, class_name: Model.config.play.class_name
 
     # Scopes
-    default_scope { includes(stage_list_type: [:answers, :hints, :coordinate], stages: []) }
+    # default_scope { includes(stage_list_type: [:answers, :hints, :coordinate], stages: []) }
 
     # Callbacks
     before_create :set_stage_list_number

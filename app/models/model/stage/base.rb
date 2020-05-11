@@ -21,7 +21,7 @@ module Model
       # enumerize :stage_type, in: %i(script quiz end)
 
       # Scopes
-      default_scope { order(order: :asc) }
+      # default_scope { order(order: :asc) }
 
       def self.serializer
         Model::Serializer::Stage
