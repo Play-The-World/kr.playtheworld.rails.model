@@ -42,7 +42,8 @@ module Model
       def reachable_branch
         branches.each do |branch|
           return branch if branch.reachable?
-        end and nil
+        end
+        nil
       end
 
       def self.serializer

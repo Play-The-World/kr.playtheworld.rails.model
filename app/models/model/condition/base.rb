@@ -18,6 +18,7 @@ module Model
 
       # Relations
       belongs_to :conditionable, polymorphic: true
+      belongs_to :conditioner, polymorphic: true
       has_many :condition_clears, foreign_key: "condition_id"
 
       def cleared?; false end

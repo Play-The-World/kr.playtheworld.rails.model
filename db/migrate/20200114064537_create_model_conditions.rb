@@ -3,16 +3,19 @@ class CreateModelConditions < ActiveRecord::Migration[6.0]
     create_table :model_conditions do |t|
       # Relations
       t.references :conditionable, polymorphic: true, index: false
+      t.references :conditioner, polymorphic: true, index: false
 
       # Attributes
       t.string :value1
       t.string :value2
       t.string :type
+      t.boolean :create_clears, default: true
 
       t.timestamps
 
       # Indexes
       t.index [:conditionable_id, :conditionable_type, :type, :value1, :value2], name: "conditions_index"
+      t.index [:conditioner_id, :conditioner_type, :type, :value1, :value2], name: "conditions_index2"
     end
   end
 end
