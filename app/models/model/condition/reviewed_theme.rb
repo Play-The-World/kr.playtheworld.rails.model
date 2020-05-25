@@ -32,7 +32,8 @@ module Model::Condition # :nodoc:
 
     private
       def theme
-        Model.config.theme.constant.find_by(id: value1)
+        # Model.config.theme.constant.find_by(id: value1)
+        conditioner
       end
   end
 end

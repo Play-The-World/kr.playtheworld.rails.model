@@ -15,6 +15,7 @@ module Model
       include Model::Audioable
       include Model::Textable
       include Model::Interpolatable
+      include Model::Conditioner
 
       # Enums
       # include Enumerize

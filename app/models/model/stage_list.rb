@@ -10,6 +10,7 @@ module Model
     has_one :stage_list_type, dependent: :destroy
     has_many :tracks, dependent: :destroy
     has_many :plays, through: :tracks, class_name: Model.config.play.class_name
+    include Model::Conditioner
 
     # Scopes
     # default_scope { includes(stage_list_type: [:answers, :hints, :coordinate], stages: []) }

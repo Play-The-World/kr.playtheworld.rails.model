@@ -5,6 +5,7 @@ module Model
     include Model::HasVariables
     include Model::Textable
     include Model::Eventable
+    include Model::Conditioner
 
     # Enums
     extend Enumerize

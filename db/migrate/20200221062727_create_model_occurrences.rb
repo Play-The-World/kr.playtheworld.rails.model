@@ -3,7 +3,7 @@ class CreateModelOccurrences < ActiveRecord::Migration[6.0]
     create_table :model_occurrences do |t|
       # Relations
       t.references :clearer, polymorphic: true
-      t.references :event
+      t.references :event_group
 
       t.timestamps
     end

@@ -19,7 +19,11 @@ module Model::Condition # :nodoc:
     # 
     # * Bool
     def cleared?
-      Model.current.user.plays.finished.exists?(theme: theme)
+      # Model.current.user.plays.finished.exists?(theme: theme)
+      # TODO 위랑 아래 쿼리 비교해보기.
+      Model::Play::Finished.joins(:theme, :user)
+        .where("#{Model::User.table_name}": Model.current.user, "#{Model.config.theme.table_name}": theme)
+        .exists?
     rescue
       super
     end
@@ -32,7 +36,8 @@ module Model::Condition # :nodoc:
 
     private
       def theme
-        Model.config.theme.constant.find_by(id: value1)
+        # Model.config.theme.constant.find_by(id: value1)
+        conditioner
       end
   end
 end
