@@ -21,10 +21,14 @@ module Model
       belongs_to :conditioner, polymorphic: true
       has_many :condition_clears, foreign_key: "condition_id"
 
-      def cleared?; false end
+      def cleared?
+        condition_clears.where(clearer: clearer)
+      rescue
+        false
+      end
       def clear
         clear! if cleared?
-        event&.trigger
+        # event&.trigger
       end
       def clear!; end
 
@@ -32,15 +36,11 @@ module Model
         Model::Serializer::Condition
       end
 
-      private
-        # conditionable이 Event가 맞으면 Event를 반환한다.
-        #
-        # ==== Return
-        #
-        # * Event?
-        def event
-          conditionable if conditionable.is_a?(Model.config.event.constant)
-        end
+      # 조건을 만족하는 지 확인할 대상
+      # 기본 값: 현재 플레이
+      def clearer
+        Model.current.play
+      end
     end
   end
 end

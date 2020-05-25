@@ -6,6 +6,7 @@ module Model
     has_many :inventory, through: :item_in_inventories
     include Model::Imageable
     include Model::Eventable
+    include Model::EventTarget
 
     # Translations
     include Model::Translatable

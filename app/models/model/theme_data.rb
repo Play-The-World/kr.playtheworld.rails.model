@@ -7,6 +7,7 @@ module Model
     has_many :plays, dependent: :destroy, class_name: Model.config.play.class_name
     # has_many :super_plays, dependent: :destroy, counter_cache: true, foreign_key: "theme_data_id"
     include Model::Eventable
+    include Model::EventTarget
 
     # Callbacks
     before_create :set_version

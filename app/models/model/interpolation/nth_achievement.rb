@@ -1,10 +1,10 @@
 module Model::Interpolation
-  class UserName < Base
+  class NthAchievement < Base
     def marker
-      "%{user_name}"
+      "%{nth}"
     end
     def result(ref = nil)
-      Model::Current.user.name
+      "#{target.users.pluck(:id).index(Model.current.user.id) + 1}"
     rescue
       super(ref)
     end

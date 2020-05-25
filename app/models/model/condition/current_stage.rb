@@ -1,6 +1,6 @@
 module Model::Condition # :nodoc:
   #
-  # Nth_review_on_theme 조건 클래스
+  # CurrentStage 조건 클래스
   # TODO 조건에 대한 설명
   #
   # == Relations
@@ -12,15 +12,16 @@ module Model::Condition # :nodoc:
   # ==== has_many
   # 
   # * ConditionClear
-  class NthReviewOnTheme < Base
+  class CurrentStage < Base
     # 조건을 만족하는 지 여부
     # 
     # ==== Return
     # 
     # * Bool
     def cleared?
-      # TODO 조건 명세
-      true
+      play.current_stage == stage
+    rescue
+      super
     end
 
     # 조건을 만족했다는 것을 표시하는 함수
@@ -28,5 +29,13 @@ module Model::Condition # :nodoc:
     def clear!
       
     end
+
+    private
+      def play
+        clearer
+      end
+      def stage
+        conditioner
+      end
   end
 end

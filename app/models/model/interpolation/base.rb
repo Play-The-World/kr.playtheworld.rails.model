@@ -6,6 +6,7 @@ module Model
 
       # Relations
       belongs_to :interpolatable, polymorphic: true
+      belongs_to :target, polymorphic: true
       has_many :texts, dependent: :destroy
 
       # Enums
@@ -17,10 +18,10 @@ module Model
       # }
       # enumerize :interpolation_type, in: TYPES.map { |k, v| k.to_sym }
 
-      def target
+      def marker
         "%{}"
       end
-      def result
+      def result(ref = nil)
         nil
       end
     end

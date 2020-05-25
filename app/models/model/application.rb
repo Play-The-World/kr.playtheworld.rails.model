@@ -6,6 +6,7 @@ module Model
     include Model::Textable
     include Model::Eventable
     include Model::Conditioner
+    include Model::HasAchievement
 
     # Enums
     extend Enumerize

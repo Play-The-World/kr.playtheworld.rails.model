@@ -6,6 +6,7 @@ module Model
 
       # Relations
       belongs_to :event_group
+      belongs_to :target, polymorphic: true
       
       # Scopes
       # default_scope { includes(:conditions) }

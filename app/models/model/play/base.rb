@@ -11,6 +11,7 @@ module Model
       belongs_to :super_play, class_name: Model.config.super_play.class_name, counter_cache: true
       has_many :tracks
       has_many :stage_lists, -> { order('tracks.id': :asc) }, through: :tracks
+      has_one :inventory
       # TODO stages 메소드 작성하거나 Relation으로 설정하기
       include Model::Clearer
 

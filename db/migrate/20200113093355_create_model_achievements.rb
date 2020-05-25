@@ -1,6 +1,9 @@
 class CreateModelAchievements < ActiveRecord::Migration[6.0]
   def change
     create_table :model_achievements do |t|
+      # Relations
+      t.references :object, polymorphic: true
+
       # Attributes
       t.integer :level, null: false, default: 0
       t.boolean :stackable, default: false

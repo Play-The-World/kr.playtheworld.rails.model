@@ -6,13 +6,19 @@ module Model
     has_many :occurrences, dependent: :destroy
     include Model::Conditionable
 
+    # Enums
+    extend Enumerize
+    enumerize :clearer_type, in: %i(play user), default: :play
+
     # 실행 가능 여부
     # 
     # Return
     # 
     # * Bool
-    def triggerable?;
-      (!repeatable? and occurrences.exists?(clearer: clearer)) and all_cleared?
+    def triggerable?
+      # TODO: 조건 테스트 확인하기
+      all_cleared? and
+      !(!repeatable? and !occurrences.exists?(clearer: clearer))
     end
 
     # 실행
@@ -44,5 +50,10 @@ module Model
         Model.current.play
       end
     end
+
+    private
+      def repeatable?
+        repeatable
+      end
   end
 end

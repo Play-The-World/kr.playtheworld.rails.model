@@ -2,7 +2,7 @@ class CreateModelItems < ActiveRecord::Migration[6.0]
   def change
     create_table :model_items do |t|
       # Relations
-      t.references :theme
+      t.references :theme_data
 
       # Attributes
       t.integer :level, default: 0

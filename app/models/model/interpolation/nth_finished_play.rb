@@ -1,10 +1,10 @@
 module Model::Interpolation
-  class UserName < Base
+  class NthFinishedPlay < Base
     def marker
-      "%{user_name}"
+      "%{nth_play}"
     end
     def result(ref = nil)
-      Model::Current.user.name
+      "#{target.plays.finished.pluck(:id).index(ref.id) + 1}"
     rescue
       super(ref)
     end

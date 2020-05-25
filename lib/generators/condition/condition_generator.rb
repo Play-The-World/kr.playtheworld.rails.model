@@ -15,6 +15,7 @@ module Model::Condition # :nodoc:
   # ==== belongs_to
   #
   # * Conditionable(polymorphic)
+  # * Conditioner(polymorphic)
   #
   # ==== has_many
   # 
@@ -28,6 +29,8 @@ module Model::Condition # :nodoc:
     def cleared?
       # TODO 조건 명세
       true
+    rescue
+      super
     end
 
     # 조건을 만족했다는 것을 표시하는 함수

@@ -3,6 +3,7 @@ class CreateModelEvents < ActiveRecord::Migration[6.0]
     create_table :model_events do |t|
       # Relations
       t.references :event_group, index: false
+      t.references :target, polymorphic: true, index: false
 
       # Attributes
       t.string :value1
@@ -15,6 +16,7 @@ class CreateModelEvents < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index [:event_group_id, :type, :value1, :value2], name: "event_index"
+      t.index [:target_id, :target_type, :type, :value1, :value2], name: "event_index2"
       t.index :type
     end
   end

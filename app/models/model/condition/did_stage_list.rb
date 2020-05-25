@@ -1,6 +1,6 @@
 module Model::Condition # :nodoc:
   #
-  # PlayedTheme 조건 클래스
+  # Did_stage 조건 클래스
   # TODO 조건에 대한 설명
   #
   # == Relations
@@ -12,18 +12,14 @@ module Model::Condition # :nodoc:
   # ==== has_many
   # 
   # * ConditionClear
-  class PlayedTheme < Base
+  class DidStageList < Base
     # 조건을 만족하는 지 여부
     # 
     # ==== Return
     # 
     # * Bool
     def cleared?
-      # Model.current.user.plays.finished.exists?(theme: theme)
-      # TODO 위랑 아래 쿼리 비교해보기.
-      Model::Play::Finished.joins(:theme, :user)
-        .where("#{Model::User.table_name}": Model.current.user, "#{Model.config.theme.table_name}": theme)
-        .exists?
+      play.stage_lists.exists?(conditioner)
     rescue
       super
     end
@@ -35,9 +31,8 @@ module Model::Condition # :nodoc:
     end
 
     private
-      def theme
-        # Model.config.theme.constant.find_by(id: value1)
-        conditioner
+      def play
+        clearer
       end
   end
 end
