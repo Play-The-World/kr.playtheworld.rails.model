@@ -17,8 +17,8 @@ module Model
     # * Bool
     def triggerable?
       # TODO: 조건 테스트 확인하기
-      all_cleared? and
-      !(!repeatable? and !occurrences.exists?(clearer: clearer))
+      !(unrepeatable? and !occurrences.exists?(clearer: clearer)) # 반복 불가하면서 이미 수행된 경우
+        and all_cleared?
     end
 
     # 실행
@@ -52,8 +52,7 @@ module Model
     end
 
     private
-      def repeatable?
-        repeatable
-      end
+      def repeatable?; repeatable end
+      def unrepeatable?; !repeatable end
   end
 end

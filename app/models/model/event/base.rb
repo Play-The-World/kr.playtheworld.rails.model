@@ -6,7 +6,7 @@ module Model
 
       # Relations
       belongs_to :event_group
-      belongs_to :target, polymorphic: true
+      belongs_to :target, polymorphic: true, optional: true
       
       # Scopes
       # default_scope { includes(:conditions) }
@@ -23,6 +23,12 @@ module Model
       # 이벤트가 실행되는 대상 (기본값은 Play)
       def clearer
         event_group.clearer
+      end
+
+      def conditioner
+        event_group.conditions.take.conditioner
+      rescue
+        nil
       end
 
       def self.serializer

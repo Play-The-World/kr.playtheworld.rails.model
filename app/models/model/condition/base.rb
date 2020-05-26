@@ -18,8 +18,9 @@ module Model
 
       # Relations
       belongs_to :conditionable, polymorphic: true
-      belongs_to :conditioner, polymorphic: true
+      belongs_to :conditioner, polymorphic: true, optional: true
       has_many :condition_clears, foreign_key: "condition_id"
+      include Model::Conditionable
 
       def cleared?
         condition_clears.where(clearer: clearer)

@@ -12,8 +12,16 @@ module Model::Event # :nodoc:
   class GetAchievement < Base
     # 실행
     def trigger
-      # do something
-      # ...
+      Model::UsersAchievement.create(
+        achievement: achievement,
+        user: user,
+        object: object
+      )
     end
+
+    private
+      def achievement; target end
+      def user; clearer end
+      def object; conditioner end
   end
 end

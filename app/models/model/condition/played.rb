@@ -21,9 +21,17 @@ module Model::Condition # :nodoc:
     def cleared?
       # Model.current.user.plays.finished.exists?(theme: theme)
       # TODO 위랑 아래 쿼리 비교해보기.
-      Model::Play::Finished.joins(:theme_data, :user)
-        .where("#{Model::User.table_name}": user, "#{Model::ThemeData.table_name}": theme_data)
-        .exists?
+      if conditioner.is_a?(Model::ThemeData)
+        Model::Play::Finished.joins(:theme_data, :user)
+          .where("#{Model::User.table_name}": { id: user.id }, "#{Model::ThemeData.table_name}": { id: conditioner.id })
+          .exists?
+      elsif conditioner.is_a?(Model::Theme::Base)
+        Model::Play::Finished.joins(theme_data: { theme: {} }, :user)
+          .where("#{Model::User.table_name}": { id: user.id }, "#{Model.config.theme.table_name}": { id: conditioner.id })
+          .exists?
+      else
+        false
+      end
     rescue
       super
     end
@@ -35,10 +43,6 @@ module Model::Condition # :nodoc:
     end
 
     private
-      def theme_data
-        # Model.config.theme.constant.find_by(id: value1)
-        conditioner
-      end
       def user
         Model.current.user
       end

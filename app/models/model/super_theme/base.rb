@@ -22,6 +22,7 @@ module Model
       has_one :creation, as: :product, dependent: :destroy
       has_one :maker, through: :creation, source: :creator, source_type: Model::Maker.to_s
       has_one :maker_team, through: :creation, source: :creator, source_type: Model::MakerTeam.to_s
+      include Model::HasAchievement
 
       # Status
       include Model::HasStatus

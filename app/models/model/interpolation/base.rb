@@ -6,7 +6,7 @@ module Model
 
       # Relations
       belongs_to :interpolatable, polymorphic: true
-      belongs_to :target, polymorphic: true
+      belongs_to :target, polymorphic: true, optional: true
       has_many :texts, dependent: :destroy
 
       # Enums

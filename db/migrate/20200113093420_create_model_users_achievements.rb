@@ -4,6 +4,7 @@ class CreateModelUsersAchievements < ActiveRecord::Migration[6.0]
       # Relataions
       t.references :user, index: false
       t.references :achievement
+      t.references :object, polymorphic: true
 
       # Attirbutes
       t.integer :count, default: 0
@@ -11,7 +12,7 @@ class CreateModelUsersAchievements < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:user_id, :achievement_id], name: "users_achievement_index", unique: true
+      t.index [:user_id, :achievement_id], name: "users_achievements_index", unique: true
     end
   end
 end

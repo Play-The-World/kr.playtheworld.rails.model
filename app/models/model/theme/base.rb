@@ -26,6 +26,7 @@ module Model
       has_one :maker_team, through: :creation, source: :creator, source_type: Model::MakerTeam.to_s
       include Model::Conditioner
       include Model::HasAchievement
+      include Model::Eventable
 
       # Render Type
       RENDER_TYPE = Model::RenderType
