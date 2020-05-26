@@ -15,8 +15,8 @@ class CreateModelEvents < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:event_group_id, :type, :value1], name: "event_index"
-      t.index [:target_id, :target_type, :type, :value1], name: "event_index2"
+      t.index [:event_group_id, :type], name: "event_index"
+      t.index [:target_id, :target_type, :type], name: "event_index2"
       t.index :type
     end
   end
