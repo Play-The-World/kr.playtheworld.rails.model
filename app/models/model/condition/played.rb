@@ -26,7 +26,7 @@ module Model::Condition # :nodoc:
           .where("#{Model::User.table_name}": { id: user.id }, "#{Model::ThemeData.table_name}": { id: conditioner.id })
           .exists?
       elsif conditioner.is_a?(Model::Theme::Base)
-        Model::Play::Finished.joins(theme_data: { theme: {} }, :user)
+        Model::Play::Finished.joins({ theme_data: :theme }, :user)
           .where("#{Model::User.table_name}": { id: user.id }, "#{Model.config.theme.table_name}": { id: conditioner.id })
           .exists?
       else
