@@ -17,8 +17,7 @@ module Model
       include Model::Viewable
       include Model::Interpolatable
       include Model::Imageable
-      has_many :super_theme_in_topics, dependent: :destroy, foreign_key: "super_theme_id"
-      has_many :topics, through: :super_theme_in_topics, class_name: Model.config.topic.class_name
+      include Model::Topicable
       has_one :creation, as: :product, dependent: :destroy
       has_one :maker, through: :creation, source: :creator, source_type: Model::Maker.to_s
       has_one :maker_team, through: :creation, source: :creator, source_type: Model::MakerTeam.to_s

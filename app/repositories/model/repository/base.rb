@@ -58,6 +58,10 @@ module Model
         def dataset
           entity.all
         end
+
+        def table
+          entity.arel_table
+        end
     end
   end
   
