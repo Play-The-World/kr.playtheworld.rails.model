@@ -1,19 +1,33 @@
 a = Model::Application.current
-s = a.create_setting
-s.topics.create!([
-  {
-    type: Model::Topic::Today,
+t = [
+  Model::Topic::Today.create!(
     title: "오늘의 테마"
-  },
-  {
-    type: Model::Topic::Custom,
+  ),
+  Model::Topic::Custom.create!(
     title: "온라인 테마"
+  ),
+  Model::Topic::Custom.create!(
+    title: "오프라인 테마"
+  )
+]
+s = a.create_setting
+Model::TopicInSetting.create!([
+  {
+    setting: s,
+    topic: t[0],
+    order: 1
   },
   {
-    type: Model::Topic::Custom,
-    title: "오프라인 테마"
+    setting: s,
+    topic: t[1],
+    order: 2
+  },
+  {
+    setting: s,
+    topic: t[2],
+    order: 3
   }
 ])
-s.topics.super_themes << Model::SuperTheme::Base.first
+t[0].super_themes << Model::SuperTheme::Base.first
 
 puts tl

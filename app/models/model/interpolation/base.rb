@@ -19,7 +19,7 @@ module Model
       # enumerize :interpolation_type, in: TYPES.map { |k, v| k.to_sym }
 
       def marker
-        "%{}"
+        "%{#{marker_value}}"
       end
       def result(ref = nil)
         nil
