@@ -29,5 +29,3 @@ Model::TopicInSetting.create!([
   }
 ])
 t[0].super_themes << Model::SuperTheme::Base.first
-
-puts tl

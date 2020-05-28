@@ -38,8 +38,9 @@ module Model
         Model.config.theme.constant
       end
       def create_theme(params)
-        params[:type] = theme_class.to_s
-        themes.create!(params)
+        themes.create!(params.merge({
+          type: theme_class
+        }))
       end
 
       # 기본 serializer 설정
