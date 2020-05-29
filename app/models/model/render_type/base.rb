@@ -45,12 +45,12 @@ module Model
           data.to_s
         end
         
-        def to_s
-          {
-            class_name: self.class.to_s,
-            options: nil
-          }.to_json
-        end
+        # def to_s
+        #   {
+        #     class_name: self.class.to_s,
+        #     options: nil
+        #   }.to_json
+        # end
       end
     end
   end
