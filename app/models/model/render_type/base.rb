@@ -44,13 +44,13 @@ module Model
         def dump(data)
           data.to_s
         end
-      end
-
-      def to_s
-        {
-          class_name: self.class.to_s,
-          options: nil
-        }.to_json
+        
+        def to_s
+          {
+            class_name: self.class.to_s,
+            options: nil
+          }.to_json
+        end
       end
     end
   end
