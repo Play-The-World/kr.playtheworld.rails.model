@@ -22,4 +22,7 @@ module Model
   def self.config
     Model::Config.config
   end
+  def self.current
+    Model::Current
+  end
 end

@@ -29,8 +29,8 @@ module Model
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     # :rememberable
-    # devise :database_authenticatable, :registerable,
-    #        :recoverable, :validatable, :trackable
+    devise :database_authenticatable, :registerable,
+           :recoverable, :validatable, :trackable
 
     # Relations
     has_many :entries, dependent: :destroy
@@ -48,10 +48,28 @@ module Model
 
     # Status
     include Model::HasStatus
-    set_status %i(removed blocked temp)
+    set_status %i(removed blocked unauthorized temp)
 
     # Tokenable
     include Model::Tokenable
+
+    # Callbacks
+    before_create :set_unauthorized
+
+    def set_unauthorized
+      self.status = :unauthorized
+    end
+
+    def confirm_email(passcode)
+      if passcode == "1234"
+        update(status: :default)
+        true
+      else
+        raise
+      end
+    rescue
+      false
+    end
 
     # 기본 serializer 설정
     #
