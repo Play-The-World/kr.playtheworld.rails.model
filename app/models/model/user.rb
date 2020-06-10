@@ -63,7 +63,6 @@ module Model
     def confirm_email(passcode)
       if passcode == "1234"
         update(status: :default)
-        true
       else
         raise
       end
