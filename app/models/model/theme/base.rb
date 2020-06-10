@@ -46,6 +46,10 @@ module Model
       validates :fake_id, 
         uniqueness: { message: "fake_id should be unique" }
 
+      def current_theme_data
+        theme_data.find_by(version: current_version)
+      end
+
       class << self
         def render_types
           RENDER_TYPE.constants.select { |k| RENDER_TYPE.const_get(k).instance_of? Class } - [:Base]

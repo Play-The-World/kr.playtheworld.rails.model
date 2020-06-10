@@ -19,9 +19,12 @@ module Model
   # * +:name+
   # * +:content+
   class Team < ApplicationRecord
+    self.inheritance_column = "not_sti"
+
+    # 필요 없을 것 같아 국제화 기능 제거
     # Translations
-    include Model::Translatable
-    translates :name, :content
+    # include Model::Translatable
+    # translates :name, :content
 
     # Relations
     has_many :entries, dependent: :destroy
@@ -31,6 +34,10 @@ module Model
     # Status
     include Model::HasStatus
     set_status %i(removed blocked)
+
+    # Enums
+    extend Enumerize
+    enumerize :type, in: %i(default solo), default: :default
     
     def self.serializer
       Model::Serializer::Team
