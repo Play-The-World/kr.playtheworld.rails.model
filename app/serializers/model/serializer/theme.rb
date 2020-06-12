@@ -15,6 +15,8 @@ module Model::Serializer
       :super_plays_count
     
     # Relations
-    has_many :stage_lists
+    belongs_to :super_theme,
+      serializer: Model::Serializer::SuperTheme
+    # has_many :s
   end
 end

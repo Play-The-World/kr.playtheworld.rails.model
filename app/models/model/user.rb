@@ -81,10 +81,10 @@ module Model
     def self.serializer
       Model::Serializer::User
     end
-  end
 
-  private
-    def set_unauthorized
-      self.status = :unauthorized
-    end
+    private
+      def set_unauthorized
+        self.status = :unauthorized
+      end
+  end
 end

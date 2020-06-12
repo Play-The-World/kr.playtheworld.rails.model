@@ -5,21 +5,22 @@ module Model::Serializer
 
     # Attributes
     attributes :title, :summary, :status, :price, :data_size, :play_time, :content, :caution
-    attribute :location do |x|
-      "#{x.location&.title}"
+    attribute :locations do |x|
+      x.locations.map { |a| a.title }
     end
-    attribute :category do |x|
-      "#{x.category&.title}"
+    attribute :categories do |x|
+      x.categories.map { |a| a.title }
     end
-    attribute :genre do |x|
-      "#{x.genre&.title}"
+    attribute :genres do |x|
+      x.genres.map { |a| a.title }
     end
 
     # Links
     link :self, -> (object) { url(object) }
     
     # Relations
-    has_many :themes
+    has_many :themes,
+      serializer: Model::Serializer::Theme
 
     def self.url(object)
       "#{BASE_URL}/v1/super_themes/#{object.id}"

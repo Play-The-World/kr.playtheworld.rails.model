@@ -20,7 +20,7 @@ module Model
       self.class.serializer
     end
     def as_json(options = {})
-      serializer.new(self).serializable_hash
+      serializer.new(self, options).serializable_hash
     end
 
     def nothing; end
