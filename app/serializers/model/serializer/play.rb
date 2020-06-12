@@ -5,15 +5,15 @@ module Model::Serializer
       :stage_index, 
       :status, 
       :type, 
-      :finished_at, 
-      :wrong_answer_count, 
-      :used_hint_count, 
-      :used_answer_count
+      :finished_at
     
     # Relations
-    belongs_to :user
-    belongs_to :super_play
-    belongs_to :theme
-    has_many :stage_lists
+    belongs_to :user,
+      serializer: Model::Serializer::User
+    belongs_to :super_play,
+      serializer: Model::Serializer::SuperPlay
+    # belongs_to :theme_data
+    has_many :stage_lists,
+      serializer: Model::Serializer::StageList
   end
 end

@@ -22,6 +22,7 @@ module Model
       has_one :maker, through: :creation, source: :creator, source_type: Model::Maker.to_s
       has_one :maker_team, through: :creation, source: :creator, source_type: Model::MakerTeam.to_s
       include Model::HasAchievement
+      has_many :super_plays, class_name: Model.config.super_play.class_name, dependent: :destroy, foreign_key: "super_theme_id"
 
       # Status
       include Model::HasStatus

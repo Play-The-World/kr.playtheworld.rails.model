@@ -7,8 +7,8 @@ class CreateModelPlays < ActiveRecord::Migration[6.0]
       t.references :theme_data
 
       # Attirbutes
-      t.integer :stage_list_index
-      t.integer :stage_index
+      t.integer :stage_list_index, default: 0, null: false
+      t.integer :stage_index, default: 0, null: false
       t.string :status
       t.string :type
       t.datetime :finished_at

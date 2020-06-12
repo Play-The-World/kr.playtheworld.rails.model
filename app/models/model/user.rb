@@ -59,8 +59,8 @@ module Model
     # 일단 간편하게 쓰려고 만듬
     def play_solo(theme:)
       team = teams.find_or_create_by(type: :solo)
-      sp = team.super_plays.create(super_theme: theme.super_theme)
-      sp.plays.create(user: user, theme_data: theme.current_theme_data)
+      sp = team.super_plays.create(super_theme_id: theme.super_theme.id)
+      Model::Play::Playing.create(super_play: sp, user: self, theme_data: theme.current_theme_data)
     end
 
     def confirm_email(passcode)

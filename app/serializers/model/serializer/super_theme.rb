@@ -6,13 +6,13 @@ module Model::Serializer
     # Attributes
     attributes :title, :summary, :status, :price, :data_size, :play_time, :content, :caution
     attribute :locations do |x|
-      x.locations.map { |a| a.title }
+      x.locations.map { |a| a.title }.compact
     end
     attribute :categories do |x|
-      x.categories.map { |a| a.title }
+      x.categories.map { |a| a.title }.compact
     end
     attribute :genres do |x|
-      x.genres.map { |a| a.title }
+      x.genres.map { |a| a.title }.compact
     end
 
     # Links

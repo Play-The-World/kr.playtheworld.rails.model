@@ -29,6 +29,7 @@ module Model
     # Relations
     has_many :entries, dependent: :destroy
     has_many :users, through: :entries
+    has_many :super_plays, class_name: Model.config.super_play.class_name
     include Model::Clearer
 
     # Status
