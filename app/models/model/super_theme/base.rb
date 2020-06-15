@@ -32,6 +32,12 @@ module Model
       # extend Enumerize
       # enumerize :themes_type, in: %i(difficulty numbered series role), default: :difficulty
 
+      # Callbacks
+      before_create :set_fake_id
+
+      # Constants
+      FAKE_ID_LENGTH = 12
+
       def theme_class
         self.class.theme_class
       end
@@ -52,6 +58,13 @@ module Model
       def self.serializer
         Model::Serializer::SuperTheme
       end
+
+      private
+        def set_fake_id
+          begin
+            self.fake_id = SecureRandom.hex(FAKE_ID_LENGTH)
+          end while self.class.exists?(fake_id: self.fake_id)
+        end
     end
   end
 end

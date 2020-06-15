@@ -38,7 +38,7 @@ module Model
 
       # Callbacks
       before_validation :set_theme_type
-      before_create :generate_fake_id
+      before_create :set_fake_id
 
       # Validations
       validates :theme_type,
@@ -71,7 +71,7 @@ module Model
       end
 
       private
-        def generate_fake_id
+        def set_fake_id
           begin
             self.fake_id = SecureRandom.hex(FAKE_ID_LENGTH)
           end while self.class.exists?(fake_id: self.fake_id)

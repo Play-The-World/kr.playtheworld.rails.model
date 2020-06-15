@@ -4,7 +4,15 @@ module Model::Serializer
     set_id :fake_id
 
     # Attributes
-    attributes :title, :summary, :status, :price, :data_size, :play_time, :content, :caution
+    attributes :title,
+    :summary,
+    :status,
+    :price,
+    :data_size,
+    :play_time,
+    :content,
+    :caution
+    
     attribute :locations do |x|
       x.locations.map { |a| a.title }.compact
     end
@@ -23,7 +31,7 @@ module Model::Serializer
       serializer: Model::Serializer::Theme
 
     def self.url(object)
-      "#{BASE_URL}/v1/super_themes/#{object.id}"
+      "#{BASE_URL}/v1/super_themes/#{object.fake_id}"
     end
   end
 end
