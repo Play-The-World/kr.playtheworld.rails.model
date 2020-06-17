@@ -23,7 +23,7 @@ module Model
       self.table_name = Model.config.board.table_name
 
       # Relations
-      belongs_to :boardable, polymorphic: true
+      belongs_to :boardable, polymorphic: true, optional: true
       has_many :posts, class_name: Model.config.post.class_name, dependent: :destroy, foreign_key: "board_id"
 
       # Translations

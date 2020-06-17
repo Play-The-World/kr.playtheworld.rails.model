@@ -6,7 +6,6 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :fake_id
-      t.integer :start_stage_list_number, default: 1
       t.string :status
       t.string :type
       t.string :theme_type

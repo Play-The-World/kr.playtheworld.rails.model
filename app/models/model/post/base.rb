@@ -5,10 +5,11 @@ module Model
       self.table_name = Model.config.post.table_name
 
       # Relations
-      belongs_to :board, class_name: Model.config.board.class_name, counter_cache: true
+      belongs_to :board, class_name: Model.config.board.class_name, counter_cache: "posts_count"
       include Model::Commentable
-      belongs_to :poster, polymorphic: true
+      belongs_to :poster, polymorphic: true, optional: true
       include Model::Viewable
+      include Model::Topicable
 
       # Translations
       include Model::Translatable

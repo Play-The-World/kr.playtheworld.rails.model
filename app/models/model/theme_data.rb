@@ -14,13 +14,17 @@ module Model
 
     def stages
       Model.config.stage.constant
-        .with_translations
         .joins(stage_list: :theme_data)
+        .includes(:translations)
         .where("#{table_name}": { id: id } )
     end
 
     def test
-      Model.config.stage.constant.with_translations.joins(stage_list: :theme_data).where("#{Model::ThemeData.table_name}": { id: 1 } )
+      Model.config.stage.constant.joins(stage_list: :theme_data).includes(:translations).where("#{Model::ThemeData.table_name}": { id: 1 } )
+    end
+
+    def start_stage_list
+      stage_lists.find_by(stage_list_number: start_stage_list_number)
     end
 
     private

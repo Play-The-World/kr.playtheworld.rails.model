@@ -6,6 +6,14 @@ module Model::Serializer
     # Attributes
     attributes :title
 
+    # attribute :super_themes do |x|
+    #   x.super_themes.map do |s|
+    #     {
+    #       title: s.title,
+    #     }
+    #   end
+    # end
+
     # Links
     link :self, -> (object) { url(object) }
     
@@ -13,7 +21,12 @@ module Model::Serializer
     has_many :super_themes, links: {
       self: -> (object) { url(object) },
       related: -> (object) { "#{url(object)}/super_themes" }
-    }
+    }, serializer: ::Model::Serializer::SuperTheme
+
+    has_many :posts, links: {
+      self: -> (object) { url(object) },
+      related: -> (object) { "#{url(object)}/posts" }
+    }, serializer: ::Model::Serializer::Post
     
     def self.url(object)
       "#{BASE_URL}/v1/topics/#{object.id}"

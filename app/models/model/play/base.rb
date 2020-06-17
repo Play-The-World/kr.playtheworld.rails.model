@@ -9,7 +9,7 @@ module Model
       # belongs_to :theme, class_name: Model.config.theme.class_name
       belongs_to :theme_data
       belongs_to :super_play, class_name: Model.config.super_play.class_name, counter_cache: true
-      has_many :tracks, foreign_key: 'play_id'
+      has_many :tracks, dependent: :destroy, foreign_key: 'play_id'
       has_many :stage_lists, -> { order("#{Model::Track.table_name}.id": :asc) }, through: :tracks
       has_one :inventory
       # TODO stages 메소드 작성하거나 Relation으로 설정하기
@@ -21,6 +21,9 @@ module Model
       # Status
       include Model::HasStatus
       set_status %i(default)
+
+      # Callbacks
+      after_create :init_play
 
       def stages
         Model::Stage::Base.joins(stage_list: :plays).where("#{table_name}": { id: id })
@@ -42,6 +45,14 @@ module Model
       def self.serializer
         Model::Serializer::Play
       end
+
+      private
+        def init_play
+          # 첫 스테이지 리스트
+          stage_lists << theme_data.start_stage_list
+          # Inventory
+          inventory.create
+        end
     end
   end
 end

@@ -3,5 +3,6 @@ module Model
     # Relations
     belongs_to :topicable, polymorphic: true
     belongs_to :topic, class_name: Model.config.topic.class_name
+    include Model::HasStyles
   end
 end
