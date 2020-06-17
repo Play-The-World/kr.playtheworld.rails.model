@@ -36,10 +36,13 @@ module Model::Play
       # log("'#{theme.title}'테마의 '#{current_stage.title}' 스테이지에서 '#{team.users.take.username}'유저가 정답 제출 #{user_answer}")
 
       # 정답들 중 가능한 Branch를 찾는다.
+      p 1
       get_answers_by(user_answer).each do |answer|
+        p 2
         next unless branch = answer.reachable_branch
+        p 3
 
-        count_wrong_answer if answer.wrong?
+        tracks.last.count_wrong_answer if answer.wrong?
         go_to(branch)
         return true
       end

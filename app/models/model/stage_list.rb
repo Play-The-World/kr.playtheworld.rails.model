@@ -35,13 +35,21 @@ module Model
       nil
     end
 
+    def get_answers_by(user_answer = nil)
+      _answers = stage_list_type.answers.where(value: user_answer)#.or.where(type: Model::Answer::Pass)
+      _answers ||= stage_list_type.answers.where(type: Model::Answer::Fail)
+      _answers
+    # rescue
+    #   []
+    end
+
     # TEST용
     def next_stage_lists
-      Model::StageListType.where(
+      Model::StageList.where(
         id: Model::Branch.joins(answer: { stage_list_type: :stage_list })
           .where("#{table_name}": { id: id })
           .pluck(:target_stage_list_id)
-        )
+        ).includes(:translations)
     end
 
     def self.serializer

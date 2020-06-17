@@ -4,8 +4,7 @@ module Model::Serializer
     set_id :fake_id
 
     # Attributes
-    attributes :start_stage_list_number,
-      :difficulty,
+    attributes :difficulty,
       :status,
       :type,
       :theme_type,
