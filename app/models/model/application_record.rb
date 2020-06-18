@@ -11,9 +11,11 @@ module Model
     end
 
     def as_json(view = nil)
+      view = nil if view == {}
       serializer.render_as_hash(self, view: view)
-    rescue
-      serializer.render_as_hash(self)
+    # TODO: productio에서만 활성화 하기.
+    # rescue
+    #   serializer.render_as_hash(self)
     end
 
     def repo; self.class.repo end

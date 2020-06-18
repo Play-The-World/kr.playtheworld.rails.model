@@ -1,6 +1,6 @@
 module Model::Serializer
   class SuperTheme < Base
-    identifier :fake_id
+    identifier :fake_id, name: :id
     fields  :title,
             :type,
             :status,
@@ -11,8 +11,9 @@ module Model::Serializer
             :play_time,
             :data_size
 
-    view :with_themes do
-      association :themes, blueprint: Theme, view: :normal
+    view :detail do
+      association :images, blueprint: Image
+      association :themes, blueprint: Theme
     end
   end
 end
