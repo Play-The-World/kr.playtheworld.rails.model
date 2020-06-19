@@ -3,7 +3,10 @@ module Model::Serializer
     fields  :title,
             :type
 
-    # association :topicable, blueprint: SuperTheme, name: :super_themes
+    # association :super_themes, blueprint: SuperTheme, name: :super_themes2
+    field :objects do |t|
+      t.topicable_in_topics.map { |a| a.topicable.as_json(:in_topic) }
+    end
 
     view :normal do
       fields :caution

@@ -11,8 +11,23 @@ module Model::Serializer
             :play_time,
             :data_size
 
-    view :detail do
+    view :classifications do
+      association :locations, blueprint: Location
+      association :genres, blueprint: Genre
+      association :categories, blueprint: Category
+    end
+      
+    view :images do
+      include_view :classifications
       association :images, blueprint: Image
+    end
+
+    view :in_topic do
+      include_view :images
+    end
+
+    view :detail do
+      include_view :images
       association :themes, blueprint: Theme
     end
   end
