@@ -36,11 +36,8 @@ module Model::Play
       # log("'#{theme.title}'테마의 '#{current_stage.title}' 스테이지에서 '#{team.users.take.username}'유저가 정답 제출 #{user_answer}")
 
       # 정답들 중 가능한 Branch를 찾는다.
-      p 1
       get_answers_by(user_answer).each do |answer|
-        p 2
         next unless branch = answer.reachable_branch
-        p 3
 
         tracks.last.count_wrong_answer if answer.wrong?
         go_to(branch)
@@ -48,6 +45,31 @@ module Model::Play
       end
 
       false
+    end
+
+    def on_stage(stage_index:, stage_list_index:)
+      self.stage_index = stage_index
+      self.stage_list_index = stage_list_index
+      self.save
+
+      # TODO: Job으로 빼기
+      current_stage.conditions.each(&:clear)
+    end
+
+    def use_hint(hint_number)
+      hint = nil
+      result = false
+      message = ""
+
+      if hint = stage_lists.last.hints.find_by(order: hint_number.to_i)
+        tracks.last.count_used_hint if tracks.last.used_hint_count < hint_number
+        result = true
+        message = "힌트 사용 성공"
+      else
+        message = "힌트가 없음"
+      end
+
+      return hint, result, message
     end
 
     # 해당하는 Branch를 통해 다음 스테이지 리스트로 갑니다.
@@ -59,5 +81,7 @@ module Model::Play
       stage_lists << branch&.target_stage_list
       self
     end
+
+    def playing?; true end
   end
 end

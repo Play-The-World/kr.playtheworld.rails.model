@@ -36,6 +36,7 @@ module Model
     end
 
     def get_answers_by(user_answer = nil)
+      # TODO: case_sensitive, ordered 구현
       _answers = stage_list_type.answers.where(value: user_answer)#.or.where(type: Model::Answer::Pass)
       _answers ||= stage_list_type.answers.where(type: Model::Answer::Fail)
       _answers
@@ -54,6 +55,10 @@ module Model
 
     def self.serializer
       Model::Serializer::StageList
+    end
+
+    def hints
+      stage_list_type.hints
     end
 
     private

@@ -49,12 +49,19 @@ module Model
         Model::Serializer::Play
       end
 
+      def playing?; false end
+      def finished?; false end
+
       private
         def init_play
           # 첫 스테이지 리스트
           stage_lists << theme_data.start_stage_list
           # Inventory
           create_inventory
+        end
+
+        def hints
+          current_stage_list.hints
         end
     end
   end

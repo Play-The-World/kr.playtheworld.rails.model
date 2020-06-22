@@ -14,5 +14,7 @@ module Model::Play
     def create_rank
       ranks.create()
     end
+
+    def finished?; true end
   end
 end

@@ -18,7 +18,7 @@ module Model
     def triggerable?
       # TODO: 조건 테스트 확인하기
       # 반복 불가하면서 이미 수행된 경우
-      !(unrepeatable? and !occurrences.exists?(clearer: clearer)) and all_cleared?
+      !(unrepeatable? and !occurrences.exists?(clearer: clearer)) and cleared?
     end
 
     # 실행
@@ -34,6 +34,9 @@ module Model
         occurrences.create(clearer: clearer) unless repeatable?
       end
       triggerable? # returns Boolean
+    # TODO: production환경에선 주석 해제
+    # rescue
+    #   false
     end
 
     # 무조건 실행하는 메소드
@@ -49,6 +52,13 @@ module Model
       else
         Model.current.play
       end
+    end
+
+    def cleared?
+      conditions.each do |condition|
+        return false if condition.cleared?
+      end
+      true
     end
 
     private

@@ -14,6 +14,9 @@ module Model
     extend Enumerize
     enumerize :type, in: %i(default answer), default: :default
 
+    # Scopes
+    default_scope { order(order: :asc) }
+
     def self.serializer
       Model::Serializer::Hint
     end

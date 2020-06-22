@@ -28,8 +28,11 @@ module Model
         false
       end
       def clear
-        clear! if cleared?
-        # event&.trigger
+        if cleared?
+          clear!
+          # event&.trigger
+          conditionable.trigger
+        end
       end
       def clear!; end
 
