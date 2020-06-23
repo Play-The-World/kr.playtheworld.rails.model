@@ -6,13 +6,10 @@ module Model
 
       # Translations
       include Model::Translatable
-      translates :title, :summary, :content, :caution
+      translates :title, :summary, :content
       
       # Relations
       include Model::Classifiable
-      # belongs_to :category, optional: true
-      # belongs_to :genre, optional: true
-      # belongs_to :location, optional: true
       has_many :themes, class_name: Model.config.theme.class_name, dependent: :destroy, foreign_key: "super_theme_id"
       include Model::Viewable
       include Model::Interpolatable
@@ -23,17 +20,18 @@ module Model
       has_one :maker_team, through: :creation, source: :creator, source_type: Model::MakerTeam.to_s
       include Model::HasAchievement
       has_many :super_plays, class_name: Model.config.super_play.class_name, dependent: :destroy, foreign_key: "super_theme_id"
+      include Model::Modalable
 
       # Status
       include Model::HasStatus
-      set_status %i(hidden blocked)
+      set_status %i(committed under_review standby private published closed ended blocked)
 
       # Enums
       # extend Enumerize
       # enumerize :themes_type, in: %i(difficulty numbered series role), default: :difficulty
 
       # Callbacks
-      before_create :set_fake_id
+      before_create :init
 
       # Constants
       FAKE_ID_LENGTH = 12
@@ -60,10 +58,12 @@ module Model
       end
 
       private
-        def set_fake_id
+        def init
           begin
             self.fake_id = SecureRandom.hex(FAKE_ID_LENGTH)
           end while self.class.exists?(fake_id: self.fake_id)
+
+          # self.status = :created
         end
     end
   end

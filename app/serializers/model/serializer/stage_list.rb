@@ -3,10 +3,6 @@ module Model::Serializer
     fields  :stage_list_number,
             :title
 
-    view :normal do
-      fields :caution
-    end
-
     view :theme_data do
       association :theme_data, blueprint: ThemeData
     end

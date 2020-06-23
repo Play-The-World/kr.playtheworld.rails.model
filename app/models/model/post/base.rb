@@ -10,6 +10,7 @@ module Model
       belongs_to :poster, polymorphic: true, optional: true
       include Model::Viewable
       include Model::Topicable
+      include Model::Reportable
 
       # Translations
       include Model::Translatable

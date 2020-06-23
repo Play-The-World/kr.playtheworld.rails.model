@@ -8,6 +8,7 @@ module Model
       belongs_to :reviewable, polymorphic: true
       belongs_to :reviewer, polymorphic: true
       include Model::Commentable
+      include Model::Reportable
   
       # Translations
       include Model::Translatable

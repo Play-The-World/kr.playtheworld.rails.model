@@ -5,11 +5,7 @@ module Model::Serializer
             :type,
             :status,
             :content,
-            :summary,
-            :caution,
-            :price,
-            :play_time,
-            :data_size
+            :summary
 
     view :classifications do
       association :locations, blueprint: Location

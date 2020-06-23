@@ -27,6 +27,7 @@ module Model
       belongs_to :board, class_name: Model.config.board.class_name
       include Model::Commentable
       belongs_to :commenter, polymorphic: true
+      include Model::Reportable
 
       # Status
       include Model::HasStatus

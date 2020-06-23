@@ -16,6 +16,14 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.integer :data_size
       t.integer :super_plays_count, null: false, default: 0
       t.integer :current_version, null: false, default: 1
+      t.integer :play_user_count, null: false, default: 1
+
+      t.boolean :is_reviewable, default: true
+      t.boolean :is_rankable, default: false
+      t.boolean :has_deadline, default: false
+      t.datetime :deadline
+      t.boolean :has_caution, default: false
+      t.boolean :need_agreement, default: false
 
       t.timestamps
 
@@ -28,7 +36,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
     reversible do |dir|
       dir.up do
         Model.config.theme.constant.create_translation_table!({
-          content: :text, caution: :text, start_address: :string, start_position: :string
+          content: :text, caution: :string, caution_bold: :string, start_address: :string, start_position: :string
         })
       end
 

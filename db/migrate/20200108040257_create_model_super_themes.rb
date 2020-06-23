@@ -10,9 +10,6 @@ class CreateModelSuperThemes < ActiveRecord::Migration[6.0]
       t.string :fake_id
       t.string :status
       t.string :type
-      t.integer :price, null: false, default: 0
-      t.integer :play_time, null: false, default: 0
-      t.integer :data_size, null: false, default: 0
       
       t.timestamps
 
@@ -27,7 +24,7 @@ class CreateModelSuperThemes < ActiveRecord::Migration[6.0]
     reversible do |dir|
       dir.up do
         Model.config.super_theme.constant.create_translation_table!({
-          title: :string, content: :text, summary: :text, caution: :text
+          title: :string, content: :text, summary: :text
         })
       end
 

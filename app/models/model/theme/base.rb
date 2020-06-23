@@ -6,7 +6,7 @@ module Model
 
       # Translations
       include Model::Translatable
-      translates :content, :caution, :start_address, :start_position
+      translates :content, :caution, :caution_bold, :start_address, :start_position
 
       # Status
       include Model::HasStatus
@@ -19,7 +19,6 @@ module Model
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
       has_many :theme_data, dependent: :destroy, foreign_key: "theme_id"
       include Model::Viewable
-      # TODO SQL query를 사용해서 stages 추가하기
       include Model::Interpolatable
       include Model::Imageable
       has_one :creation, as: :product, dependent: :destroy
