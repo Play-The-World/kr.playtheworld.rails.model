@@ -1,6 +1,11 @@
 module Model::Serializer
   class Theme < Base
     identifier :fake_id, name: :id
+    
+    field :title do |t|
+      t.super_theme.title
+    end
+
     fields  :type,
             :status,
             :theme_type,
@@ -15,8 +20,8 @@ module Model::Serializer
             :data_size
             # :current_version
 
-    view :normal do
-      fields :caution
+    view :making do
+      fields :current_version
     end
   end
 end
