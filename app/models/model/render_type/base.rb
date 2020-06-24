@@ -17,10 +17,12 @@ module Model
 
       def to_s
         {
-          class_name: self.class.to_s,
+          type: self.class.to_s,
           options: @options
         }.to_json
       end
+
+      def as_json(options = {}); JSON.parse(to_s) end
 
       class << self
         # Load serialized data into the model scope with our expected transformation.
@@ -31,7 +33,7 @@ module Model
         def load(data)
           # Make sure data is compliant with our expected data format
           json = JSON.parse(data)
-          json["class_name"].constantize.new(json["options"])
+          json["type"].constantize.new(json["options"])
         rescue
           self.new
         end
