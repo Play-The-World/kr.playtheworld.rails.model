@@ -8,6 +8,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.string :fake_id
       t.string :status
       t.string :type
+      t.string :play_type
       t.string :theme_type
       t.integer :difficulty, default: 1
       t.string :render_type
@@ -18,12 +19,15 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.integer :current_version, null: false, default: 1
       t.integer :play_user_count, null: false, default: 1
 
+      t.boolean :use_memo, default: true
       t.boolean :is_reviewable, default: true
       t.boolean :is_rankable, default: false
       t.boolean :has_deadline, default: false
       t.datetime :deadline
       t.boolean :has_caution, default: false
       t.boolean :need_agreement, default: false
+
+      t.string :publish_type
 
       t.timestamps
 

@@ -12,8 +12,9 @@ module Model
       include Model::HasStatus
       set_status %i(hidden blocked)
 
-      # PlayType
-      # enumerize :play_type, in: %i(default random), default: :default
+      # Enums
+      enumerize :play_type, in: %i(scenario random), default: :scenario
+      enumerize :publish_type, in: %i(default swift), default: :default
 
       # Relations
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
@@ -33,7 +34,7 @@ module Model
       serialize :render_type, RENDER_TYPE::Base
 
       # Constants
-      FAKE_ID_LENGTH = 12
+      FAKE_ID_LENGTH = Model::SuperTheme::FAKE_ID_LENGTH
 
       # Callbacks
       before_validation :set_theme_type

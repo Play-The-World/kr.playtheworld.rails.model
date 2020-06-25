@@ -13,7 +13,7 @@ class CreateModelImages < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:imageable_id, :imageable_type, :type, :order], name: "images_index", unique: true
+      t.index [:imageable_id, :imageable_type, :type, :order], name: "images_index"#, unique: true
     end
   end
 end
