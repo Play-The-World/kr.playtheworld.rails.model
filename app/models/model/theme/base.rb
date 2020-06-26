@@ -34,7 +34,7 @@ module Model
       serialize :render_type, RENDER_TYPE::Base
 
       # Constants
-      FAKE_ID_LENGTH = Model::SuperTheme::FAKE_ID_LENGTH
+      FAKE_ID_LENGTH = Model::SuperTheme::Base::FAKE_ID_LENGTH
 
       # Callbacks
       before_validation :set_theme_type
