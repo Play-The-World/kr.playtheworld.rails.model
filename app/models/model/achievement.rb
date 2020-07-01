@@ -7,7 +7,7 @@ module Model
     # Relations
     belongs_to :object, polymorphic: true
     has_many :users_achievements, dependent: :destroy
-    has_many :users, through: :users_achievements
+    has_many :users, through: :users_achievements, class_name: Model.config.user.class_name
     include Model::Imageable
     include Model::Interpolatable
     include Model::EventTarget

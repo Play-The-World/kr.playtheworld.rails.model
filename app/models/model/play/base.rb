@@ -5,7 +5,7 @@ module Model
       self.table_name = Model.config.play.table_name
   
       # Relations
-      belongs_to :user
+      belongs_to :user, class_name: Model.config.user.class_name
       # belongs_to :theme, class_name: Model.config.theme.class_name
       belongs_to :theme_data
       belongs_to :super_play, class_name: Model.config.super_play.class_name, counter_cache: true

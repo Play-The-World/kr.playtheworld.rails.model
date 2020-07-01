@@ -19,6 +19,7 @@ module Model
 
     # Key: Default Value
     CONFIGS = {
+      user: ModelConfiguration.new("Model::User::Base", "model_users"),
       condition: ModelConfiguration.new("Model::Condition::Base", "model_conditions"),
       coordinate: ModelConfiguration.new("Model::Coordinate::Base", "model_coordinates"),
       event: ModelConfiguration.new("Model::Event::Base", "model_events"),

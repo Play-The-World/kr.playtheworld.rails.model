@@ -33,6 +33,7 @@ class DeviseCreateModelUsers < ActiveRecord::Migration[6.0]
       # t.datetime :locked_at
 
       # Custom Attributes
+      t.string :type
       t.string :name
       t.string :nickname
       t.string :phonenumber
@@ -45,6 +46,10 @@ class DeviseCreateModelUsers < ActiveRecord::Migration[6.0]
 
       # Custom Indexes
       t.index :status
+      t.index :type
+      t.index :phonenumber
+      t.index :name
+      t.index :nickname#, unique: true
     end
 
     add_index :model_users, :email,                unique: true

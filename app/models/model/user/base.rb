@@ -1,4 +1,4 @@
-module Model
+module Model::User
   #
   # 사용자 클래스
   #
@@ -25,7 +25,8 @@ module Model
   # * +:blocked+ - 정지된 사용자
   # * +:temp+ - 임시 사용자(비로그인)
   #
-  class User < ApplicationRecord
+  class Base < Model::ApplicationRecord
+    self.table_name = Model.config.user.table_name
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     # :rememberable
@@ -33,11 +34,11 @@ module Model
            :recoverable, :validatable, :trackable
 
     # Relations
-    has_many :entries, dependent: :destroy
-    has_many :teams, through: :entries
-    has_one :maker, dependent: :destroy
-    has_many :achievements, class_name: Model::UsersAchievement.to_s
-    has_many :plays, dependent: :destroy, class_name: Model.config.play.class_name
+    has_many :entries, dependent: :destroy, foreign_key: "user_id"
+    has_many :teams, through: :entries, foreign_key: "user_id"
+    has_one :maker, dependent: :destroy, foreign_key: "user_id"
+    has_many :achievements, class_name: Model::UsersAchievement.to_s, foreign_key: "user_id"
+    has_many :plays, dependent: :destroy, class_name: Model.config.play.class_name, foreign_key: "user_id"
     include Model::Reviewer
     include Model::Commenter
     include Model::Viewer
@@ -84,7 +85,7 @@ module Model
 
     private
       def set_unauthorized
-        self.status = :unauthorized
+        self.status = :unauthorized if ["default", nil].include?(self.status)
       end
   end
 end
