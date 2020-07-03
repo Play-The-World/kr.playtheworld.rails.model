@@ -28,7 +28,10 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.boolean :need_agreement, default: false
 
       t.string :publish_type
+      t.boolean :publish_alert, default: false
 
+      t.boolean :has_teaser_stage, default: false
+      
       t.timestamps
 
       # Indexes

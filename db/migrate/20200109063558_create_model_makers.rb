@@ -5,24 +5,27 @@ class CreateModelMakers < ActiveRecord::Migration[6.0]
       t.references :user, index: false
 
       # Attributes
+      t.string :name
+      t.text :content
       t.string :status
 
       t.timestamps
 
       # Indexes
+      t.index :name, unique: true
       t.index [:user_id, :status]
     end
 
-    reversible do |dir|
-      dir.up do
-        Model::Maker.create_translation_table!({
-          name: :string, content: :text
-        })
-      end
+    # reversible do |dir|
+    #   dir.up do
+    #     Model::Maker.create_translation_table!({
+    #       name: :string, content: :text
+    #     })
+    #   end
 
-      dir.down do
-        Model::Maker.drop_translation_table!
-      end
-    end
+    #   dir.down do
+    #     Model::Maker.drop_translation_table!
+    #   end
+    # end
   end
 end

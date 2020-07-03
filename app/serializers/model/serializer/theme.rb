@@ -35,12 +35,14 @@ module Model::Serializer
     end
 
     view :making do
+      include_view :images
       fields :current_version
     end
 
     view :making_detail do
       include_view :making
-      include_view :images
+
+      fields :publish_type, :publish_alert, :has_teaser_stage
       # association :images, blueprint: Image
     end
   end
