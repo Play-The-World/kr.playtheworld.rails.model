@@ -36,7 +36,7 @@ module Model::Serializer
 
     view :making do
       include_view :images
-      fields :current_version
+      fields :current_version, :created_at, :updated_at
     end
 
     view :making_detail do
