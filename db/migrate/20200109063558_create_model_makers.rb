@@ -5,7 +5,7 @@ class CreateModelMakers < ActiveRecord::Migration[6.0]
       t.references :user, index: false
 
       # Attributes
-      t.string :name, null: false
+      t.string :name#, null: false
       t.text :content
       t.string :status
 

@@ -2,7 +2,7 @@ class CreateModelMakerTeams < ActiveRecord::Migration[6.0]
   def change
     create_table :model_maker_teams do |t|
       # Attributes
-      t.string :name, null: false
+      t.string :name#, null: false
       t.text :content
       t.string :status
 
