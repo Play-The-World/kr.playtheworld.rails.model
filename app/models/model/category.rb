@@ -1,5 +1,7 @@
 module Model
   class Category < ApplicationRecord
+    self.inheritance_column = "not_sti"
+    
     # Translations
     include Model::Translatable
     translates :title

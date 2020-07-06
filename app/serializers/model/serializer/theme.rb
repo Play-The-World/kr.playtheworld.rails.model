@@ -2,48 +2,146 @@ module Model::Serializer
   class Theme < Base
     identifier :fake_id, name: :id
 
-    field :title do |t|
-      t.super_theme.title
+    view :base do
+      field :title do |t|
+        t.super_theme.title
+      end
+  
+      fields  :type,
+              :status,
+              :theme_type,
+              :content,
+              :has_caution,
+              :caution,
+              :caution_bold,
+              :play_user_count,
+              :has_deadline,
+              :deadline,
+              :is_rankable,
+              :is_reviewable,
+              :start_address,
+              :start_position,
+              :difficulty,
+              :render_type,
+              :price,
+              :play_time,
+              :data_size,
+              :use_memo,
+              :need_agreement
     end
-
-    fields  :type,
-            :status,
-            :theme_type,
-            :content,
-            :has_caution,
-            :caution,
-            :caution_bold,
-            :play_user_count,
-            :has_deadline,
-            :deadline,
-            :is_rankable,
-            :is_reviewable,
-            :start_address,
-            :start_position,
-            :difficulty,
-            :render_type,
-            :price,
-            :play_time,
-            :data_size,
-            :use_memo,
-            :need_agreement
-            
-            # :current_version
 
     view :images do
       association :images, blueprint: Image
     end
 
     view :making do
-      include_view :images
-      fields :current_version, :created_at, :updated_at
+      field :themeTitle do |t|
+        t.super_theme.title
+      end
+      field :content, name: :themeDescription
+      field :themeProfile do |t|
+        image = t.super_theme.images.find_by(type: :thumbnail)
+        {
+          fileName: "",
+          imageURL: image&.url
+        }
+      end
+      field :themeType do |t|
+        t.render_type&.str
+      end
+      field :play_type, name: :playType
+      field :onOffType do |t|
+        category = t.super_theme.categories.take
+        case category&.title
+        when "온라인"
+          "onLine"
+        when "오프라인"
+          "offLine"
+        else
+          nil
+        end
+      end
+      field :addFunction do |t|
+        {
+          attention: {
+            brifEmphasisMessage: t.caution,
+            emphasisMessage: t.caution_bold,
+            getUserAgree: t.need_agreement,
+            isUse: t.has_caution
+          },
+          dueDate: {
+            endDate: t.deadline,
+            isUse: t.has_deadline
+          },
+          infoMessage: {
+            message: "",
+            isUse: false
+          },
+          memo: t.use_memo,
+          rank: t.is_rankable,
+          review: t.is_reviewable
+        }
+      end
+      field :dateOfApplication do |t|
+        nil
+      end
+      field :created_at, name: :dateOfCreate
+      field :updated_at, name: :dateOfEdit
+      field :genre do |t|
+        t.super_theme.genres.take&.title
+      end
+      field :difficulty_str, name: :level
+      field :play_user_count, name: :participant
+      field :play_time, name: :playTime
+      field :publish do |t|
+        {
+          alram: t.publish_alert,
+          status: "edit",
+          type: t.publish_type
+        }
+      end
+      field :numberOfEnding do |t|
+        0
+      end
+      # soundInfo
+      field :themeImageInfo do |t|
+        images = t.images.where(type: :preview)
+        {
+          fileNameList: images.map { |i| "??" },
+          imageURLList: images.map { |i| i.url }
+        }
+      end
+      field :themePrice do |t|
+        {
+          freeStage: t.has_teaser_stage,
+          # priceType: "free",
+          selectPrice: t.price,
+          themeType: "simple" # t.price_type
+        }
+      end
+      field :writters do |t|
+        c = t.creations
+        {
+          made: c.select { |a| a.type == :producer }.map(&:creator).map(&:name),
+          picture: c.select { |a| a.type == :illustrator }.map(&:creator).map(&:name),
+          text: c.select { |a| a.type == :writer }.map(&:creator).map(&:name)
+        }
+      end
+      field :startPosition do |t|
+        {
+          address: t.start_address,
+          description: t.start_position,
+          lat: t.coordinate&.lat,
+          lng: t.coordinate&.lng
+        }
+      end
+      # itemInfoList
+      # achieveList
+      # stageInfoList
     end
 
     view :making_detail do
       include_view :making
-
-      fields :publish_type, :publish_alert, :has_teaser_stage
-      # association :images, blueprint: Image
     end
   end
 end

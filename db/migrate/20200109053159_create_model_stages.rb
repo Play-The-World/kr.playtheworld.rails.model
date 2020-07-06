@@ -6,6 +6,7 @@ class CreateModelStages < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :type
+      t.string :stage_type
       t.integer :stage_number, default: 0 # 이전 버전과 호환을 위해
       t.integer :order, null: false, default: 1
 

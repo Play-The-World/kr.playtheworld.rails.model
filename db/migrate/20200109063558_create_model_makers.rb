@@ -5,15 +5,15 @@ class CreateModelMakers < ActiveRecord::Migration[6.0]
       t.references :user, index: false
 
       # Attributes
-      t.string :name
+      t.string :name, null: false
       t.text :content
       t.string :status
 
       t.timestamps
 
       # Indexes
-      t.index :name, unique: true
-      t.index [:user_id, :status]
+      t.index :name#, unique: true
+      t.index :user_id, unique: true
     end
 
     # reversible do |dir|

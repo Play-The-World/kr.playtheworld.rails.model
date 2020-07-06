@@ -26,11 +26,13 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.datetime :deadline
       t.boolean :has_caution, default: false
       t.boolean :need_agreement, default: false
+      t.boolean :has_additional_text, default: false
 
       t.string :publish_type
       t.boolean :publish_alert, default: false
 
       t.boolean :has_teaser_stage, default: false
+      t.string :price_type
       
       t.timestamps
 
@@ -43,7 +45,7 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
     reversible do |dir|
       dir.up do
         Model.config.theme.constant.create_translation_table!({
-          content: :text, caution: :string, caution_bold: :string, start_address: :string, start_position: :string
+          content: :text, caution: :string, caution_bold: :string, start_address: :string, start_position: :string, additional_text: :string
         })
       end
 

@@ -6,8 +6,8 @@ class CreateModelCoordinates < ActiveRecord::Migration[6.0]
 
       # Attirbutes
       t.string :type
-      t.float :x
-      t.float :y
+      t.float :lat
+      t.float :lng
 
       t.timestamps
 

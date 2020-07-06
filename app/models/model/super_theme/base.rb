@@ -15,9 +15,7 @@ module Model
       include Model::Interpolatable
       include Model::Imageable
       include Model::Topicable
-      has_one :creation, as: :product, dependent: :destroy
-      has_one :maker, through: :creation, source: :creator, source_type: Model::Maker.to_s
-      has_one :maker_team, through: :creation, source: :creator, source_type: Model::MakerTeam.to_s
+      include Model::Product
       include Model::HasAchievement
       has_many :super_plays, class_name: Model.config.super_play.class_name, dependent: :destroy, foreign_key: "super_theme_id"
       include Model::Modalable

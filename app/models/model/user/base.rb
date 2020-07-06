@@ -36,7 +36,7 @@ module Model::User
     # Relations
     has_many :entries, dependent: :destroy, foreign_key: "user_id"
     has_many :teams, through: :entries, foreign_key: "user_id"
-    has_one :maker, dependent: :destroy, foreign_key: "user_id"
+    has_one :maker, dependent: :nullify, foreign_key: "user_id"
     has_many :achievements, class_name: Model::UsersAchievement.to_s, foreign_key: "user_id"
     has_many :plays, dependent: :destroy, class_name: Model.config.play.class_name, foreign_key: "user_id"
     include Model::Reviewer

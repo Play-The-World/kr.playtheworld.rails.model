@@ -6,7 +6,7 @@ module Model
 
       # Translations
       include Model::Translatable
-      translates :content, :caution, :caution_bold, :start_address, :start_position
+      translates :content, :caution, :caution_bold, :start_address, :start_position, :additional_text
 
       # Status
       include Model::HasStatus
@@ -15,6 +15,7 @@ module Model
       # Enums
       enumerize :play_type, in: %i(scenario random), default: :scenario
       enumerize :publish_type, in: %i(default swift), default: :default
+      enumerize :price_type, in: %i(simple complicated), default: :simple
 
       # Relations
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
@@ -22,12 +23,11 @@ module Model
       include Model::Viewable
       include Model::Interpolatable
       include Model::Imageable
-      has_one :creation, as: :product, dependent: :destroy
-      has_one :maker, through: :creation, source: :creator, source_type: Model::Maker.to_s
-      has_one :maker_team, through: :creation, source: :creator, source_type: Model::MakerTeam.to_s
+      include Model::Product
       include Model::Conditioner
       include Model::HasAchievement
       include Model::Eventable
+      include Model::Coordinatable
 
       # Render Type
       RENDER_TYPE = Model::RenderType
@@ -48,6 +48,19 @@ module Model
 
       def current_theme_data
         theme_data.find_by(version: current_version)
+      end
+
+      def difficulty_str
+        case self.difficulty
+        when 0
+          "easy"
+        when 5
+          "normal"
+        when 10
+          "hard"
+        else
+          "unknown"
+        end
       end
 
       class << self

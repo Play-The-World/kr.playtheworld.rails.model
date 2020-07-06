@@ -1,5 +1,7 @@
 module Model
   class Maker < ApplicationRecord
+    self.inheritance_column = "not_sti"
+
     # Translations
     # include Model::Translatable
     # translates :name, :content
@@ -13,9 +15,17 @@ module Model
     # Status
     include Model::HasStatus
     set_status %i(blocked)
+    # enumerize :type, in: %i(default temp), default: :default
+
+    before_create :set_default_name
 
     def self.serializer
       Model::Serializer::Maker
     end
+
+    private
+      def set_default_name
+        name = user&.nickname if name.nil?
+      end
   end
 end

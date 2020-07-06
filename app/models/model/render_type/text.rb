@@ -3,5 +3,7 @@ module Model::RenderType
     def a
       puts "test"
     end
+
+    def str; "text" end
   end
 end

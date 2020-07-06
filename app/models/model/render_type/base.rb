@@ -15,6 +15,8 @@ module Model
         @options = options
       end
 
+      def str; "unknown" end
+
       def to_s
         {
           type: self.class.to_s,
