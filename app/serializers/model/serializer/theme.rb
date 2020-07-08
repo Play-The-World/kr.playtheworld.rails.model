@@ -52,10 +52,10 @@ module Model::Serializer
       field :play_type, name: :playType
       field :onOffType do |t|
         category = t.super_theme.categories.take
-        case category&.title
-        when "온라인"
+        case category&.type
+        when "online"
           "onLine"
-        when "오프라인"
+        when "offline"
           "offLine"
         else
           nil
@@ -74,8 +74,8 @@ module Model::Serializer
             isUse: t.has_deadline
           },
           infoMessage: {
-            message: "",
-            isUse: false
+            message: t.additional_text,
+            isUse: t.has_additional_text
           },
           memo: t.use_memo,
           rank: t.is_rankable,
