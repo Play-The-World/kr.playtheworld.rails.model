@@ -27,6 +27,7 @@ module Model::User
   #
   class Base < Model::ApplicationRecord
     self.table_name = Model.config.user.table_name
+    
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     # :rememberable
@@ -66,7 +67,8 @@ module Model::User
 
     def confirm_email(passcode)
       if passcode == "1234"
-        update(status: :default)
+        # update!(status: :default)
+        true
       else
         raise
       end
@@ -81,6 +83,10 @@ module Model::User
     # * Model::Serializer::User
     def self.serializer
       Model::Serializer::User
+    end
+
+    def unauthorized?
+      self.status == "unauthorized"
     end
 
     private
