@@ -42,7 +42,7 @@ module Model::Serializer
       field :themeProfile do |t|
         image = t.super_theme.images.find_by(type: :thumbnail)
         {
-          fileName: "",
+          fileName: image.filename,
           imageURL: image&.url
         }
       end

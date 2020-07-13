@@ -1,5 +1,7 @@
 module Model
   class StageList < ApplicationRecord
+    self.inheritance_column = "not_sti"
+    
     # Translations
     include Model::Translatable
     translates :title
@@ -17,6 +19,7 @@ module Model
 
     # Callbacks
     before_create :set_stage_list_number
+    after_create :create_stage_list_type
 
     # 유효성 검사 => Bool
     def is_valid?

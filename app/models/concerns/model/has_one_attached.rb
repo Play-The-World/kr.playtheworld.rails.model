@@ -6,6 +6,9 @@ module Model
       include Rails.application.routes.url_helpers
       has_one_attached :file
 
+      def filename
+        file.filename.to_s
+      end
       def attach(params)
         file.attach(params)
       end
