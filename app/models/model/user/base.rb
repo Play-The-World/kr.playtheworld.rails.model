@@ -27,7 +27,7 @@ module Model::User
   #
   class Base < Model::ApplicationRecord
     self.table_name = Model.config.user.table_name
-    
+
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     # :rememberable
@@ -47,6 +47,8 @@ module Model::User
     include Model::Clearer
     include Model::Chatter
     include Model::HasSetting
+    # FOR TEST
+    has_many :plain_themes, dependent: :destroy, foreign_key: "user_id"
 
     # Status
     include Model::HasStatus
