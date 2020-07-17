@@ -9,7 +9,7 @@ module Model
       when "development"
         "http://192.168.0.14:3000/v1/making/test/images"
       when "production"
-        "http://api.playthe.world/v1/making/test/images"
+        "https://api.playthe.world/v1/making/test/images"
       else
         "/v1/making/test/images"
       end
