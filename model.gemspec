@@ -40,4 +40,8 @@ Gem::Specification.new do |spec|
   # spec.add_dependency "google-api-client", "~> 0.36" # https://github.com/googleapis/google-api-ruby-client
 
   spec.add_dependency "mysql2"
+
+  # Authorization
+  spec.add_dependency "rolify" # https://github.com/RolifyCommunity/rolify
+  spec.add_dependency "pundit" # https://github.com/varvet/pundit
 end

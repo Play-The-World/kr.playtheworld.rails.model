@@ -31,8 +31,8 @@ module Model::User
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     # :rememberable
-    devise :database_authenticatable, :registerable,
-           :recoverable, :validatable, :trackable
+    # devise :database_authenticatable, :registerable,
+    #        :recoverable, :validatable, :trackable
 
     # Relations
     has_many :entries, dependent: :destroy, foreign_key: "user_id"
