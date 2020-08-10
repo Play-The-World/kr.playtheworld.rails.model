@@ -10,7 +10,18 @@ module Model
 
     # Enum
     extend Enumerize
-    enumerize :type, in: %i(default preview profile background thumbnail poster map item_in item_out), default: :default
+    enumerize :type,
+      in: %i(
+        default
+        background
+        preview
+        thumbnail
+        poster
+        map
+        item_in
+        item_out
+      ),
+      default: :default
     enumerize :store_type, in: %i(default external), default: :default
 
     def self.serializer
