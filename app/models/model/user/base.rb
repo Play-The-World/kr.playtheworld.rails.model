@@ -27,6 +27,7 @@ module Model::User
   #
   class Base < Model::ApplicationRecord
     self.table_name = Model.config.user.table_name
+    rolify role_cname: Model::Role.to_s, role_join_table_name: 'model_users_roles'
 
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
