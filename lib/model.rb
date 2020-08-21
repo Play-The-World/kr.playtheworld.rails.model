@@ -17,10 +17,14 @@ Gem.loaded_specs['model']
 require "model/engine"
 require "model/config"
 require "model/current"
+require "model/pusher"
 
 module Model
   def self.config
     Model::Config.config
+  end
+  def self.configure
+    yield(config) if block_given?
   end
   def self.current
     Model::Current

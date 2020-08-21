@@ -40,8 +40,12 @@ module Model
       expression: ModelConfiguration.new("Model::Expression", "model_expressions"),
       topic: ModelConfiguration.new("Model::Topic::Base", "model_topics"),
       otp_digits: 6,
-      otp_expiry_time: 3.minutes
+      otp_expiry_time: 3.minutes,
+      pusher: nil,
+      disable_pusher: false
     }
+
+    # Configurable
     CONFIGS.each do |k, v|
       config_accessor(k) { v }
     end
