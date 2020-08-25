@@ -3,7 +3,12 @@ module Model::Serializer
     view :base do
       fields  :stage_list_number,
               :type,
-              :title
+              :title,
+              :theme_data_id
+    end
+
+    view :play do
+      include_view :base
     end
 
     view :theme_data do

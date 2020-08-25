@@ -4,6 +4,9 @@ module Model
       # Table Name
       self.table_name = Model.config.stage.table_name
 
+      # New in Rails 6! TEST NEEDED
+      self.implicit_order_column = 'order'
+
       # Translations
       include Model::Translatable
       translates :content

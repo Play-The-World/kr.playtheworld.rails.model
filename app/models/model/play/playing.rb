@@ -23,7 +23,7 @@ module Model::Play
     # 
     # * [Answer]
     def get_answers_by(user_answer = nil)
-      current_stage_list.get_answers_by(user_answer)
+      current_last_stage_list.get_answers_by(user_answer)
     end
 
     # 정답 제출 액션
@@ -39,8 +39,9 @@ module Model::Play
       get_answers_by(user_answer).each do |answer|
         next unless branch = answer.reachable_branch
 
-        tracks.last.count_wrong_answer if answer.wrong?
+        wrong_answer_submitted(answer) if answer.wrong?
         go_to(branch)
+        
         return true
       end
 
@@ -70,6 +71,10 @@ module Model::Play
       end
 
       return hint, result, message
+    end
+
+    def wrong_answer_submitted(answer)
+      tracks.last.count_wrong_answer
     end
 
     # 해당하는 Branch를 통해 다음 스테이지 리스트로 갑니다.

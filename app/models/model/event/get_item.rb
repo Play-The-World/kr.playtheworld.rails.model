@@ -16,7 +16,7 @@ module Model::Event # :nodoc:
       # Get Item
       count = value1.to_i
       count = -1 if count <= 0
-      ItemInInventory.create(
+      Model::ItemInInventory.create(
         inventory: inventory,
         item: item,
         count: count

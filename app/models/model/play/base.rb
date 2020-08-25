@@ -44,6 +44,9 @@ module Model
       rescue
         stage_lists.first
       end
+      def current_last_stage_list
+        stage_lists.last
+      end
 
       def self.serializer
         Model::Serializer::Play

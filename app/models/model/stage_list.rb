@@ -31,17 +31,18 @@ module Model
 
     # 해당하는 Answer를 찾음 => Answer?
     def answer(user_answer = nil)
-      _answer = answers.where(value: user_answer).or.where(answer_type: :pass).take
-      _answer ||= answers.find_by(answer_type: :failure)
-      _answer
+      # _answer = answers.where(value: user_answer).or(answers.where(type: Model::Answer::Pass.to_s)).take
+      get_answers_by(user_answer).take
     rescue
       nil
     end
 
     def get_answers_by(user_answer = nil)
       # TODO: case_sensitive, ordered 구현
-      _answers = stage_list_type.answers.where(value: user_answer)#.or.where(type: Model::Answer::Pass)
-      _answers ||= stage_list_type.answers.where(type: Model::Answer::Fail)
+      # TODO: 이러면 오답인 경우에 쿼리 3번인데.. => select로 변경?
+      _answers = answers.where(value: user_answer)
+      _answers = answers.where(type: Model::Answer::Pass) if _answers.empty?
+      _answers = answers.where(type: Model::Answer::Fail) if _answers.empty?
       _answers
     # rescue
     #   []

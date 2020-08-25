@@ -18,7 +18,7 @@ module Model
     def triggerable?
       # TODO: 조건 테스트 확인하기
       # 반복 불가하면서 이미 수행된 경우
-      !(unrepeatable? and !occurrences.exists?(clearer: clearer)) and cleared?
+      !(unrepeatable? and occurrences.exists?(clearer: clearer)) and cleared?
     end
 
     # 실행
@@ -28,10 +28,11 @@ module Model
     # * Bool
     def trigger
       if triggerable?
+        # Clearer에 occurrence 생성
+        occurrences.create!(clearer: clearer) if unrepeatable?
+        
         # trigger if triggerable
         trigger!
-        # Clearer에 occurrence 생성
-        occurrences.create(clearer: clearer) unless repeatable?
       end
       triggerable? # returns Boolean
     # TODO: production환경에선 주석 해제
@@ -41,6 +42,7 @@ module Model
 
     # 무조건 실행하는 메소드
     def trigger!
+      puts "EventGroup #{id} Triggerd !"
       events.each { |e| e.trigger }
     end
 
@@ -56,7 +58,7 @@ module Model
 
     def cleared?
       conditions.each do |condition|
-        return false if condition.cleared?
+        return false unless condition.cleared?
       end
       true
     end
