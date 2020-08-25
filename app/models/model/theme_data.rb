@@ -8,6 +8,7 @@ module Model
     # has_many :super_plays, dependent: :destroy, counter_cache: true, foreign_key: "theme_data_id"
     include Model::Eventable
     include Model::EventTarget
+    include Model::Musicable
 
     # Callbacks
     before_create :set_version
