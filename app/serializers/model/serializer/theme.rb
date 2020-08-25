@@ -3,9 +3,9 @@ module Model::Serializer
     identifier :fake_id, name: :id
 
     view :base do
-      field :title do |t|
-        t.super_theme.title
-      end
+      # field :title do |t|
+      #   t.super_theme.title
+      # end
   
       fields  :type,
               :status,
@@ -27,11 +27,16 @@ module Model::Serializer
               :play_time,
               :data_size,
               :use_memo,
-              :need_agreement
+              :need_agreement,
+              :super_theme_id
     end
 
     view :images do
       association :images, blueprint: Image
+    end
+
+    view :play do
+      include_view :base
     end
 
     view :making do

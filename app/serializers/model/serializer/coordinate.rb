@@ -1,11 +1,11 @@
 module Model::Serializer
-  class Hint < Base
+  class Coordinate < Base
     view :base do
       fields  :type,
-              :content
-              :order,
-              :stage_list_type_id
-      association :images, blueprint: Image
+              :lat,
+              :lng,
+              :coordinate_id,
+              :coordinate_type
     end
 
     view :play do

@@ -1,11 +1,8 @@
 module Model::Serializer
-  class Hint < Base
+  class Canvas < Base
     view :base do
-      fields  :type,
-              :content
-              :order,
-              :stage_list_type_id
-      association :images, blueprint: Image
+      fields  :stage_id,
+              :value
     end
 
     view :play do

@@ -1,5 +1,5 @@
 module Model::Serializer
   class Genre < Base
-    fields  :title
+    fields  :title, :type
   end
 end

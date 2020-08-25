@@ -14,7 +14,7 @@ end
 
 def submit(play:, answer:)
   sl = play.stage_lists.last
-  str = "[Action] #{sl.stage_list_number}. #{sl.title} #{answer} 정답 제출 -> "
+  str = "[Action] #{sl.stage_list_number}. #{sl.title} // #{answer} 정답 제출 -> "
   # if play.submit_answer(answer)
   #   str += "정답"
   # else
@@ -26,7 +26,7 @@ def submit(play:, answer:)
 end
 
 def on_stage(play:, stage_index:, stage_list_index:)
-  puts "[Action] 현재 스테이지 이동 to: #{stage_list_index + 1}-#{stage_index + 1}"
+  puts "[Action] 현재 스테이지 이동 from: #{play.stage_list_index}-#{play.stage_index} to: #{stage_list_index + 1}-#{stage_index + 1}"
   puts
   play.on_stage(stage_index: stage_index, stage_list_index: stage_list_index)
 end

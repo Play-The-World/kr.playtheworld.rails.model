@@ -1,10 +1,13 @@
 module Model::Serializer
-  class StageList < Base
+  class User < Base
     view :base do
-      fields  :type,
-              :theme_data_id,
-              :stage_list_number,
-              :title
+      fields  :status,
+              :email,
+              :nickname
+              # :password,
+              # :password_confirmation,
+              # :phonenumber,
+              # :email_confirmation
       
       # Relations
       # association :images, blueprint: Image

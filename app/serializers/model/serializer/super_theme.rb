@@ -1,11 +1,21 @@
 module Model::Serializer
   class SuperTheme < Base
     identifier :fake_id, name: :id
-    fields  :title,
-            :type,
-            :status,
-            :content,
-            :summary
+    view :base do
+      fields  :title,
+              :type,
+              :status,
+              :content,
+              :summary
+    end
+
+    view :play do
+      include_view :base
+    end
+
+    view :making do
+      include_view :base
+    end
 
     view :classifications do
       association :locations, blueprint: Location

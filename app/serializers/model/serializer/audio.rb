@@ -1,11 +1,15 @@
 module Model::Serializer
-  class Hint < Base
+  class Audio < Base
     view :base do
-      fields  :type,
-              :content
+      fields  :audioable_id,
+              :audioable_type,
+              :type,
+              :value,
               :order,
-              :stage_list_type_id
-      association :images, blueprint: Image
+              :name
+      field :url do |a|
+        a.value
+      end
     end
 
     view :play do

@@ -1,10 +1,10 @@
 module Model::Serializer
-  class StageList < Base
+  class Inventory < Base
     view :base do
-      fields  :type,
-              :theme_data_id,
-              :stage_list_number,
-              :title
+      fields  :status,
+              :type,
+              :play_id,
+              :space
       
       # Relations
       # association :images, blueprint: Image
@@ -12,6 +12,8 @@ module Model::Serializer
 
     view :play do
       include_view :base
+      # association :items, blueprint: Item, view: :play
+      # association :item_in_inventories, blueprint: ItemInInventory, view: :play
     end
 
     view :making do

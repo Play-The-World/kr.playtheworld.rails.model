@@ -1,11 +1,16 @@
 module Model::Serializer
-  class Hint < Base
+  class Video < Base
     view :base do
-      fields  :type,
-              :content
+      fields  :videoable_id,
+              :videoable_type,
+              :type,
+              # :store_type,
+              :value,
               :order,
-              :stage_list_type_id
-      association :images, blueprint: Image
+              :url
+      
+      # Relations
+      # association :images, blueprint: Image
     end
 
     view :play do

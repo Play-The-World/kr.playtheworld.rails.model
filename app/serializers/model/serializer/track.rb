@@ -1,10 +1,13 @@
 module Model::Serializer
-  class StageList < Base
+  class Track < Base
     view :base do
-      fields  :type,
-              :theme_data_id,
-              :stage_list_number,
-              :title
+      fields  :status,
+              :type,
+              :play_id,
+              :stage_list_id,
+              :wrong_answer_count,
+              :used_hint_count,
+              :used_answer_count
       
       # Relations
       # association :images, blueprint: Image

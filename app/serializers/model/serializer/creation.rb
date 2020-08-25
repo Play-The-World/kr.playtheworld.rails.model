@@ -1,15 +1,13 @@
 module Model::Serializer
-  class Hint < Base
+  class Creation < Base
     view :base do
-      fields  :type,
-              :content
-              :order,
-              :stage_list_type_id
-      association :images, blueprint: Image
+      fields  :creator_id,
+              :creator_type
+              # TODO
     end
 
     view :play do
-      include_view :base
+      # include_view :base
     end
 
     view :making do

@@ -1,11 +1,14 @@
 module Model::Serializer
-  class Hint < Base
+  class ItemInInventory < Base
     view :base do
       fields  :type,
-              :content
-              :order,
-              :stage_list_type_id
-      association :images, blueprint: Image
+              :status,
+              :item_id,
+              :inventory_id,
+              :count
+      
+      # Relations
+      # association :images, blueprint: Image
     end
 
     view :play do

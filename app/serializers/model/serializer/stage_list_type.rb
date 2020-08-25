@@ -1,11 +1,13 @@
 module Model::Serializer
-  class Hint < Base
+  class StageListType < Base
     view :base do
-      fields  :type,
-              :content
-              :order,
-              :stage_list_type_id
-      association :images, blueprint: Image
+      fields  :stage_list_id,
+              :game_component,
+              :chance_count,
+              :hints_count
+      
+      # Relations
+      # association :images, blueprint: Image
     end
 
     view :play do

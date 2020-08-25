@@ -1,10 +1,13 @@
 module Model::Serializer
-  class Hint < Base
+  class Item < Base
     view :base do
-      fields  :type,
-              :content
-              :order,
-              :stage_list_type_id
+      fields  :theme_data_id,
+              :level,
+              :title,
+              :content,
+              :stage_id
+      
+      # Relations
       association :images, blueprint: Image
     end
 

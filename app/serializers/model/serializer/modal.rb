@@ -1,11 +1,15 @@
 module Model::Serializer
-  class Hint < Base
+  class Modal < Base
     view :base do
       fields  :type,
+              :status,
+              :start_date,
+              :end_date,
+              :title,
               :content
-              :order,
-              :stage_list_type_id
-      association :images, blueprint: Image
+      
+      # Relations
+      # association :images, blueprint: Image
     end
 
     view :play do

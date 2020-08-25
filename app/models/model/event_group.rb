@@ -30,7 +30,7 @@ module Model
       if triggerable?
         # Clearer에 occurrence 생성
         occurrences.create!(clearer: clearer) if unrepeatable?
-        
+
         # trigger if triggerable
         trigger!
       end
@@ -42,7 +42,7 @@ module Model
 
     # 무조건 실행하는 메소드
     def trigger!
-      puts "EventGroup #{id} Triggerd !"
+      puts "EventGroup #{id} Triggerd !" if Rails.env.development?
       events.each { |e| e.trigger }
     end
 

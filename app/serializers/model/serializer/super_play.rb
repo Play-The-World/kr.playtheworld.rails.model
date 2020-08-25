@@ -1,11 +1,14 @@
 module Model::Serializer
-  class Hint < Base
+  class SuperPlay < Base
     view :base do
-      fields  :type,
-              :content
-              :order,
-              :stage_list_type_id
-      association :images, blueprint: Image
+      fields  :status,
+              :type,
+              :team_id,
+              :super_theme_id,
+              :plays_count
+      
+      # Relations
+      # association :images, blueprint: Image
     end
 
     view :play do

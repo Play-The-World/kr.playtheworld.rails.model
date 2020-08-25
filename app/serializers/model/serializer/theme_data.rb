@@ -1,18 +1,22 @@
 module Model::Serializer
   class ThemeData < Base
-    fields  :version,
-            :start_stage_list_number
-
-    view :theme do
-      association :theme, blueprint: Theme
+    view :base do
+      fields  :theme_id,
+              :version,
+              :start_stage_list_number
+      
+      # Relations
+      # association :images, blueprint: Image
     end
 
-    view :stage_lists do
-      association :stage_lists, blueprint: StageList
+    view :play do
+      include_view :base
     end
 
-    view :detail do
+    view :making do
+      include_view :base
       fields :memo
+      # association :branches, blueprint: Branch, view: :making
     end
   end
 end

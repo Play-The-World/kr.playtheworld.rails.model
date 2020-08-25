@@ -1,17 +1,26 @@
 module Model::Serializer
   class Play < Base
-    fields  :stage_list_index,
-            :stage_index,
-            :status,
-            :type,
-            :finished_at
+    view :base do
+      fields  :status,
+              :type,
+              :user_id,
+              :super_play_id,
+              :theme_data_id,
+              :stage_list_index,
+              :stage_index,
+              :finished_at
+      
+      # Relations
+      # association :images, blueprint: Image
+    end
 
-    # view :normal do
-    #   fields :caution
-    # end
-    view :playing do
-      association :theme_data, blueprint: ThemeData
-      association :stage_lists, blueprint: StageList, view: :stages
+    view :play do
+      include_view :base
+    end
+
+    view :making do
+      include_view :base
+      # association :branches, blueprint: Branch, view: :making
     end
   end
 end
