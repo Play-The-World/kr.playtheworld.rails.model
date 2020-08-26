@@ -44,4 +44,7 @@ Gem::Specification.new do |spec|
   # Authorization
   spec.add_dependency "rolify" # https://github.com/RolifyCommunity/rolify
   spec.add_dependency "pundit" # https://github.com/varvet/pundit
+
+  # Async Job(ActiveJob)
+  spec.add_dependency "sidekiq" # https://github.com/mperham/sidekiq
 end
