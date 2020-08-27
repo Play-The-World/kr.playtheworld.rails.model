@@ -9,7 +9,7 @@ class CreateModelConditions < ActiveRecord::Migration[6.0]
       t.string :value1
       t.string :value2
       t.string :type
-      t.boolean :create_clears, default: true
+      t.boolean :create_clears
 
       t.timestamps
 

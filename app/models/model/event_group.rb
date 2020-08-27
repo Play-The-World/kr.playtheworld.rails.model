@@ -51,6 +51,8 @@ module Model
       case clearer_type.to_sym
       when :user
         Model.current.user
+      when :play
+        Model.current.play
       else
         Model.current.play
       end

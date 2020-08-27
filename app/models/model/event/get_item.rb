@@ -30,11 +30,7 @@ module Model::Event # :nodoc:
     end
 
     private
-      def inventory
-        clearer.inventory
-      end
-      def item
-        target
-      end
+      def inventory; clearer.inventory end
+      def item; target end
   end
 end

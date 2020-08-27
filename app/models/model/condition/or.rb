@@ -20,8 +20,6 @@ module Model::Condition # :nodoc:
     # 
     # * Bool
     def cleared?
-      return super if super
-
       conditions.each do |c|
         return true if c.cleared?
       end
@@ -30,10 +28,6 @@ module Model::Condition # :nodoc:
       super
     end
 
-    # 조건을 만족했다는 것을 표시하는 함수
-    # (ex. ConditionClear를 생성)
-    def clear!
-      mark!
-    end
+    def auto_mark; true end
   end
 end

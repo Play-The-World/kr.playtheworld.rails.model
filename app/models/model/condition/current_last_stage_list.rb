@@ -24,19 +24,9 @@ module Model::Condition # :nodoc:
     rescue
       super
     end
-
-    # 조건을 만족했다는 것을 표시하는 함수
-    # (ex. ConditionClear를 생성)
-    def clear!
-      
-    end
     
     private
-      def play
-        clearer
-      end
-      def stage_list
-        conditioner
-      end
+      def play; clearer end
+      def stage_list; conditioner end
   end
 end
