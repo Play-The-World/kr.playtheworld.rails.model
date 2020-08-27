@@ -87,6 +87,12 @@ module Model::Play
       self
     end
 
+    def go_next!
+      branch = current_last_stage_list.get_answer!.branch!
+      go_to(branch)
+      self
+    end
+
     def playing?; true end
   end
 end

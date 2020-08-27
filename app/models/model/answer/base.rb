@@ -46,6 +46,10 @@ module Model
         nil
       end
 
+      def branch!
+        branches.take
+      end
+
       def self.serializer
         Model::Serializer::Answer
       end

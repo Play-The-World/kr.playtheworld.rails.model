@@ -48,6 +48,12 @@ module Model
     #   []
     end
 
+    def get_answer!
+      _answer = answers.where(type: [Model::Asnwer::Correct, Model::Answer::Pass]).take
+      _answer ||= answers.take
+      _answer
+    end
+
     # TEST용
     def next_stage_lists
       Model::StageList.where(
