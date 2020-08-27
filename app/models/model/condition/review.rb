@@ -19,6 +19,8 @@ module Model::Condition # :nodoc:
     # 
     # * Bool
     def cleared?
+      return super if super
+
       nth = value1.to_i
       # 몇 번째 후기인지 체크해야 한다면? (1부터 시작)
       if nth > 0
@@ -39,7 +41,7 @@ module Model::Condition # :nodoc:
     # 조건을 만족했다는 것을 표시하는 함수
     # (ex. ConditionClear를 생성)
     def clear!
-      
+      mark!
     end
 
     private

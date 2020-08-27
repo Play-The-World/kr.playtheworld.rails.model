@@ -23,7 +23,7 @@ module Model
       include Model::Conditionable
 
       def cleared?
-        condition_clears.where(clearer: clearer)
+        found?
       rescue
         false
       end
@@ -40,11 +40,19 @@ module Model
         Model::Serializer::Condition
       end
 
-      # 조건을 만족하는 지 확인할 대상
-      # 기본 값: 현재 플레이
-      def clearer
-        Model.current.play
-      end
+      private
+        # 조건을 만족하는 지 확인할 대상
+        # 기본 값: 현재 플레이
+        def clearer
+          Model.current.play
+        end
+        def found?
+          condition_clears.exists?(clearer: clearer)
+        end
+        # 조건 만족했다는 것을 표시(DB에 저장함 -> 속도 개선)
+        def mark!
+          condition_clears.first_or_create_by(clearer: clearer)
+        end
     end
   end
 end

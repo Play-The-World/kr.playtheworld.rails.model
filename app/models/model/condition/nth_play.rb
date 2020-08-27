@@ -20,6 +20,8 @@ module Model::Condition # :nodoc:
     # 
     # * Bool
     def cleared?
+      return super if super
+
       # (해당 테마를 플레이한 유저 수)번째 플레이가 됨. -> 플레이 생성 직후 사용할 것.
       # TODO: 잘 작동하는 지 테스트 해보기
       Model::User.joins(plays: { theme_data: :theme })
@@ -36,7 +38,7 @@ module Model::Condition # :nodoc:
     # 조건을 만족했다는 것을 표시하는 함수
     # (ex. ConditionClear를 생성)
     def clear!
-      
+      mark!
     end
 
     private

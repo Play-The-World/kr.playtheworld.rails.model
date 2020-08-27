@@ -19,6 +19,8 @@ module Model::Condition # :nodoc:
     # 
     # * Bool
     def cleared?
+      # return super if super
+
       # Model.current.user.plays.finished.exists?(theme: theme)
       # TODO 위랑 아래 쿼리 비교해보기.
       if conditioner.is_a?(Model::ThemeData)
@@ -39,7 +41,7 @@ module Model::Condition # :nodoc:
     # 조건을 만족했다는 것을 표시하는 함수
     # (ex. ConditionClear를 생성)
     def clear!
-      
+      # mark!
     end
 
     private
