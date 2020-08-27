@@ -59,6 +59,10 @@ module Model
         # Pusher...
       end
 
+      def channel_name
+        "private-play#{id}"
+      end
+
       private
         def init_play
           # 첫 스테이지 리스트

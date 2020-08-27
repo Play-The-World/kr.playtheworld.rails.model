@@ -83,6 +83,10 @@ module Model::User
       # Pusher...
     end
 
+    def channel_name
+      "private-user#{id}"
+    end
+
     # 기본 serializer 설정
     #
     # ==== Return
