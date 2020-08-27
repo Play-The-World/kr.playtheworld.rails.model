@@ -1,6 +1,6 @@
 module Model::Condition # :nodoc:
   #
-  # UsedAnswer 조건 클래스
+  # WrongAnswer 조건 클래스
   # TODO 조건에 대한 설명
   #
   # == Relations
@@ -13,17 +13,17 @@ module Model::Condition # :nodoc:
   # ==== has_many
   # 
   # * ConditionClear
-  class UsedAnswer < Base
+  class WrongAnswer < Base
     # Enumerize 쓸까?
     # Validations
     validates_inclusion_of :value1,
-      in: %w( use gte lte gt lt eq neq ),
+      in: %w( answer gte lte gt lt eq neq ),
       on: :create,
       message: "value1 %s is not correct type"
 
     validate_presence_of :value2
     # value1 = type
-    # use: 그냥 힌트를 사용 or 사용 안했을 때, conditioner Hint.type이 :answer여야 함.
+    # answer: 특정 Answer를 입력한 경우 (conditioner가 Answer여야 함.)
     # gte: greater than or equal to (a >= X)
     # lte: less than or equal to (a <= X)
     # gt: greater than (a > X)
@@ -31,8 +31,8 @@ module Model::Condition # :nodoc:
     # eq: equal to (a == X)
     # neq: not equal to (a != X)
     # value2 = int or bool
-    # use일 경우:
-    # X: bool(true or false)
+    # answer인 경우:
+    # nil
     # 비교일 경우:
     # X: int(number)
 
@@ -43,24 +43,26 @@ module Model::Condition # :nodoc:
     # * Bool
     def cleared?
       case value1.to_sym
-      when :use
+      when :answer
         # TODO 사용 여부 파악 => boolean
-        # ex) conditioner.used_by?(clearer)
-        true == value2
+        return false if conditioner.nil? or !conditioner.is_a?(Model::Answer::Base)
+        false
+        # conditioner... 어렵네 이건 좀..
+        # 일단 사용 안하는 것으로.
       when :gte
-        clearer.used_answer_count >= value2.to_i
+        clearer.wrong_answer_count >= value2.to_i
       when :gt
-        clearer.used_answer_count > value2.to_i
+        clearer.wrong_answer_count > value2.to_i
       when :lte
-        clearer.used_answer_count <= value2.to_i
+        clearer.wrong_answer_count <= value2.to_i
       when :lt
-        clearer.used_answer_count < value2.to_i
+        clearer.wrong_answer_count < value2.to_i
       when :eq
-        clearer.used_answer_count == value2.to_i
+        clearer.wrong_answer_count == value2.to_i
       when :neq
-        clearer.used_answer_count != value2.to_i
+        clearer.wrong_answer_count != value2.to_i
       end
-      # User와 Play 모두 used_answer_count를 쓸 수 있도록 메소드를 만들 것.
+      # User와 Play 모두 wrong_answer_count를 쓸 수 있도록 메소드를 만들 것.
     rescue
       super
     end

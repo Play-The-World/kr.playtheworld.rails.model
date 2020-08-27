@@ -23,7 +23,7 @@ module Model::Condition # :nodoc:
 
     validate_presence_of :value2
     # value1 = type
-    # use: 그냥 힌트를 사용 or 사용 안했을 때, target이 Hint여야 함.
+    # use: 그냥 힌트를 사용 or 사용 안했을 때, conditioner Hint여야 함.
     # gte: greater than or equal to (a >= X)
     # lte: less than or equal to (a <= X)
     # gt: greater than (a > X)
@@ -45,7 +45,7 @@ module Model::Condition # :nodoc:
       case value1.to_sym
       when :use
         # TODO 사용 여부 파악 => boolean
-        # ex) target.used_by?(clearer)
+        # ex) conditioner.used_by?(clearer)
         true == value2
       when :gte
         clearer.used_hint_count >= value2.to_i
