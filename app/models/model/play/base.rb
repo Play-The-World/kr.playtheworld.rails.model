@@ -55,6 +55,10 @@ module Model
       def playing?; false end
       def finished?; false end
 
+      def notify(title:, content:)
+        # Pusher...
+      end
+
       private
         def init_play
           # 첫 스테이지 리스트

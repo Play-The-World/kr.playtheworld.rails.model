@@ -79,6 +79,10 @@ module Model::User
       false
     end
 
+    def notify(title:, content:)
+      # Pusher...
+    end
+
     # 기본 serializer 설정
     #
     # ==== Return
