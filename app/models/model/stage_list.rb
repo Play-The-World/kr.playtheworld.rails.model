@@ -21,6 +21,10 @@ module Model
     before_create :set_stage_list_number
     after_create :create_stage_list_type
 
+    # Enumerize
+    include Enumerize
+    enumerize :type, in: %i(default end fail), default: :default
+
     # 유효성 검사 => Bool
     def is_valid?
       # 가장 마지막 스테이지가 Quiz or End 스테이지인지 검사
