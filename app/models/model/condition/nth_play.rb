@@ -22,7 +22,8 @@ module Model::Condition # :nodoc:
     def cleared?
       # (해당 테마를 플레이한 유저 수)번째 플레이가 됨. -> 플레이 생성 직후 사용할 것.
       # TODO: 잘 작동하는 지 테스트 해보기
-      Model::User.joins(plays: { theme_data: :theme })
+      Model.config.user.constant
+        .joins(plays: { theme_data: :theme })
         .where(
           "#{Model.config.theme.table_name}": { id: theme.id },
           "#{Model.config.play.table_name}": { type: Model::Play::Finished }

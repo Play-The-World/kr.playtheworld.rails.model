@@ -27,7 +27,8 @@ module Model::Condition # :nodoc:
         # Play
         ended?(play: clearer)
       elsif clearer.is_a?(Model.config.user.constant)
-        user.plays.where(type: Model::Play::Finished).each do |play|
+        # TODO: 1 Query로 바꾸기
+        clearer.plays.where(type: Model::Play::Finished).each do |play|
           return true if ended?(play: play)
         end
         false
@@ -38,7 +39,10 @@ module Model::Condition # :nodoc:
 
     private
       def ended?(play:)
-        play.stage_lists.find_by(type: :end) == conditioner
+        play.stage_lists.find_by(type: :end) == ending_stage_list
+      end
+      def ending_stage_list
+        conditioner
       end
   end
 end

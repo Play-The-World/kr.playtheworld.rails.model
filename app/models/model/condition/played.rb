@@ -23,11 +23,11 @@ module Model::Condition # :nodoc:
       # TODO 위랑 아래 쿼리 비교해보기.
       if conditioner.is_a?(Model::ThemeData)
         Model::Play::Finished.joins(:theme_data, :user)
-          .where("#{Model::User.table_name}": { id: user.id }, "#{Model::ThemeData.table_name}": { id: conditioner.id })
+          .where("#{Model.config.user.constant.table_name}": { id: user.id }, "#{Model::ThemeData.table_name}": { id: conditioner.id })
           .exists?
       elsif conditioner.is_a?(Model::Theme::Base)
         Model::Play::Finished.joins({ theme_data: :theme }, :user)
-          .where("#{Model::User.table_name}": { id: user.id }, "#{Model.config.theme.table_name}": { id: conditioner.id })
+          .where("#{Model.config.user.constant.table_name}": { id: user.id }, "#{Model.config.theme.table_name}": { id: conditioner.id })
           .exists?
       else
         false
