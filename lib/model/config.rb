@@ -41,6 +41,7 @@ module Model
       topic: ModelConfiguration.new("Model::Topic::Base", "model_topics"),
       stats_data: ModelConfiguration.new("Model::StatsData::Base", "model_stats_data"),
       role: ModelConfiguration.new("Model::Role", "model_users_roles"),
+      team: ModelConfiguration.new("Model::Team::Base", "model_teams"),
       otp_digits: 6,
       otp_expiry_time: 3.minutes,
       pusher: nil,

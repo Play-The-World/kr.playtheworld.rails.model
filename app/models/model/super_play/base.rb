@@ -5,7 +5,7 @@ module Model
       self.table_name = Model.config.super_play.table_name
 
       # Relations
-      belongs_to :team
+      belongs_to :team, class_name: Model.config.team.class_name
       # belongs_to :theme_data
       belongs_to :super_theme, counter_cache: true, class_name: Model.config.super_play.class_name, foreign_key: 'super_theme_id'
       has_many :plays, class_name: Model.config.play.class_name, dependent: :destroy, foreign_key: "super_play_id"

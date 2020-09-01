@@ -30,7 +30,7 @@ module Model::Theme
     # 난이도가 모든 테마에 들어감으로써 기존 코드의 필요성이 없어짐
 
     def set_theme_type
-      theme_type = difficulty
+      theme_type = difficulty_str
     end
   end
 end

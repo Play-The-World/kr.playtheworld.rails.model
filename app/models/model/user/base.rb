@@ -40,7 +40,7 @@ module Model::User
 
     # Relations
     has_many :entries, dependent: :destroy, foreign_key: "user_id"
-    has_many :teams, through: :entries, foreign_key: "user_id"
+    has_many :teams, through: :entries, class_name: Model.config.team.class_name, foreign_key: "user_id"
     has_one :maker, dependent: :nullify, foreign_key: "user_id"
     has_many :achievements, class_name: Model::UsersAchievement.to_s, foreign_key: "user_id"
     has_many :plays, dependent: :destroy, class_name: Model.config.play.class_name, foreign_key: "user_id"
@@ -67,9 +67,7 @@ module Model::User
 
     # 일단 간편하게 쓰려고 만듬
     def play_solo(theme:)
-      team = teams.find_or_create_by(type: :solo)
-      sp = team.super_plays.create(super_theme_id: theme.super_theme.id)
-      Model::Play::Playing.create(super_play: sp, user: self, theme_data: theme.current_theme_data)
+      solo_team.start_play(theme)
     end
 
     def confirm_email(passcode)
@@ -105,6 +103,10 @@ module Model::User
     end
 
     private
+      def solo_team
+        teams.find_or_create_by(type: Model::Team::Solo)
+      end
+
       def set_unauthorized
         self.status = :unauthorized if ["default", nil].include?(self.status)
       end
