@@ -26,8 +26,11 @@ module Model::User
   # * +:temp+ - 임시 사용자(비로그인)
   #
   class Base < Model::ApplicationRecord
+    # Table Name
     self.table_name = Model.config.user.table_name
-    rolify role_cname: Model::Role.to_s, role_join_table_name: 'model_users_roles'
+
+    # Rolify
+    rolify role_cname: Model.config.role.class_name, role_join_table_name: Model.config.role.table_name
 
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -48,6 +51,7 @@ module Model::User
     include Model::Clearer
     include Model::Chatter
     include Model::HasSetting
+    include Model::Statsable
     # FOR TEST
     has_many :plain_themes, dependent: :destroy, foreign_key: "user_id"
 

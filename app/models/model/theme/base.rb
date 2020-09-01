@@ -28,6 +28,7 @@ module Model
       include Model::HasAchievement
       include Model::Eventable
       include Model::Coordinatable
+      include Model::Statsable
 
       # Render Type
       RENDER_TYPE = Model::RenderType
