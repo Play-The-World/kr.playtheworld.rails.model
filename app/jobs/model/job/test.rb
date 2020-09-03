@@ -1,5 +1,5 @@
-module Model
-  class TestJob < ApplicationJob
+module Model::Job
+  class Test < ApplicationJob
     sidekiq_options retry: 5
     # retry_on ErrorLoadingSite wait: 5.minutes, queue: :low_priority
 
