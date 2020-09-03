@@ -49,12 +49,11 @@ module Model::Play
     end
 
     def on_stage(stage_index:, stage_list_index:)
-      self.stage_index = stage_index
-      self.stage_list_index = stage_list_index
-      self.save
-
-      # TODO: Job으로 빼기
-      current_stage.conditions.each(&:clear)
+      Model::Job::Play::OnStage.perform_async({
+        play_id: self.id,
+        stage_index: stage_index,
+        stage_list_index: stage_list_index
+      })
     end
 
     def use_hint(hint_number)
