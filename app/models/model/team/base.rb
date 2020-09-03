@@ -20,6 +20,9 @@ module Model
     # * +:name+
     # * +:content+
     class Base < ApplicationRecord
+      # Table Name
+      self.table_name = Model.config.team.table_name
+
       # 필요 없을 것 같아 국제화 기능 제거
       # Translations
       # include Model::Translatable
@@ -39,8 +42,8 @@ module Model
       # extend Enumerize
       # enumerize :type, in: %i(default solo), default: :default
       
-      def start_play(theme: nil, super_theme: nil, theme_type: nil)
-        raise "start_play() must be defined in child class."
+      def start_play(options = {})
+        raise "start_play(options) must be defined in child class."
       end
 
       def self.serializer

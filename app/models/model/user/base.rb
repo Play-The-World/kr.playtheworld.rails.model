@@ -67,7 +67,7 @@ module Model::User
 
     # 일단 간편하게 쓰려고 만듬
     def play_solo(theme:)
-      solo_team.start_play(theme)
+      solo_team.start_play({ theme: theme })
     end
 
     def confirm_email(passcode)

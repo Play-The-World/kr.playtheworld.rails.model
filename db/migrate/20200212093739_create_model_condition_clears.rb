@@ -3,7 +3,7 @@ class CreateModelConditionClears < ActiveRecord::Migration[6.0]
     create_table :model_condition_clears do |t|
       # Relations
       t.references :clearer, polymorphic: true
-      t.references :conditions
+      t.references :condition
 
       t.timestamps
     end
