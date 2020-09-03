@@ -47,4 +47,5 @@ Gem::Specification.new do |spec|
 
   # Async Job(ActiveJob)
   spec.add_dependency "sidekiq" # https://github.com/mperham/sidekiq
+  spec.add_dependency "sidekiq-bouncer" # https://github.com/apartmentlist/sidekiq-bouncer
 end
