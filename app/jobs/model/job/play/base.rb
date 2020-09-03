@@ -3,8 +3,9 @@ module Model::Job::Play
     # sidekiq_options retry: 5
     # retry_on ErrorLoadingSite wait: 5.minutes, queue: :low_priority
 
-    def perform(options)
-      play = Model::Play::Base.find(options[:play_id])
-    end
+    private
+      def before_run(options)
+        @play = Model::Play::Base.find(options[:play_id])
+      end
   end
 end

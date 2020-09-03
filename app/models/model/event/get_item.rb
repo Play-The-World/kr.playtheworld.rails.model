@@ -23,6 +23,9 @@ module Model::Event # :nodoc:
       )
 
       # TODO: Add UI update Job here
+      Model::Job::Play::UpdateInventory.perform_async({
+        play_id: clearer.id
+      })
     end
 
     def clearer

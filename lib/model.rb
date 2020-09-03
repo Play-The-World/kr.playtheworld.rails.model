@@ -14,10 +14,20 @@ Gem.loaded_specs['model']
 # require "googleauth"
 # require "googleauth/stores/file_token_store"
 
-require "model/engine"
-require "model/config"
-require "model/current"
-require "model/pusher"
+folders = [
+  'model',
+  'extensions'
+]
+folders.each do |folder|
+  Dir[File.join(File.dirname(__FILE__), folder, '*.rb')].each do |file|
+    require file
+  end
+end
+
+# require "model/engine"
+# require "model/config"
+# require "model/current"
+# require "model/pusher"
 
 module Model
   def self.config

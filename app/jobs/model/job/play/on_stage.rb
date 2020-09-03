@@ -3,14 +3,18 @@ module Model::Job::Play
     # sidekiq_options retry: 5
     # retry_on ErrorLoadingSite wait: 5.minutes, queue: :low_priority
 
-    def perform(options)
-      super
-
-      play.update(
-        stage_index: options[:stage_index],
-        stage_list_index: options[:stage_list_index]
-      )
-      play.current_stage.conditions.each(&:clear)
-    end
+    private
+      def run(options)
+        puts options[:play_id]
+        @play.update(
+          stage_index: options[:stage_index],
+          stage_list_index: options[:stage_list_index]
+        )
+        @play.current_stage.conditions.each(&:clear)
+      rescue
+        nil
+      end
+      # def debounce?; true end
+      # def delay; 0.5 end
   end
 end
