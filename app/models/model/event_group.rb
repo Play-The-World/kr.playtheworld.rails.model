@@ -29,7 +29,7 @@ module Model
     def trigger
       if triggerable?
         # Clearer에 occurrence 생성
-        occurrences.first_or_create_by(clearer: clearer) if unrepeatable?
+        occurrences.where(clearer: clearer).first_or_create if unrepeatable?
 
         # trigger if triggerable
         trigger!
