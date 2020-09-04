@@ -4,8 +4,7 @@ module Model::Serializer
       fields  :theme_data_id,
               :level,
               :title,
-              :content,
-              :stage_id
+              :content
       
       # Relations
       association :images, blueprint: Image
