@@ -13,6 +13,7 @@ module Model::Event # :nodoc:
   class GetItem < Base
     # 실행
     def trigger
+      puts "get item"
       # Get Item
       count = value1.to_i
       count = -1 if count <= 0
@@ -23,7 +24,7 @@ module Model::Event # :nodoc:
       )
 
       # TODO: Add UI update Job here
-      Model::Job::Play::UpdateInventory.perform_async({
+      Model::Job::Play::UpdateInventory.run({
         play_id: clearer.id
       })
     end

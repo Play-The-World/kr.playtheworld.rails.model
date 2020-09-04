@@ -4,8 +4,11 @@ module Model::Job::Play
     # retry_on ErrorLoadingSite wait: 5.minutes, queue: :low_priority
 
     private
-      def before_run(options)
-        @play = Model::Play::Base.find(options['play_id'])
+      def before_job(options)
+        Model.current.play = Model::Play::Base.find(options['play_id'])
+      end
+      def play
+        Model.current.play
       end
   end
 end

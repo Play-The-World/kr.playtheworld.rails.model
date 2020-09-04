@@ -4,7 +4,7 @@ module Model::Job::Play
     # retry_on ErrorLoadingSite wait: 5.minutes, queue: :low_priority
 
     private
-      def run(options)
+      def job(options)
         # Pusher: Inventory UI Update
         puts "hello!"
       end

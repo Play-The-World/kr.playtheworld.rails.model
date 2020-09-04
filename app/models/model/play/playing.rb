@@ -49,7 +49,7 @@ module Model::Play
     end
 
     def on_stage(stage_index:, stage_list_index:)
-      Model::Job::Play::OnStage.perform_async({
+      Model::Job::Play::OnStage.run({
         play_id: self.id,
         stage_index: stage_index,
         stage_list_index: stage_list_index

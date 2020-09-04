@@ -1,0 +1,6 @@
+Model::Job::ApplicationJob.run({})
+Model::Job::ApplicationJob.run({})
+Model::Job::ApplicationJob.run({})
+Model::Job::ApplicationJob.run({})
+Model::Job::ApplicationJob.run({ debounce: false })
+Model::Job::ApplicationJob.run({ debounce: false })
