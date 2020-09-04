@@ -18,6 +18,13 @@ module Model
     #   serializer.render_as_hash(self)
     end
 
+    def pusher(event:, params:)
+      raise "You must set channel_name first" if channel_name.nil?
+
+      Model::Pusher.trigger(channel_name, event.to_s, params)
+    end
+    def channel_name; nil end
+
     def repo; self.class.repo end
     def serializer; self.class.serializer end
 
