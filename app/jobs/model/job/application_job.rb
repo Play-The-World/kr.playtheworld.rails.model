@@ -1,7 +1,7 @@
 module Model::Job
   class ApplicationJob# < ActiveJob::Base
-    sidekiq_options retry: 1
     include Sidekiq::Worker
+    sidekiq_options retry: 1
 
     def perform(options)
       # Bouncer를 사용하는 경우 + 이미 작업이 있는 경우 skip

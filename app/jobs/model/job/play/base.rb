@@ -5,7 +5,7 @@ module Model::Job::Play
 
     private
       def before_run(options)
-        @play = Model::Play::Base.find(options[:play_id])
+        @play = Model::Play::Base.find(options['play_id'])
       end
   end
 end

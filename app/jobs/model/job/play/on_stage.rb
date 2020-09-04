@@ -5,10 +5,9 @@ module Model::Job::Play
 
     private
       def run(options)
-        puts options[:play_id]
         @play.update(
-          stage_index: options[:stage_index],
-          stage_list_index: options[:stage_list_index]
+          stage_index: options['stage_index'],
+          stage_list_index: options['stage_list_index']
         )
         @play.current_stage.conditions.each(&:clear)
       rescue
