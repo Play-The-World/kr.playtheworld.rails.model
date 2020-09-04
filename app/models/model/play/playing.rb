@@ -41,6 +41,11 @@ module Model::Play
 
         wrong_answer_submitted(answer) if answer.wrong?
         go_to(branch)
+
+        Model::Job::Play::NextStageLists.run({
+          play_id: self.id,
+          stage_list_index: self.stage_lists.size - 1
+        })
         
         return true
       end

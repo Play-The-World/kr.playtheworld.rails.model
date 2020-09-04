@@ -22,7 +22,7 @@ module Model
     after_create :create_stage_list_type
 
     # Enumerize
-    include Enumerize
+    extend Enumerize
     enumerize :type, in: %i(default end fail), default: :default
 
     # 유효성 검사 => Bool

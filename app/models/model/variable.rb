@@ -4,7 +4,7 @@ module Model
     belongs_to :object, polymorphic: true
 
     # Enums
-    # include Enumerize
+    # extend Enumerize
     # enumerize :type, in: %i(default), default: :default
     
     def self.serializer

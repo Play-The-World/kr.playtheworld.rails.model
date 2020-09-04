@@ -8,7 +8,7 @@ module Model
       belongs_to :coordinatable, polymorphic: true
 
       # Enums
-      # include Enumerize
+      # extend Enumerize
       # enumerize :coordinate_type, in: %i(map), default: :map
 
     end

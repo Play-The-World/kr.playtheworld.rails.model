@@ -48,6 +48,15 @@ module Model
         stage_lists.last
       end
 
+      def next_stage_lists(from_index)
+        stage_lists
+          .includes(
+            translations: [],
+            stage_list_type: [:answers, :hints, :images],
+            stages: [:translations]
+          ).offset(from_index)
+      end
+
       def self.serializer
         Model::Serializer::Play
       end
@@ -60,7 +69,8 @@ module Model
       end
 
       def channel_name
-        "private-play#{id}"
+        # "private-play#{id}"
+        "PlayChannel"
       end
 
       private

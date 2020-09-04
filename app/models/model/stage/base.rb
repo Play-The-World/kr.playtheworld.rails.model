@@ -22,7 +22,7 @@ module Model
       include Model::Conditioner
 
       # Enums
-      # include Enumerize
+      # extend Enumerize
       # enumerize :stage_type, in: %i(script quiz end)
 
       # Scopes
