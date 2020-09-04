@@ -9,7 +9,7 @@ module Model::Job::Play
           stage_index: options['stage_index'],
           stage_list_index: options['stage_list_index']
         )
-        @play.current_stage.conditions.each(&:clear)
+        @play.current_stage.clear_conditions(Model::Condition::CurrentStage)
       rescue
         nil
       end

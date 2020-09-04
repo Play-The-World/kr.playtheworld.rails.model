@@ -15,10 +15,10 @@ module Model
     # Return
     # 
     # * Bool
-    def triggerable?
+    def triggerable?(skip = [])
       # TODO: 조건 테스트 확인하기
       # 반복 불가하면서 이미 수행된 경우
-      !(unrepeatable? and occurrences.exists?(clearer: clearer)) and cleared?
+      !(unrepeatable? and occurrences.exists?(clearer: clearer)) and cleared?(skip)
     end
 
     # 실행
@@ -26,8 +26,8 @@ module Model
     # Return
     # 
     # * Bool
-    def trigger
-      if triggerable?
+    def trigger(skip = [])
+      if triggerable?(skip)
         # Clearer에 occurrence 생성
         occurrences.where(clearer: clearer).first_or_create if unrepeatable?
 
@@ -58,8 +58,9 @@ module Model
       end
     end
 
-    def cleared?
+    def cleared?(skip = [])
       conditions.each do |condition|
+        next if skip.include?(condition)
         return false unless condition.cleared?
       end
       true

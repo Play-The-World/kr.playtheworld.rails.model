@@ -30,12 +30,14 @@ module Model
       rescue
         false
       end
-      def clear
-        if (markable? and found?) or cleared?
+      def clear(skip = [])
+        if skip.include?(self) or (markable? and found?) or cleared?
           mark!
           clear!
           # event&.trigger
-          conditionable.trigger if defined? conditionable.trigger
+          skip << self unless skip.include?(self)
+
+          conditionable.trigger(skip) if defined? conditionable.trigger
         end
       end
       def clear!; end
