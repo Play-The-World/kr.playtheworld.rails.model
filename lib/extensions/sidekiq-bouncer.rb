@@ -1,3 +1,5 @@
+# ref: https://medium.com/apartment-list/getting-sidekiq-to-debounce-8452a8a19c4c
+
 module Sidekiq
   class Config
     attr_accessor :redis
