@@ -1,9 +1,7 @@
 module Model::Serializer
   class Track < Base
     view :base do
-      fields  :status,
-              :type,
-              :play_id,
+      fields  :play_id,
               :stage_list_id,
               :wrong_answer_count,
               :used_hint_count,
@@ -15,6 +13,7 @@ module Model::Serializer
 
     view :play do
       include_view :base
+      association :stage_list, blueprint: StageList, view: :play
     end
 
     view :making do

@@ -53,7 +53,7 @@ module Model
     end
 
     def get_answer!
-      _answer = answers.where(type: [Model::Asnwer::Correct, Model::Answer::Pass]).take
+      _answer = answers.where(type: [Model::Answer::Correct, Model::Answer::Pass]).take
       _answer ||= answers.take
       _answer
     end

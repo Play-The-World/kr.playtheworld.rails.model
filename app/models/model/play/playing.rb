@@ -41,11 +41,6 @@ module Model::Play
 
         wrong_answer_submitted(answer) if answer.wrong?
         go_to(branch)
-
-        Model::Job::Play::NextStageLists.run({
-          play_id: self.id,
-          stage_list_index: self.stage_lists.size - 1
-        })
         
         return true
       end
@@ -88,6 +83,10 @@ module Model::Play
     # * Self
     def go_to(branch = nil)
       stage_lists << branch&.target_stage_list
+      Model::Job::Play::NextStageLists.run({
+        play_id: self.id,
+        stage_list_index: self.stage_lists.size - 1
+      })
       self
     end
 

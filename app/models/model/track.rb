@@ -4,6 +4,10 @@ module Model
     belongs_to :stage_list
     belongs_to :play, class_name: Model.config.play.class_name
 
+    def self.serializer
+      Model::Serializer::Track
+    end
+
     def count_wrong_answer(n = 1)
       update(wrong_answer_count: wrong_answer_count + n)
     end

@@ -1,9 +1,7 @@
 module Model::Serializer
   class Inventory < Base
     view :base do
-      fields  :status,
-              :type,
-              :play_id,
+      fields  :play_id,
               :space
       
       # Relations

@@ -8,7 +8,7 @@ module Model
       belongs_to :user, class_name: Model.config.user.class_name
       # belongs_to :theme, class_name: Model.config.theme.class_name
       belongs_to :theme_data
-      belongs_to :super_play, class_name: Model.config.super_play.class_name, counter_cache: true
+      belongs_to :super_play, class_name: Model.config.super_play.class_name, counter_cache: 'plays_count'
       has_many :tracks, dependent: :destroy, foreign_key: 'play_id'
       has_many :stage_lists, -> { order("#{Model::Track.table_name}.id": :asc) }, through: :tracks
       has_one :inventory, foreign_key: 'play_id'
@@ -54,6 +54,17 @@ module Model
             translations: [],
             stage_list_type: [:answers, :hints, :images],
             stages: [:translations]
+          ).offset(from_index)
+      end
+
+      def next_tracks(from_index)
+        tracks
+          .includes(
+            stage_list: [
+              translations: [],
+              stage_list_type: [:answers, :hints, :images],
+              stages: [:translations]
+            ]
           ).offset(from_index)
       end
 

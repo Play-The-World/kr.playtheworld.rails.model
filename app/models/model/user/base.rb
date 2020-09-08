@@ -104,7 +104,7 @@ module Model::User
 
     private
       def solo_team
-        teams.find_or_create_by(type: Model::Team::Solo)
+        teams.first_or_create(type: Model::Team::Solo)
       end
 
       def set_unauthorized

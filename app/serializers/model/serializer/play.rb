@@ -16,6 +16,9 @@ module Model::Serializer
 
     view :play do
       include_view :base
+      association :inventory, blueprint: Inventory, view: :play
+      # association :stage_lists, blueprint: StageList, view: :play
+      association :tracks, blueprint: Track, view: :play
     end
 
     view :making do

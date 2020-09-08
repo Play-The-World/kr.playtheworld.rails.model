@@ -13,6 +13,10 @@ module Model
     # Callbacks
     before_create :set_version
 
+    def self.serializer
+      Model::Serializer::ThemeData
+    end
+
     def stages
       Model.config.stage.constant
         .joins(stage_list: :theme_data)
