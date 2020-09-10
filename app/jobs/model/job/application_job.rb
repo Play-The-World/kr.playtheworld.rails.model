@@ -10,7 +10,9 @@ module Model::Job
         return if debounce? and !self.class.bouncer.let_in?(options)
       end
 
-      Model.current.user = Model.config.user.constant.find_by(id: options['user_id']) if options['user_id']
+      options.symbolize_keys!
+      puts "perform start"
+      Model.current.user = Model.config.user.constant.find_by(id: options[:user_id]) if options[:user_id]
       before_job(options)
       job(options)
       after_job(options)
@@ -20,7 +22,7 @@ module Model::Job
       if debounce?
         self.class.bouncer.debounce(options)
       else
-        perform(options)
+        self.class.perform_async(options)
       end
     end
 

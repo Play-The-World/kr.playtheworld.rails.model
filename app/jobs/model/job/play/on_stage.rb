@@ -6,14 +6,14 @@ module Model::Job::Play
     private
       def job(options)
         play.update(
-          stage_index: options['stage_index'],
-          stage_list_index: options['stage_list_index']
+          stage_index: options[:stage_index],
+          stage_list_index: options[:stage_list_index]
         )
         play.current_stage.clear_conditions(Model::Condition::CurrentStage)
       rescue
         nil
       end
-      def debounce?; true end
+      # def debounce?; false end
       def delay; 0 end
   end
 end

@@ -1,9 +1,7 @@
 module Model::Serializer
   class ItemInInventory < Base
     view :base do
-      fields  :type,
-              :status,
-              :item_id,
+      fields  :item_id,
               :inventory_id,
               :count
       
@@ -13,6 +11,8 @@ module Model::Serializer
 
     view :play do
       include_view :base
+
+      association :item, blueprint: Item, view: :play
     end
 
     view :making do

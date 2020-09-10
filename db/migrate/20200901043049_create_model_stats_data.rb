@@ -6,12 +6,13 @@ class CreateModelStatsData < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :type
-      t.string :value
+      t.string :title
+      t.integer :value, default: 0, null: false
 
       t.timestamps
 
       # Indexes
-      t.index [:statsable_id, :statsable_type, :type, :value], name: 'stats_data_index'
+      t.index [:statsable_id, :statsable_type, :type, :title], name: 'stats_data_index'
     end
   end
 end

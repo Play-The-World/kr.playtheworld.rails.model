@@ -5,20 +5,22 @@ module Model::Job::Play
 
     private
       def job(options)
-        # Pusher: Inventory UI Update
-        items = play.inventory.items.as_json(:play)
+        item_in_inventories = play.inventory.item_in_inventories.as_json(:play)
         play.pusher(
           event: :update_inventory,
           params: {
-            items: items
+            item_in_inventories: item_in_inventories
           }
         )
-        
-        # FOR TEST
-        # a = {}
-        # a[:event] = :update_inventory
-        # a[:params] = { items: items }
-        # puts a
+
+        # Pusher: Inventory UI Update
+        # items = play.inventory.items.as_json(:play)
+        # play.pusher(
+        #   event: :update_inventory,
+        #   params: {
+        #     items: items
+        #   }
+        # )
       end
       def debounce?; true end
       def delay; 1 end
