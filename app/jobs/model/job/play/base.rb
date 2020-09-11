@@ -5,9 +5,7 @@ module Model::Job::Play
 
     private
       def before_job(options)
-        puts options
         Model.current.play = Model::Play::Base.find(options[:play_id])
-        puts "play=#{Model.current.play}"
       end
       def play
         Model.current.play

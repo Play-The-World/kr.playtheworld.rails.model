@@ -11,7 +11,6 @@ module Model::Job
       end
 
       options.symbolize_keys!
-      puts "perform start"
       Model.current.user = Model.config.user.constant.find_by(id: options[:user_id]) if options[:user_id]
       before_job(options)
       job(options)
