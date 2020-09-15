@@ -14,6 +14,6 @@ module Model::Job::Play
         nil
       end
       # def debounce?; false end
-      def delay; 0 end
+      # def delay; 0 end
   end
 end
