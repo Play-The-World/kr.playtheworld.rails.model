@@ -37,6 +37,8 @@ module Model::Serializer
 
     view :play do
       include_view :base
+
+      association :super_theme, blueprint: SuperTheme, view: :play
     end
 
     view :making do
