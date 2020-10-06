@@ -31,7 +31,7 @@ module Model::Play
     # 
     # ==== Return
     # 
-    # * Bool
+    # * Bool, Branch?
     def submit_answer(user_answer = nil)
       # log("'#{theme.title}'테마의 '#{current_stage.title}' 스테이지에서 '#{team.users.take.username}'유저가 정답 제출 #{user_answer}")
 
@@ -42,10 +42,10 @@ module Model::Play
         wrong_answer_submitted(answer) if answer.wrong?
         go_to(branch)
         
-        return true
+        return !answer.wrong?, branch
       end
 
-      false
+      return false, nil
     end
 
     def on_stage(stage_index:, stage_list_index:)
