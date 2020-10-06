@@ -12,6 +12,7 @@ module Model::Serializer
       
       # Relations
       # association :images, blueprint: Image
+      association :super_play, blueprint: SuperPlay, view: :base
     end
 
     view :play do
