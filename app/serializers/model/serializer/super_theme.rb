@@ -9,6 +9,12 @@ module Model::Serializer
               :summary
     end
 
+    view :show do
+      include_view :base
+      include_view :classifications
+      include_view :images
+    end
+
     view :play do
       include_view :base
     end
@@ -24,12 +30,7 @@ module Model::Serializer
     end
       
     view :images do
-      include_view :classifications
-      association :images, blueprint: Image
-    end
-
-    view :in_topic do
-      include_view :images
+      association :images, blueprint: Image, view: :base
     end
 
     view :detail do

@@ -32,14 +32,15 @@ module Model::Serializer
     end
 
     view :images do
-      association :images, blueprint: Image
+      association :images, blueprint: Image, view: :base
     end
 
     # 상세 보기 페이지 등.
     view :show do
       include_view :base
+      include_view :images
 
-      association :super_theme, blueprint: SuperTheme, view: :show
+      association :super_theme, blueprint: SuperTheme, view: :base
     end
 
     # 플레이시

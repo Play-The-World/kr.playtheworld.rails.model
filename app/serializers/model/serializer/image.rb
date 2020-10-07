@@ -5,7 +5,8 @@ module Model::Serializer
               :value,
               :order,
               :imageable_id,
-              :imageable_type
+              :imageable_type,
+              :url
       
       # Relations
       # association :images, blueprint: Image

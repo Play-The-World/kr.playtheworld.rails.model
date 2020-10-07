@@ -1,14 +1,16 @@
 module Model::Serializer
   class Post < Base
-    fields  :type,
-            :status,
-            :title,
-            :content,
-            :created_at,
-            :updated_at
+    view :base do
+      fields  :type,
+              :status,
+              :title,
+              :content,
+              :created_at,
+              :updated_at
+    end
     
-    view :in_topic do
-      
+    view :show do
+      include_view :base
     end
   end
 end
