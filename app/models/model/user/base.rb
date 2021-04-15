@@ -52,8 +52,6 @@ module Model::User
     include Model::Chatter
     include Model::HasSetting
     include Model::Statsable
-    # FOR TEST
-    has_many :plain_themes, dependent: :destroy, foreign_key: "user_id"
 
     # Status
     include Model::HasStatus

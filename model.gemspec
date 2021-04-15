@@ -25,11 +25,11 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 6.0.3"
+  spec.add_dependency "rails", "~> 6.1.0"
 
   spec.add_dependency "rails-i18n", "~> 6.0.0"
-  spec.add_dependency "globalize", "~> 5.3.0" # https://github.com/globalize/globalize
-  spec.add_dependency "enumerize", "~> 2.3.0"  # https://github.com/brainspec/enumerize
+  spec.add_dependency "globalize", "~> 6.0.0" # https://github.com/globalize/globalize
+  spec.add_dependency "enumerize" # https://github.com/brainspec/enumerize
   # spec.add_dependency "fast_jsonapi", "~> 1.5.0"  # https://github.com/Netflix/fast_jsonapi
   spec.add_dependency "blueprinter" # https://github.com/procore/blueprinter
   
