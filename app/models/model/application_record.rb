@@ -2,6 +2,8 @@ module Model
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
 
+    connects_to database: { writing: :new_model }
+
     # Targetable
     has_many :target_events, as: :target, class_name: Model.config.event.class_name, dependent: :nullify
     has_many :target_interpolations, as: :target, class_name: Model.config.interpolation.class_name, dependent: :nullify
@@ -13,7 +15,7 @@ module Model
     def as_json(view = nil)
       view = nil if view == {}
       serializer.render_as_hash(self, view: view)
-    # TODO: productio에서만 활성화 하기.
+    # TODO: production에서만 활성화 하기.
     # rescue
     #   serializer.render_as_hash(self)
     end

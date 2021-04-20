@@ -14,7 +14,9 @@ module Model
 
     class << self
       def current
-        self.find_or_create_by(mode: :development)
+        self.find_or_create_by(mode: Rails.env.to_sym)
+      rescue
+        first
       end
     end
   end

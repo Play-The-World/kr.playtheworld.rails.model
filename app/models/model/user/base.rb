@@ -36,7 +36,8 @@ module Model::User
     # :confirmable, :lockable, :timeoutable and :omniauthable
     # :rememberable
     devise :database_authenticatable, :registerable,
-           :recoverable, :validatable, :trackable
+           :recoverable, #:validatable, 
+           :trackable
 
     # Relations
     has_many :entries, dependent: :destroy, foreign_key: "user_id"
@@ -52,16 +53,14 @@ module Model::User
     include Model::Chatter
     include Model::HasSetting
     include Model::Statsable
+    include Model::Tokenable
 
     # Status
     include Model::HasStatus
-    set_status %i(removed blocked unauthorized temp)
+    set_status %i(blocked)
 
-    # Tokenable
-    include Model::Tokenable
-
-    # Callbacks
-    before_create :set_unauthorized
+    # Enums
+    enumerize :sign_up_step, in: [:password, :confirmation, :agreement, :nickname, :done], default: :password
 
     # 일단 간편하게 쓰려고 만듬
     def play_solo(theme:)
@@ -97,16 +96,12 @@ module Model::User
     end
 
     def unauthorized?
-      self.status == "unauthorized"
+      # self.status == "unauthorized"
+      sign_up_step != :done
     end
 
-    private
-      def solo_team
-        teams.first_or_create(type: Model::Team::Solo)
-      end
-
-      def set_unauthorized
-        self.status = :unauthorized if ["default", nil].include?(self.status)
-      end
+    def solo_team
+      teams.first_or_create(type: Model::Team::Solo)
+    end
   end
 end

@@ -22,9 +22,10 @@ class DeviseCreateModelUsers < ActiveRecord::Migration[6.0]
       t.string   :last_sign_in_ip
 
       ## Confirmable
-      # t.string   :confirmation_token
-      # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
+      t.string   :confirmation_token
+      t.string   :confirmation_number # PTW Custom
+      t.datetime :confirmed_at
+      t.datetime :confirmation_sent_at
       # t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
@@ -39,8 +40,14 @@ class DeviseCreateModelUsers < ActiveRecord::Migration[6.0]
       t.string :phonenumber
       t.string :status
 
+      # New
+      t.datetime :terms_agreed_at
+      t.string :sign_up_step
+      t.boolean :past_user, default: false
+      t.boolean :phonenumber_certified, default: false
+
       # CounterCache
-      t.integer :plays_count, default: 0, null: false
+      # t.integer :plays_count, default: 0, null: false
 
       t.timestamps null: false
 
@@ -50,9 +57,10 @@ class DeviseCreateModelUsers < ActiveRecord::Migration[6.0]
       t.index :phonenumber
       t.index :name
       t.index :nickname#, unique: true
+      t.index :sign_up_step
     end
 
-    add_index :model_users, :email,                unique: true
+    add_index :model_users, :email #,                unique: true
     add_index :model_users, :reset_password_token, unique: true
     # add_index :model_users, :confirmation_token,   unique: true
     # add_index :model_users, :unlock_token,         unique: true

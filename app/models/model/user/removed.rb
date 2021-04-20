@@ -1,5 +1,5 @@
 module Model::User
-  class Temp < Base
+  class Removed < Base
     
   end
 end
