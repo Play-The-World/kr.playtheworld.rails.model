@@ -12,8 +12,8 @@ class CreateModelReports < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:reporter_id, :reporter_type, :type], name: "reports_index"
-      t.index [:reportable_id, :reportable_type, :type], name: "reports_index2"
+      t.index [:reporter_type, :reporter_id, :type], name: "reports_index"
+      t.index [:reportable_type, :reportable_id, :type], name: "reports_index2"
     end
   end
 end

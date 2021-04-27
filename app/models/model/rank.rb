@@ -1,8 +1,10 @@
 module Model
   class Rank < ApplicationRecord
     # Relations
-    belongs_to :rankable, polymorphic: true
+    # belongs_to :rankable, polymorphic: true
+    belongs_to :record, polymorphic: true
     belongs_to :ranker, polymorphic: true
+    # belongs_to :user, class_name: Model.config.user.class_name
     belongs_to :rank_season, counter_cache: true
 
     # Constants

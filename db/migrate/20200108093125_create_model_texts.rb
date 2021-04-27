@@ -12,7 +12,7 @@ class CreateModelTexts < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:textable_id, :textable_type, :type, :order], name: "texts_index", unique: true
+      t.index [:textable_type, :textable_id, :type, :order], name: "texts_index", unique: true
     end
     
     reversible do |dir|

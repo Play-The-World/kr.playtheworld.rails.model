@@ -3,6 +3,7 @@ module Model
     # Relations
     belongs_to :theme, class_name: Model.config.theme.class_name
     has_many :stage_lists, dependent: :destroy
+    has_many :stages, through: :stage_lists, class_name: Model.config.stage.class_name
     has_many :items, dependent: :destroy
     has_many :plays, dependent: :destroy, class_name: Model.config.play.class_name
     # has_many :super_plays, dependent: :destroy, counter_cache: true, foreign_key: "theme_data_id"
@@ -29,7 +30,7 @@ module Model
     end
 
     def start_stage_list
-      stage_lists.find_by(stage_list_number: start_stage_list_number)
+      stage_lists.find_by(number: start_stage_list_number) || stages_lists.first
     end
 
     private

@@ -17,7 +17,7 @@ class CreateModelPlays < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :type
-      # Index 추가하기
+      # Index 추가하기?
     end
   end
 end

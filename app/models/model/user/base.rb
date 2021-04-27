@@ -62,6 +62,9 @@ module Model::User
     # Enums
     enumerize :sign_up_step, in: [:password, :confirmation, :agreement, :nickname, :done], default: :password
 
+    # Callbacks
+    after_create :create_solo_team
+
     # 일단 간편하게 쓰려고 만듬
     def play_solo(theme:)
       solo_team.start_play({ theme: theme })
@@ -100,8 +103,11 @@ module Model::User
       sign_up_step != :done
     end
 
-    def solo_team
-      teams.first_or_create(type: Model::Team::Solo)
-    end
+    def solo_team; teams.find { |a| a.type == Model::Team::Solo.to_s } end
+
+    private
+      def create_solo_team
+        teams.first_or_create(type: Model::Team::Solo)
+      end
   end
 end

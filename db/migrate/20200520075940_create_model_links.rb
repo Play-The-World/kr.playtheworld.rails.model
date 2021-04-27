@@ -18,7 +18,7 @@ class CreateModelLinks < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :fake_id
-      t.index [:linkable_id, :linkable_type, :type], name: "links_index"
+      t.index [:linkable_type, :linkable_id, :type], name: "links_index"
     end
   end
 end

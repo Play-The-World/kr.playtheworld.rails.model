@@ -12,7 +12,7 @@ class CreateModelExpressions < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index [:expression_type_id, :type]
-      t.index [:expresser_id, :expresser_type, :type], name: "expressions_index"
+      t.index [:expresser_type, :expresser_id, :type], name: "expressions_index"
     end
   end
 end

@@ -2,7 +2,7 @@ class CreateModelAchievements < ActiveRecord::Migration[6.0]
   def change
     create_table :model_achievements do |t|
       # Relations
-      t.references :object, polymorphic: true
+      t.references :object, polymorphic: true, index: false
 
       # Attributes
       t.integer :level, null: false, default: 0
@@ -12,6 +12,7 @@ class CreateModelAchievements < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :level
+      t.index [:object_type, :object_id, :level]
     end
 
     reversible do |dir|

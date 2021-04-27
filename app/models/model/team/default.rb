@@ -1,7 +1,6 @@
 module Model::Team
-  class Solo < Base
+  class Default < Base
     # Relations
-    has_one :user, through: :entries, class_name: Model.config.user.class_name
 
     # Validates
     # validates ${:attribute}

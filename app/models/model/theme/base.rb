@@ -15,7 +15,7 @@ module Model
       # Enums
       enumerize :play_type, in: %i(scenario random), default: :scenario
       enumerize :publish_type, in: %i(default swift), default: :default
-      enumerize :price_type, in: %i(simple complicated), default: :simple
+      enumerize :price_type, in: %i(simple complex), default: :simple
 
       # Relations
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
@@ -29,6 +29,7 @@ module Model
       include Model::Eventable
       include Model::Coordinatable
       include Model::Statsable
+      include Model::Rankable
 
       # Render Type
       RENDER_TYPE = Model::RenderType
@@ -40,6 +41,7 @@ module Model
       # Callbacks
       before_validation :set_theme_type
       before_create :set_fake_id
+      after_create :create_current_theme_data
 
       # Validations
       validates :theme_type,
@@ -47,8 +49,15 @@ module Model
       validates :fake_id, 
         uniqueness: { message: "fake_id should be unique" }
 
+      # Delegation
+      # delegate :stage_lists,
+      #          :stages,
+      #          to: :current_theme_data
+      delegate :title, to: :super_theme
+
       def current_theme_data
-        theme_data.find_by(version: current_version)
+        # theme_data.find_by(version: current_version)
+        theme_data.find { |a| a.version == current_version }
       end
 
       def difficulty_str
@@ -86,9 +95,15 @@ module Model
 
       private
         def set_fake_id
+          return unless fake_id.nil? or fake_id.empty?
+
           begin
             self.fake_id = SecureRandom.hex(FAKE_ID_LENGTH)
           end while self.class.exists?(fake_id: self.fake_id)
+        end
+
+        def create_current_theme_data
+          theme_data.find_or_create_by(version: current_version)
         end
 
       protected

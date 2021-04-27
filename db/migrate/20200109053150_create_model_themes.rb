@@ -37,8 +37,9 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index :status
-      t.index [:super_theme_id, :status]
+      t.index :type
+      # t.index :status
+      # t.index [:super_theme_id, :status]
       t.index [:super_theme_id, :theme_type], unique: true
     end
 

@@ -8,12 +8,12 @@ class RolifyCreateModelRoles < ActiveRecord::Migration[6.0]
     end
 
     create_table(:model_users_roles, :id => false) do |t|
-      t.references :user
+      t.references :base
       t.references :role
     end
     
     add_index(:model_roles, :name)
     add_index(:model_roles, [ :name, :resource_type, :resource_id ])
-    add_index(:model_users_roles, [ :user_id, :role_id ])
+    add_index(:model_users_roles, [ :base_id, :role_id ])
   end
 end

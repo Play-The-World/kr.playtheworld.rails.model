@@ -1,7 +1,7 @@
 module Model::Play
   class Finished < Base
     # Ranks
-    include Model::Rankable
+    has_one :rank, as: :record, dependent: :destroy
 
     # Callbacks
     after_create :create_rank
@@ -12,7 +12,7 @@ module Model::Play
 
     # TODO 랭크 기록
     def create_rank
-      ranks.create()
+      # ranks.create()
     end
 
     def finished?; true end

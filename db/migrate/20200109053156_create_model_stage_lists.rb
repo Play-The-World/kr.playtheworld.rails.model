@@ -6,12 +6,12 @@ class CreateModelStageLists < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :type
-      t.integer :stage_list_number, null: false, default: 1
+      t.integer :number, null: false, default: 1
 
       t.timestamps
 
       # Indexes
-      t.index [:theme_data_id, :stage_list_number]#, unique: true
+      t.index [:theme_data_id, :number]#, unique: true
     end
 
     reversible do |dir|

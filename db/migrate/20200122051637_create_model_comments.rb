@@ -15,7 +15,7 @@ class CreateModelComments < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:commentable_id, :commentable_type, :type], name: "comments_index"
+      t.index [:commentable_type, :commentable_id, :type], name: "comments_index"
     end
   end
 end

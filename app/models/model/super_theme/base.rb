@@ -57,6 +57,8 @@ module Model
 
       private
         def init
+          return unless fake_id.nil? or fake_id.empty?
+          
           begin
             self.fake_id = SecureRandom.hex(FAKE_ID_LENGTH)
           end while self.class.exists?(fake_id: self.fake_id)

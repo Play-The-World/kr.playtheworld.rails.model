@@ -6,6 +6,8 @@ class CreateModelStageListTypes < ActiveRecord::Migration[6.0]
 
       # Attirbutes
       t.string :game_component
+      t.boolean :alert_success, null: false, default: true
+      t.boolean :alert_fail, null: false, default: true
       t.integer :chance_count, null: false, default: 0
       t.integer :hints_count, null: false, default: 0
 

@@ -5,6 +5,7 @@ module Model
     # Relations
     include Model::Audioable
     belongs_to :musicable, polymorphic: true
+    # TODO 이거 고민
     belongs_to :start_stage_list, class_name: Model::StageList.to_s
     belongs_to :end_stage_list, class_name: Model::StageList.to_s
 

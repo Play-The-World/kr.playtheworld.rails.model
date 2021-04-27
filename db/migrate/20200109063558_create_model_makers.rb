@@ -13,7 +13,7 @@ class CreateModelMakers < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index :name#, unique: true
-      t.index :user_id, unique: true
+      t.index [:user_id, :name]#, unique: true
     end
 
     # reversible do |dir|

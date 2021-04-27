@@ -3,7 +3,7 @@ module Model::Serializer
     view :base do
       fields  :type,
               :theme_data_id,
-              :stage_list_number,
+              :number,
               :title
       
       # Relations

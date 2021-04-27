@@ -52,16 +52,21 @@ class DeviseCreateModelUsers < ActiveRecord::Migration[6.0]
       t.timestamps null: false
 
       # Custom Indexes
-      t.index :status
-      t.index :type
+      # t.index :status
+      # t.index :type
+      t.index [:type, :nickname]
       t.index :phonenumber
       t.index :name
-      t.index :nickname#, unique: true
-      t.index :sign_up_step
+      # t.index :nickname#, unique: true
+      # t.index [:type, :sign_up_step]
+
+      t.index :email
+      t.index [:type, :email]
+      t.index :reset_password_token, unique: true
     end
 
-    add_index :model_users, :email #,                unique: true
-    add_index :model_users, :reset_password_token, unique: true
+    # add_index :model_users, :email #,                unique: true
+    # add_index :model_users, :reset_password_token, unique: true
     # add_index :model_users, :confirmation_token,   unique: true
     # add_index :model_users, :unlock_token,         unique: true
   end

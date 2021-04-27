@@ -8,7 +8,7 @@ class CreateModelTopicableInTopics < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Index
-      t.index [:topic_id, :topicable_id, :topicable_type], name: "topicables_index2", unique: true
+      t.index [:topic_id, :topicable_type, :topicable_id], name: "topicables_index2", unique: true
     end
   end
 end

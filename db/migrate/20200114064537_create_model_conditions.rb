@@ -14,8 +14,9 @@ class CreateModelConditions < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:conditionable_id, :conditionable_type, :type, :value1], name: "conditions_index"
-      t.index [:conditioner_id, :conditioner_type, :type, :value1], name: "conditions_index2"
+      # t.index :type
+      t.index [:conditionable_type, :conditionable_id, :type, :value1], name: "conditions_index"
+      t.index [:conditioner_type, :conditioner_id, :type, :value1], name: "conditions_index2"
     end
   end
 end

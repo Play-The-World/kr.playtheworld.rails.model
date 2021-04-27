@@ -11,7 +11,7 @@ class CreateModelSettings < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:settingable_id, :settingable_type, :title], name: "settings_index"
+      t.index [:settingable_type, :settingable_id, :title], name: "settings_index"
     end
   end
 end

@@ -3,7 +3,7 @@ class CreateModelItemInInventories < ActiveRecord::Migration[6.0]
     create_table :model_item_in_inventories do |t|
       # Relations
       t.references :item
-      t.references :inventory, index: false
+      t.references :inventory#, index: false
 
       # Attirbutes
       t.integer :count, default: -1
@@ -11,7 +11,7 @@ class CreateModelItemInInventories < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Index
-      t.index [:inventory_id, :count]
+      # t.index [:inventory_id, :count]
     end
   end
 end

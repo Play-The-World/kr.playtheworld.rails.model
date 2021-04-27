@@ -58,6 +58,10 @@ module Model
       end
     end
 
+    def conditioner
+      conditions.take&.conditioner
+    end
+
     def cleared?(skip = [])
       conditions.each do |condition|
         next if skip.include?(condition)

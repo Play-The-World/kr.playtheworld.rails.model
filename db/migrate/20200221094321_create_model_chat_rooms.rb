@@ -12,7 +12,7 @@ class CreateModelChatRooms < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:chattable_id, :chattable_type, :status], name: "chat_rooms_index"
+      t.index [:chattable_type, :chattable_id, :status], name: "chat_rooms_index"
     end
   end
 end

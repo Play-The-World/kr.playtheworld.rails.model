@@ -11,6 +11,6 @@ module Model
     # Enum
     extend Enumerize
     enumerize :type, in: %i(default background), default: :default
-    enumerize :store_type, in: %i(default external), default: :default
+    # enumerize :store_type, in: %i(external), default: :external
   end
 end

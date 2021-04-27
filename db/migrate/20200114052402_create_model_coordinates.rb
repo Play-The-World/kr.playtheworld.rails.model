@@ -12,7 +12,8 @@ class CreateModelCoordinates < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:coordinatable_id, :coordinatable_type, :type], name: "coordinates_index"
+      # t.index :type
+      t.index [:coordinatable_type, :coordinatable_id, :type], name: "coordinates_index"
     end
   end
 end

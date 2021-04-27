@@ -63,7 +63,8 @@ module Model
           conditionable.clearer
         end
         def found?
-          condition_clears.exists?(clearer: clearer)
+          # condition_clears.exists?(clearer: clearer)
+          !!condition_clears.find { |a| a.clearer == clearer }
         end
         # 조건 만족했다는 것을 표시(DB에 저장함 -> 속도 개선)
         def mark!

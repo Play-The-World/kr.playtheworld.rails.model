@@ -10,20 +10,32 @@ module Model
     belongs_to :theme_data
     has_many :stages, -> { order(order: :asc) }, class_name: Model.config.stage.class_name, dependent: :destroy
     has_one :stage_list_type, dependent: :destroy
+    has_many :target_branches, dependent: :destroy, foreign_key: 'target_stage_list_id'
     has_many :tracks, dependent: :destroy
     has_many :plays, through: :tracks, class_name: Model.config.play.class_name
     include Model::Conditioner
+    has_many :answers, through: :stage_list_type, class_name: Model.config.answer.class_name
+    has_many :hints, through: :stage_list_type
+    has_many :branches, through: :stage_list_type
+    has_many :target_stage_lists, through: :branches, class_name: self.to_s
+    alias_attribute :next_stage_lists, :target_stage_lists
 
     # Scopes
     # default_scope { includes(stage_list_type: [:answers, :hints, :coordinate], stages: []) }
 
     # Callbacks
-    before_create :set_stage_list_number
+    before_create :set_number
     after_create :create_stage_list_type
 
     # Enumerize
     extend Enumerize
     enumerize :type, in: %i(default end fail), default: :default
+
+    # Delegation
+    # delegate :hints,
+    #          :answers,
+    #          :branches,
+    #          to: :stage_list_type
 
     # 유효성 검사 => Bool
     def is_valid?
@@ -59,30 +71,24 @@ module Model
     end
 
     # TEST용
-    def next_stage_lists
-      Model::StageList.where(
-        id: Model::Branch.joins(answer: { stage_list_type: :stage_list })
-          .where("#{table_name}": { id: id })
-          .pluck(:target_stage_list_id)
-        ).includes(:translations)
-    end
+    # def next_stage_lists
+    #   # Model::StageList.where(
+    #   #   id: Model::Branch.joins(answers: { stage_list_type: :stage_list })
+    #   #     .where("#{table_name}": { id: id })
+    #   #     .pluck(:target_stage_list_id)
+    #   #     .uniq
+    #   #   ).includes(:translations)
+    #   branches.includes(:target_stage_list).map(&:target_stage_list).uniq
+    # end
 
     def self.serializer
       Model::Serializer::StageList
     end
 
-    def hints
-      stage_list_type.hints
-    end
-
     private
-      # Set default stage_list_number
-      def set_stage_list_number
-        stage_list_number = theme_data.stage_lists.size + 1 if stage_list_number.nil? or stage_list_number == 1
-      end
-      # Helper methods
-      def answers
-        stage_list_type.answers
+      # Set default number
+      def set_number
+        number = theme_data.stage_lists.size + 1 if number.nil? or number == 1
       end
   end
 end

@@ -12,8 +12,9 @@ class CreateModelTokens < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index :value
-      t.index [:tokenable_id, :tokenable_type, :type, :value], name: "tokens_index"
+      # t.index :value
+      t.index [:type, :value]
+      t.index [:tokenable_type, :tokenable_id, :type, :value], name: "tokens_index"
     end
   end
 end

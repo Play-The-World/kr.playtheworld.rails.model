@@ -11,8 +11,8 @@ class CreateModelTeams < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:status, :type]
-      t.index :type
+      # t.index [:type, :status]
+      t.index [:type, :name]
       t.index :name
     end
 

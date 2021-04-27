@@ -1,7 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
 module Model
-  class GuestTest < ActiveSupport::TestCase
+  class AnswersBranchTest < ActiveSupport::TestCase
     # test "the truth" do
     #   assert true
     # end

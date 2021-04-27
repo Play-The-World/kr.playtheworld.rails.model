@@ -9,7 +9,6 @@ module Model
     belongs_to :imageable, polymorphic: true
 
     # Enum
-    extend Enumerize
     enumerize :type,
       in: %i(
         default
@@ -20,9 +19,10 @@ module Model
         map
         item_in
         item_out
+        open_graph
       ),
       default: :default
-    enumerize :store_type, in: %i(default external), default: :default
+    # enumerize :store_type, in: %i(external), default: :external
 
     def self.serializer
       Model::Serializer::Image

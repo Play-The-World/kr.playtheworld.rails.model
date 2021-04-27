@@ -13,7 +13,11 @@ class CreateModelImages < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:imageable_id, :imageable_type, :type, :order], name: "images_index"#, unique: true
+      # https://stackoverflow.com/a/42242003
+      # type을 먼저 indexing
+      # https://use-the-index-luke.com/sql/dml/insert
+      # Index를 최소화 할 것
+      t.index [:imageable_type, :imageable_id, :type, :order], name: "images_index"#, unique: true
     end
   end
 end

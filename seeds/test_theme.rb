@@ -21,7 +21,7 @@ t = s.create_theme({
 puts t.class
 
 sl = t.stage_lists.create!({
-  stage_list_number: 1
+  number: 1
 })
 
 puts sl

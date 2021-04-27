@@ -12,7 +12,8 @@ class CreateModelInterpolations < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:interpolatable_id, :interpolatable_type, :type], name: "interpolations_index"#, unique: true
+      # t.index :type
+      t.index [:interpolatable_type, :interpolatable_id, :type], name: "interpolations_index"#, unique: true
     end
   end
 end

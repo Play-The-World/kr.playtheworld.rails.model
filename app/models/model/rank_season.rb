@@ -1,6 +1,7 @@
 module Model
   class RankSeason < ApplicationRecord
     # Relations
+    belongs_to :rankable, polymorphic: true # 일반적으로 Theme
     has_many :ranks, dependent: :destroy
 
     # Translations

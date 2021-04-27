@@ -13,6 +13,7 @@ class CreateModelUsersAchievements < ActiveRecord::Migration[6.0]
 
       # Indexes
       t.index [:user_id, :achievement_id], name: "users_achievements_index", unique: true
+      # t.index [:achievement_id, :user_id], name: "users_achievements_index2"
     end
   end
 end

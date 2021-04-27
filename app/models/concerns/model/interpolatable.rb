@@ -8,7 +8,7 @@ module Model
       def interpolate(string)
         str = string
         interpolations.each do |i|
-          str.gsub!(i.marker, i.result) if str.include?(i.marker)
+          str.gsub!(i.marker, i.result)# if str.include?(i.marker)
         end
         str
       end

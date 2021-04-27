@@ -4,6 +4,7 @@ module Model
     belongs_to :stage_list
     has_many :answers, class_name: Model.config.answer.class_name, dependent: :destroy
     has_many :hints, dependent: :destroy
+    has_many :branches, dependent: :destroy
     include Model::Coordinatable
     include Model::Imageable
 

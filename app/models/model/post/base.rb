@@ -13,8 +13,8 @@ module Model
       include Model::Reportable
 
       # Translations
-      include Model::Translatable
-      translates :title, :content
+      # include Model::Translatable
+      # translates :title, :content
 
 
       def self.serializer

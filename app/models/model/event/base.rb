@@ -11,6 +11,11 @@ module Model
       # Scopes
       # default_scope { includes(:conditions) }
 
+      # Delegation
+      delegates :clearer,
+                :conditioner,
+                to: :event_group
+
       # 실행
       # 
       # Return
@@ -18,17 +23,6 @@ module Model
       # * Bool
       def trigger
         # Do something special
-      end
-
-      # 이벤트가 실행되는 대상 (기본값은 Play)
-      def clearer
-        event_group.clearer
-      end
-
-      def conditioner
-        event_group.conditions.take.conditioner
-      rescue
-        nil
       end
 
       def self.serializer

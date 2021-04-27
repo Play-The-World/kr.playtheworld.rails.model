@@ -12,7 +12,7 @@ class CreateModelStyles < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:styleable_id, :styleable_type, :type, :name], name: 'styles_index'
+      t.index [:styleable_type, :styleable_id, :type, :name], name: 'styles_index'
     end
   end
 end

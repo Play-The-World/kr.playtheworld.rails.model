@@ -13,6 +13,7 @@ class CreateModelSuperPlays < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
+      # 이거 잘 될지 모르겠다.
       t.index [:team_id, :type, :status]
       t.index [:super_theme_id, :type, :status]
     end
