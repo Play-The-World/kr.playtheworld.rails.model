@@ -7,6 +7,7 @@ module Model
     has_many :branches, dependent: :destroy
     include Model::Coordinatable
     include Model::Imageable
+    include Model::Textable
 
     # Game Component
     GAME_COMPONENT = Model::GameComponent

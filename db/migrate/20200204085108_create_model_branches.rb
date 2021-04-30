@@ -8,6 +8,7 @@ class CreateModelBranches < ActiveRecord::Migration[6.0]
 
       # Attributes
       t.string :type
+      t.boolean :show_alert, default: true
       t.string :alert_icon
       t.string :alert_title
       t.string :alert_content
