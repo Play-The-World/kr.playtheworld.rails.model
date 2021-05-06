@@ -36,7 +36,7 @@ module Model
       serialize :render_type, RENDER_TYPE::Base
 
       # Constants
-      FAKE_ID_LENGTH = 12
+      FAKE_ID_LENGTH = 10
 
       # Callbacks
       before_validation :set_theme_type

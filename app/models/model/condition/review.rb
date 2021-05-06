@@ -1,6 +1,6 @@
 module Model::Condition # :nodoc:
   #
-  # Reviewed_theme 조건 클래스
+  # Review 조건 클래스
   # TODO 조건에 대한 설명
   #
   # == Relations
@@ -32,7 +32,8 @@ module Model::Condition # :nodoc:
           .reviewer == reviewer
       else
         # 후기가 있는 지, 없는 지만 판단.
-        conditioner.reviews.exists?(reviewer: reviewer)
+        # conditioner&.reviews&.exists?(reviewer: reviewer)
+        !!conditioner&.reviews&.find { |a| a.reviewer == reviewer }
       end
     rescue
       super

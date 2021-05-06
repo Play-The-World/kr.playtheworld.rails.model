@@ -32,7 +32,7 @@ module Model
       before_create :init
 
       # Constants
-      FAKE_ID_LENGTH = 12
+      FAKE_ID_LENGTH = 10
 
       def theme_class
         self.class.theme_class

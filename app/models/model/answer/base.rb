@@ -22,6 +22,11 @@ module Model
       # has_many :branches, dependent: :destroy, foreign_key: "answer_id"
       has_many :answers_branches, dependent: :destroy, foreign_key: "answer_id"
       has_many :branches, through: :answers_branches
+      include Model::Linkable
+
+      # Enums
+      extend Enumerize
+      enumerize :value_type, in: %i(default regex), default: :default
 
       # 틀린 정답인지 확인
       # 

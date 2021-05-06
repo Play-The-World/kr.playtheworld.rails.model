@@ -3,16 +3,18 @@ class CreateModelAchievements < ActiveRecord::Migration[6.0]
     create_table :model_achievements do |t|
       # Relations
       t.references :object, polymorphic: true, index: false
+      t.references :stackable
 
       # Attributes
       t.integer :level, null: false, default: 0
-      t.boolean :stackable, default: false
+      t.string :type
       
       t.timestamps
 
       # Indexes
-      t.index :level
-      t.index [:object_type, :object_id, :level]
+      t.index :type
+      t.index [:stackable_id, :type]
+      t.index [:object_type, :object_id, :type, :level], name: "achievement_index"
     end
 
     reversible do |dir|
