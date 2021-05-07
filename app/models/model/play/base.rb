@@ -11,6 +11,7 @@ module Model
       belongs_to :super_play, class_name: Model.config.super_play.class_name, counter_cache: 'plays_count'
       has_many :tracks, dependent: :destroy, foreign_key: 'play_id'
       has_many :stage_lists, -> { order("#{Model::Track.table_name}.id": :asc) }, through: :tracks
+      has_many :stages, through: :stage_lists, class_name: Model.config.stage.class_name
       has_one :inventory, foreign_key: 'play_id'
       # TODO stages 메소드 작성하거나 Relation으로 설정하기
       include Model::Clearer
@@ -25,12 +26,12 @@ module Model
       # Callbacks
       after_create :init_play
 
-      def stages
-        Model.stage.constant
-          .joins(stage_list: :plays)
-          .includes(:translations)
-          .where("#{table_name}": { id: id })
-      end
+      # def stages
+      #   Model.stage.constant
+      #     .joins(stage_list: :plays)
+      #     .includes(:translations)
+      #     .where("#{table_name}": { id: id })
+      # end
 
       # 현재 스테이지 => Stage?
       def current_stage

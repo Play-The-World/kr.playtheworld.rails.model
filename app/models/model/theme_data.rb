@@ -18,19 +18,20 @@ module Model
       Model::Serializer::ThemeData
     end
 
-    def stages
-      Model.config.stage.constant
-        .joins(stage_list: :theme_data)
-        .includes(:translations)
-        .where("#{table_name}": { id: id } )
-    end
+    # def stages
+    #   Model.config.stage.constant
+    #     .joins(stage_list: :theme_data)
+    #     .includes(:translations)
+    #     .where("#{table_name}": { id: id } )
+    # end
 
     def test
       Model.config.stage.constant.joins(stage_list: :theme_data).includes(:translations).where("#{Model::ThemeData.table_name}": { id: 1 } )
     end
 
     def start_stage_list
-      stage_lists.find_by(number: start_stage_list_number) || stages_lists.first
+      # stage_lists.find_by(number: start_stage_list_number) || stages_lists.first
+      stage_lists.find { |sl| sl.number == start_stage_list_number } || stages_lists.first
     end
 
     private

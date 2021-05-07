@@ -68,7 +68,10 @@ module Model
         end
         # 조건 만족했다는 것을 표시(DB에 저장함 -> 속도 개선)
         def mark!
-          condition_clears.first_or_create_by(clearer: clearer) if markable?
+          # condition_clears.first_or_create_by(clearer: clearer) if markable?
+          if markable?
+            condition_clears.find { |c| c.clearer == clearer } || condition_clears.create(clearer: clearer)
+          end
         end
         def set_create_clears
           self.create_clears = self.auto_mark if self.create_clears.nil?

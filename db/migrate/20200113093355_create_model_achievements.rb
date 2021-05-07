@@ -19,13 +19,13 @@ class CreateModelAchievements < ActiveRecord::Migration[6.0]
 
     reversible do |dir|
       dir.up do
-        Model::Achievement.create_translation_table!({
+        Model::Achievement::Base.create_translation_table!({
           title: :string, content: :text, condition_content: :text
         })
       end
 
       dir.down do
-        Model::Achievement.drop_translation_table!
+        Model::Achievement::Base.drop_translation_table!
       end
     end
   end
