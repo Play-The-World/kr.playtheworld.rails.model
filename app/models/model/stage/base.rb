@@ -9,7 +9,7 @@ module Model
 
       # Translations
       include Model::Translatable
-      translates :content
+      translates :content, :title # 혹시 몰라 title 추가
 
       # Relations
       belongs_to :stage_list

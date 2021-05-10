@@ -12,7 +12,7 @@ module Model
       # default_scope { includes(:conditions) }
 
       # Delegation
-      delegates :clearer,
+      delegate :clearer,
                 :conditioner,
                 to: :event_group
 

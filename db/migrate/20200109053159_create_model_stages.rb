@@ -17,10 +17,11 @@ class CreateModelStages < ActiveRecord::Migration[6.0]
       t.index [:stage_list_id, :order, :type]#, unique: true
     end
 
+    # 혹시 몰라 title 냅둠
     reversible do |dir|
       dir.up do
         Model.config.stage.constant.create_translation_table!({
-          content: :text
+          title: :string, content: :text
         })
       end
 

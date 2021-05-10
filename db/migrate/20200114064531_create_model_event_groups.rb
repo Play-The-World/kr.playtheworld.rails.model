@@ -5,6 +5,7 @@ class CreateModelEventGroups < ActiveRecord::Migration[6.0]
       t.references :eventable, polymorphic: true
 
       # Attributes
+      t.string :title
       t.string :clearer_type
       t.boolean :repeatable, default: false
 

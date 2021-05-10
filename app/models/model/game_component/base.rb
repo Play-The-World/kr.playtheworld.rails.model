@@ -13,6 +13,7 @@ module Model
 
       def initialize(options = {})
         @options = options
+        # @stage_list_type = stage_list_type
       end
 
       def to_s

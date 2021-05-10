@@ -11,6 +11,7 @@ class CreateModelPlays < ActiveRecord::Migration[6.0]
       t.integer :stage_index, default: 0, null: false
       t.string :status
       t.string :type
+      t.boolean :is_failed
       t.datetime :finished_at
 
       t.timestamps

@@ -8,6 +8,8 @@ class CreateModelConditions < ActiveRecord::Migration[6.0]
       # Attributes
       t.string :value1
       t.string :value2
+      t.string :value3
+      t.string :value4
       t.string :type
       t.boolean :create_clears
 
