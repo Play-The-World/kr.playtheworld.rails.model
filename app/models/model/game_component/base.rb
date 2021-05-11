@@ -12,7 +12,7 @@ module Model
       attr_reader :options
 
       def initialize(options = {})
-        @options = options
+        @options = options || {}
         # @stage_list_type = stage_list_type
       end
 

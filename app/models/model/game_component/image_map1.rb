@@ -1,5 +1,7 @@
 module Model::GameComponent
   class ImageMap1 < Base
+    # TYPE
+    # default, click
 
     def maps=(values = [])
       @options[:maps] = values.map(&:to_json)

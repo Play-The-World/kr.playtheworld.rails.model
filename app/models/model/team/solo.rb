@@ -1,10 +1,14 @@
 module Model::Team
   class Solo < Base
     # Relations
-    has_one :user, through: :entries, class_name: Model.config.user.class_name
+    # has_one :user, through: :entries, class_name: Model.config.user.class_name
 
     # Validates
     # validates ${:attribute}
+
+    def user
+      users.take
+    end
 
     def start_play(options = {})
       if options[:theme]

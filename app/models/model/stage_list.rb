@@ -37,14 +37,6 @@ module Model
     #          :branches,
     #          to: :stage_list_type
 
-    # 유효성 검사 => Bool
-    def is_valid?
-      # 가장 마지막 스테이지가 Quiz or End 스테이지인지 검사
-      stages.last.is_a?(Model::Stage::Quiz) or stages.last.is_a?(Model::Stage::End)
-    rescue # ActiveRecord::RecordNotFound => e
-      false
-    end
-
     # 해당하는 Answer를 찾음 => Answer?
     def answer(user_answer = nil)
       # _answer = answers.where(value: user_answer).or(answers.where(type: Model::Answer::Pass.to_s)).take
