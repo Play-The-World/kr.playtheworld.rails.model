@@ -11,17 +11,20 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.string :play_type
       t.string :theme_type
       t.integer :difficulty, default: 1
-      t.string :render_type
+      t.text :render_type
       t.integer :price, null: false, default: 0
       t.integer :play_time
       t.integer :data_size
       t.integer :super_plays_count, null: false, default: 0
       t.integer :current_version, null: false, default: 1
       t.integer :play_user_count, null: false, default: 1
+      t.integer :order, default: 1
 
       t.boolean :use_memo, default: true
       t.boolean :is_reviewable, default: true
-      t.boolean :is_rankable, default: false
+      t.boolean :is_rankable, default: true
+
+      # Making때문?
       t.boolean :has_deadline, default: false
       t.datetime :deadline
       t.boolean :has_caution, default: false
@@ -40,7 +43,8 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.index :type
       # t.index :status
       # t.index [:super_theme_id, :status]
-      t.index [:super_theme_id, :theme_type], unique: true
+      t.index [:super_theme_id, :order]
+      t.index [:super_theme_id, :theme_type]#, unique: true
     end
 
     reversible do |dir|

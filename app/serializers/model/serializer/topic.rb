@@ -5,21 +5,30 @@ module Model::Serializer
               :type
     end
 
-    view :posts do
+    view :banner do
       include_view :base
 
-      field :posts do |t|
-        t.topicable_in_topics.map { |a| a.topicable.as_json(:show) }
-      end
-    end
 
-    view :super_themes do
-      include_view :base
-      
       field :super_themes do |t|
-        t.topicable_in_topics.map { |a| a.topicable.as_json(:show) }
+        t.topicable_in_topics.map { |a|
+          s = a.topicable
+          s.topic_styles = t.styles
+          s.as_json(:show)
+        }
       end
+      # association :super_themes, blueprint: SuperTheme, view: :show
+      association :styles, blueprint: Style
     end
+
+    # view :posts do
+    #   include_view :base
+
+    #   field :posts do |t|
+    #     t.topicable_in_topics.map { |a|
+    #       a.topicable.as_json(:show)
+    #     }
+    #   end
+    # end
 
     # association :super_themes, blueprint: SuperTheme, name: :super_themes2
     view :normal do

@@ -12,19 +12,19 @@ module Model
       attr_reader :options
 
       def initialize(options = nil)
-        @options = options
+        @options = options || {}
       end
 
-      def str; "unknown" end
+      # def str; "unknown" end
 
       def to_s
         {
-          type: self.class.to_s,
+          type: self.class.to_s.split("::").last,
           options: @options
         }.to_json
       end
 
-      def as_json(options = {}); JSON.parse(to_s) end
+      # def as_json(options = {}); JSON.parse(to_s) end
 
       class << self
         # Load serialized data into the model scope with our expected transformation.
@@ -35,7 +35,7 @@ module Model
         def load(data)
           # Make sure data is compliant with our expected data format
           json = JSON.parse(data)
-          json["type"].constantize.new(json["options"])
+          "Model::RenderType::#{json["type"]}".constantize.new(json["options"])
         rescue
           self.new
         end

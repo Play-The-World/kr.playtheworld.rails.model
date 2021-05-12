@@ -18,7 +18,7 @@ module Model
 
       def to_s
         {
-          type: self.class.to_s,
+          type: self.class.to_s.split("::").last,
           options: @options
         }.to_json
       end
@@ -47,12 +47,12 @@ module Model
         end
       end
 
-      def to_s
-        {
-          type: self.class.to_s.split("::").last,
-          options: nil
-        }.to_json
-      end
+      # def to_s
+      #   {
+      #     type: self.class.to_s.split("::").last,
+      #     options: nil
+      #   }.to_json
+      # end
     end
   end
 end

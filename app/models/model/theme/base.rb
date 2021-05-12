@@ -10,7 +10,7 @@ module Model
 
       # Status
       include Model::HasStatus
-      set_status %i(hidden blocked)
+      set_status %i(hidden blocked private closed)
 
       # Enums
       enumerize :play_type, in: %i(scenario random), default: :scenario
@@ -44,8 +44,9 @@ module Model
       after_create :create_current_theme_data
 
       # Validations
-      validates :theme_type,
-        uniqueness: { scope: :super_theme_id, message: "theme_type should be unique to super_theme" }
+      # TODO: 나중에 넣기
+      # validates :theme_type,
+      #   uniqueness: { scope: :super_theme_id, message: "theme_type should be unique to super_theme" }
       validates :fake_id, 
         uniqueness: { message: "fake_id should be unique" }
 

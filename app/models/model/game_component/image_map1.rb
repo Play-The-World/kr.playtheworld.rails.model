@@ -8,7 +8,7 @@ module Model::GameComponent
     end
 
     def maps
-      @options[:maps].map { |v| Map.new(v) }
+      @options.symbolize_keys[:maps].map { |v| Map.new(v) }
     rescue
       []
     end
@@ -20,7 +20,11 @@ module Model::GameComponent
       # entire, rect, circle, poly
 
       def initialize(values)
-        v = values.symbolize_keys
+        if values.is_a?(String)
+          v = JSON.parse(values).symbolize_keys
+        else
+          v = values.symbolize_keys
+        end
         @shape = v[:shape]
         @coord = v[:coord]
         @image_order = v[:image_order]

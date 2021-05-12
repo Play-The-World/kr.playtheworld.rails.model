@@ -11,7 +11,7 @@ class CreateModelTopicInSettings < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:setting_id, :order], unique: true
+      t.index [:setting_id, :order]#, unique: true
     end
   end
 end

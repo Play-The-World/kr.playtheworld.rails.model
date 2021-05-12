@@ -13,6 +13,8 @@ module Model::Serializer
       include_view :base
       include_view :classifications
       include_view :images
+
+      association :topic_styles, blueprint: Style
     end
 
     view :play do

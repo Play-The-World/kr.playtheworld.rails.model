@@ -5,6 +5,7 @@ class CreateModelSettings < ActiveRecord::Migration[6.0]
       t.references :settingable, polymorphic: true, index: false
 
       # Attributes
+      # t.string :type
       t.string :title
       t.integer :topics_count, default: 0
       
