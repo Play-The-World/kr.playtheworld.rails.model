@@ -1,6 +1,9 @@
 module Model
   module Expression
     class Base < ApplicationRecord
+      # Table Name
+      self.table_name = Model.config.expression.table_name
+
       # Relations
       belongs_to :expression_type, counter_cache: true
       belongs_to :expresser, polymorphic: true

@@ -19,6 +19,8 @@ module Model
       include Model::HasAchievement
       has_many :super_plays, class_name: Model.config.super_play.class_name, dependent: :destroy, foreign_key: "super_theme_id"
       include Model::Modalable
+      include Model::Expressable
+      has_many :reviews, through: :themes
 
       # Status
       include Model::HasStatus
@@ -44,6 +46,10 @@ module Model
         themes.create!(params.merge({
           type: theme_class
         }))
+      end
+
+      def test?
+        false
       end
 
       # 기본 serializer 설정

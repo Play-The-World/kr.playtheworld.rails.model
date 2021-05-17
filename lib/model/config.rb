@@ -38,7 +38,7 @@ module Model
       answer: ModelConfiguration.new("Model::Answer::Base", "model_answers"),
       item: ModelConfiguration.new("Model::Item", "model_items"),
       location: ModelConfiguration.new("Model::Location", "model_locations"),
-      expression: ModelConfiguration.new("Model::Expression", "model_expressions"),
+      expression: ModelConfiguration.new("Model::Expression::Base", "model_expressions"),
       topic: ModelConfiguration.new("Model::Topic::Base", "model_topics"),
       stats_data: ModelConfiguration.new("Model::StatsData::Base", "model_stats_data"),
       role: ModelConfiguration.new("Model::Role", "model_users_roles"),

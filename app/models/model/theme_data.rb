@@ -10,6 +10,8 @@ module Model
     include Model::Eventable
     include Model::EventTarget
     include Model::Musicable
+    has_many :finished_plays, dependent: :destroy, class_name: Model::Play::Finished.to_s
+    has_many :ranks, through: :finished_plays
 
     # Callbacks
     before_create :set_version
@@ -32,6 +34,25 @@ module Model
     def start_stage_list
       # stage_lists.find_by(number: start_stage_list_number) || stages_lists.first
       stage_lists.find { |sl| sl.number == start_stage_list_number } || stages_lists.first
+    end
+
+    def current_play_by(user)
+      return nil if user.nil?
+
+      plays.includes()
+        .select { |p|
+          p.user == user and
+            p.type == Model::Play::Playing
+        }.last
+    end
+
+    def finished_play_by(user)
+      return nil if user.nil?
+
+      finished_plays.includes()
+        .select { |p|
+          p.user == user
+        }.last
     end
 
     private

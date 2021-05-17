@@ -24,6 +24,10 @@ module Model
       default: :default
     # enumerize :store_type, in: %i(external), default: :external
 
+    def video?
+      false
+    end
+
     def self.serializer
       Model::Serializer::Image
     end

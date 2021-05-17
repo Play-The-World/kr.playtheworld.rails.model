@@ -20,10 +20,10 @@ module Model
         Model::Serializer::Achievement
       end
 
-      def level_string
-        self.class.level_string(self.level)
+      def level_s
+        self.class.level_s(self.level)
       end
-      def self.level_string(level)
+      def self.level_s(level)
         case level
         when 2
           "일반"

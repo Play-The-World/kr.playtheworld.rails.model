@@ -104,7 +104,7 @@ module Model::Serializer
       field :genre do |t|
         t.super_theme.genres.take&.title
       end
-      field :difficulty_str, name: :level
+      field :difficulty_s, name: :level
       field :play_user_count, name: :participant
       field :play_time, name: :playTime
       field :publish do |t|

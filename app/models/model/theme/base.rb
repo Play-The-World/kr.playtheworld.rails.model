@@ -29,7 +29,9 @@ module Model
       include Model::Eventable
       include Model::Coordinatable
       include Model::Statsable
-      include Model::Rankable
+      # include Model::Rankable
+      has_many :ranks, through: :theme_data
+      include Model::Reviewable
 
       # Render Type
       RENDER_TYPE = Model::RenderType
@@ -51,27 +53,44 @@ module Model
         uniqueness: { message: "fake_id should be unique" }
 
       # Delegation
-      # delegate :stage_lists,
-      #          :stages,
-      #          to: :current_theme_data
-      delegate :title, to: :super_theme
+      delegate :title,
+               :online?,
+               to: :super_theme
+      delegate :current_play_by,
+               :finished_play_by,
+               :stages,
+               :stage_lists,
+               to: :current_theme_data
 
       def current_theme_data
         # theme_data.find_by(version: current_version)
         theme_data.find { |a| a.version == current_version }
       end
 
-      def difficulty_str
-        case self.difficulty
-        when 0
-          "easy"
-        when 5
-          "normal"
-        when 10
-          "hard"
-        else
-          "unknown"
+      def top_ranks(by = 1)
+        ranks
+          .order(value: :desc)
+          .limit(by)
+      end
+
+      def difficulty_s
+        self.class.difficulty_s(self.difficulty)
+      end
+
+      def end_stages
+        stages.select { |a| a.type == Model::Stage::End }
+      end
+
+      def preview_images
+        imgs = selected_images(:preview)
+        if imgs.empty?
+          imgs = stages.first(5).map { |s| s.selected_image(:background) }
         end
+        imgs.compact
+      end
+
+      def play_time_s(time = self.play_time)
+        self.class.play_time_s(time)
       end
 
       class << self
@@ -82,6 +101,35 @@ module Model
         # Repository
         def repo
           Model::Repository::Theme.new
+        end
+
+        def play_time_s(play_time)
+          h = play_time / (60 * 60)
+          m = play_time / 60 % 60
+          # s = play_time % (60 * 60)
+          str = ""
+          str += "#{h}시간 " if h != 0
+          str += "#{m}분 " if m != 0
+          # str += "#{s}초" if s != 0
+          str = "0분" if str == ""
+          str
+        end
+
+        def difficulty_s(diff)
+          case diff
+          when 0
+            "easy"
+            "쉬움"
+          when 5
+            "normal"
+            "보통"
+          when 10
+            "hard"
+            "어려움"
+          else
+            "unknown"
+            "알 수 없음"
+          end
         end
 
         # 기본 serializer 설정
