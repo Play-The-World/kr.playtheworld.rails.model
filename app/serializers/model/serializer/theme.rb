@@ -6,6 +6,10 @@ module Model::Serializer
       # field :title do |t|
       #   t.super_theme.title
       # end
+
+      field :difficulty do |t|
+        t.difficulty_s
+      end
   
       fields  :type,
               :status,
@@ -21,7 +25,7 @@ module Model::Serializer
               :is_reviewable,
               :start_address,
               :start_position,
-              :difficulty,
+              # :difficulty,
               :render_type,
               :price,
               :play_time,
@@ -39,8 +43,14 @@ module Model::Serializer
     view :show do
       include_view :base
       include_view :images
+      field :end_stages_count do |a|
+        a.end_stages.size
+      end
+      field :achievements_count do |a|
+        a.achievements.size
+      end
 
-      association :super_theme, blueprint: SuperTheme, view: :base
+      # association :super_theme, blueprint: SuperTheme, view: :base
     end
 
     # 플레이시

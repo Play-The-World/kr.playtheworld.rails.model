@@ -39,7 +39,7 @@ module Model
     def current_play_by(user)
       return nil if user.nil?
 
-      plays.includes()
+      plays
         .select { |p|
           p.user == user and
             p.type == Model::Play::Playing
@@ -49,7 +49,7 @@ module Model
     def finished_play_by(user)
       return nil if user.nil?
 
-      finished_plays.includes()
+      finished_plays
         .select { |p|
           p.user == user
         }.last

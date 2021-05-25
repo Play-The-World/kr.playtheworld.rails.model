@@ -15,6 +15,7 @@ module Model::Serializer
       include_view :images
 
       association :topic_styles, blueprint: Style
+      association :themes, blueprint: Theme, view: :show
     end
 
     view :play do
