@@ -3,8 +3,6 @@ module Model::Serializer
     view :base do
       fields  :stage_list_id,
               :type,
-              :stage_type,
-              :stage_number,
               :order,
               :content
       

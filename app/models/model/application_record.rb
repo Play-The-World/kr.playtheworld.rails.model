@@ -2,7 +2,7 @@ module Model
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
 
-    connects_to database: { writing: :new_model }
+    # connects_to database: { writing: :new_model }
 
     # Targetable
     has_many :target_events, as: :target, class_name: Model.config.event.class_name, dependent: :nullify

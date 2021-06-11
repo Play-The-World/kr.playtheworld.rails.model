@@ -1,6 +1,6 @@
 module Model::Serializer
   class Theme < Base
-    identifier :fake_id, name: :id
+    # identifier :fake_id, name: :id
 
     view :base do
       # field :title do |t|
@@ -32,7 +32,8 @@ module Model::Serializer
               :data_size,
               :use_memo,
               :need_agreement,
-              :super_theme_id
+              :super_theme_id,
+              :fake_id
     end
 
     view :images do

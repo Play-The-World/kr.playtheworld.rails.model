@@ -1,12 +1,13 @@
 module Model::Serializer
   class SuperTheme < Base
-    identifier :fake_id, name: :id
+    # identifier :fake_id, name: :id
     view :base do
       fields  :title,
               :type,
               :status,
               :content,
-              :summary
+              :summary,
+              :fake_id
     end
 
     view :show do
@@ -38,7 +39,7 @@ module Model::Serializer
 
     view :detail do
       include_view :images
-      association :themes, blueprint: Theme
+      association :themes, blueprint: Theme, view: :show
     end
   end
 end

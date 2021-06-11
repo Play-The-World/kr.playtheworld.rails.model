@@ -2,9 +2,7 @@ module Model::Serializer
   class StageListType < Base
     view :base do
       fields  :stage_list_id,
-              :game_component,
-              :chance_count,
-              :hints_count
+              :game_component
       
       # Relations
       # association :images, blueprint: Image
