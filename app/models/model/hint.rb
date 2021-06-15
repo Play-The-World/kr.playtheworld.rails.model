@@ -3,7 +3,7 @@ module Model
     self.inheritance_column = "not_sti"
 
     # Relations
-    belongs_to :stage_list_type#, counter_cache: true
+    belongs_to :stage_list, class_name: Model.config.stage_list.class_name
     include Model::Imageable
 
     # Translations

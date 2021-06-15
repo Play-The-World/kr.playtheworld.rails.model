@@ -10,8 +10,8 @@ module Model
       belongs_to :theme_data
       belongs_to :super_play, class_name: Model.config.super_play.class_name, counter_cache: 'plays_count'
       has_many :tracks, dependent: :destroy, foreign_key: 'play_id'
-      has_many :stage_lists, -> { order("#{Model::Track.table_name}.id": :asc) }, through: :tracks
-      has_many :stages, through: :stage_lists, class_name: Model.config.stage.class_name
+      has_many :stage_lists, -> { order("#{Model::Track.table_name}.id": :asc) }, through: :tracks, class_name: Model.config.stage_list.class_name
+      has_many :stages, through: :stage_lists
       has_one :inventory, foreign_key: 'play_id'
       # TODO stages 메소드 작성하거나 Relation으로 설정하기
       include Model::Clearer
@@ -53,7 +53,9 @@ module Model
         stage_lists
           .includes(
             translations: [],
-            stage_list_type: [:answers, :hints, :images],
+            answers: [],
+            hints: [],
+            images: [],
             stages: [:translations]
           ).offset(from_index)
       end
@@ -63,7 +65,9 @@ module Model
           .includes(
             stage_list: [
               translations: [],
-              stage_list_type: [:answers, :hints, :images],
+              answers: [],
+              hints: [],
+              images: [],
               stages: [:translations]
             ]
           ).offset(from_index)

@@ -78,7 +78,7 @@ module Model
       end
 
       def end_stages
-        stages.select { |a| a.type == Model::Stage::End }
+        stage_lists.select { |a| a.type == Model::StageList::End }
       end
 
       def preview_images

@@ -4,7 +4,7 @@ module Model::Serializer
       fields  :type,
               :content
               :order,
-              :stage_list_type_id
+              :stage_list_id
       association :images, blueprint: Image
     end
 

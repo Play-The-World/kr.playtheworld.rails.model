@@ -12,7 +12,11 @@ module Model
 
     # Enums
     extend Enumerize
-    enumerize :type, in: %i(default interpolation), default: :default
+    enumerize :type, in: %i(
+      default
+      answer
+      interpolation
+    ), default: :default
 
     # Scopes
     scope :interpolation, -> { where(text_type: :interpolation) }

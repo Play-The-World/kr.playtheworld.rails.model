@@ -18,7 +18,7 @@ module Model
       self.table_name = Model.config.answer.table_name
 
       # Relations
-      belongs_to :stage_list_type
+      belongs_to :stage_list, class_name: Model.config.stage_list.class_name
       # has_many :branches, dependent: :destroy, foreign_key: "answer_id"
       has_many :answers_branches, dependent: :destroy, foreign_key: "answer_id"
       has_many :branches, through: :answers_branches

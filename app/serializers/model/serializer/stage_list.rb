@@ -13,7 +13,6 @@ module Model::Serializer
     view :play do
       include_view :base
 
-      association :stage_list_type, blueprint: StageListType, view: :play
       association :stages, blueprint: Stage, view: :play
     end
 

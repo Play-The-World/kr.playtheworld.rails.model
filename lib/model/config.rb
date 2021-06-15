@@ -25,7 +25,7 @@ module Model
       coordinate: ModelConfiguration.new("Model::Coordinate::Base", "model_coordinates"),
       event: ModelConfiguration.new("Model::Event::Base", "model_events"),
       interpolation: ModelConfiguration.new("Model::Interpolation::Base", "model_interpolations"),
-      stage: ModelConfiguration.new("Model::Stage::Base", "model_stages"),
+      stage_list: ModelConfiguration.new("Model::StageList::Base", "model_stage_lists"),
       super_theme: ModelConfiguration.new("Model::SuperTheme::Base", "model_super_themes"),
       theme: ModelConfiguration.new("Model::Theme::Base", "model_themes"),
       token: ModelConfiguration.new("Model::Token::Base", "model_tokens"),

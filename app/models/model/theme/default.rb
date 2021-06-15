@@ -1,5 +1,5 @@
 module Model::Theme
-  class Normal < Base
+  class Default < Base
     # Constants
     # DIFFICULTIES = %w(easy normal hard)
 

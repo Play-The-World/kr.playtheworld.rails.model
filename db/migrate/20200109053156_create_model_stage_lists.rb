@@ -7,6 +7,11 @@ class CreateModelStageLists < ActiveRecord::Migration[6.0]
       # Attributes
       t.string :type
       t.integer :number, null: false, default: 1
+      t.text :game_component
+      # t.boolean :alert_success, null: false, default: true
+      # t.boolean :alert_fail, null: false, default: true
+      # t.integer :chance_count, null: false, default: 0
+      # t.integer :hints_count, null: false, default: 0
 
       t.timestamps
 
@@ -16,13 +21,13 @@ class CreateModelStageLists < ActiveRecord::Migration[6.0]
 
     reversible do |dir|
       dir.up do
-        Model::StageList.create_translation_table!({
+        Model.config.stage_list.constant.create_translation_table!({
           title: :string
         })
       end
 
       dir.down do
-        Model::StageList.drop_translation_table!
+        Model.config.stage_list.constant.drop_translation_table!
       end
     end
   end

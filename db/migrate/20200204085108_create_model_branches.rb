@@ -4,7 +4,7 @@ class CreateModelBranches < ActiveRecord::Migration[6.0]
       # Relations
       # t.references :answer#, index: false
       t.references :target_stage_list
-      t.references :stage_list_type, index: false
+      t.references :stage_list, index: false
 
       # Attributes
       t.string :type
@@ -16,7 +16,7 @@ class CreateModelBranches < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # t.index [:answer_id, :type]
-      t.index [:stage_list_type_id, :type]
+      t.index [:stage_list_id, :type]
     end
   end
 end

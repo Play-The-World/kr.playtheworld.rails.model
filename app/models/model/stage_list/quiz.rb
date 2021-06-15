@@ -1,5 +1,4 @@
-module Model::Stage
+module Model::StageList
   class Quiz < Base
-    
   end
 end

@@ -6,8 +6,8 @@ module Model
     # belongs_to :answer, class_name: Model.config.answer.class_name
     has_many :answers_branches, dependent: :destroy
     has_many :answers, through: :answers_branches, class_name: Model.config.answer.class_name
-    belongs_to :stage_list_type
-    belongs_to :target_stage_list, class_name: Model::StageList.to_s
+    belongs_to :stage_list, class_name: Model.config.stage_list.class_name
+    belongs_to :target_stage_list, class_name: Model.config.stage_list.class_name
     include Model::Conditionable
     include Model::EventTarget
 

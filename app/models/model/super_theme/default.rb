@@ -1,7 +1,7 @@
 module Model::SuperTheme
-  class Normal < Base
+  class Default < Base
     def self.theme_class
-      Model::Theme::Normal
+      Model::Theme::Default
     end
   end
 end

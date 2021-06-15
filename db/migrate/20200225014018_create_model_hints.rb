@@ -2,7 +2,7 @@ class CreateModelHints < ActiveRecord::Migration[6.0]
   def change
     create_table :model_hints do |t|
       # Relations
-      t.references :stage_list_type, index: false
+      t.references :stage_list, index: false
 
       # Attributes
       t.integer :order, null: false, default: 1
@@ -11,7 +11,7 @@ class CreateModelHints < ActiveRecord::Migration[6.0]
       t.timestamps
 
       # Indexes
-      t.index [:stage_list_type_id, :order], unique: true
+      t.index [:stage_list_id, :order], unique: true
     end
 
     reversible do |dir|

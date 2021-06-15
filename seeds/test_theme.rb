@@ -38,19 +38,19 @@ puts sl
 #     title: "나의 이름은"
 #   }
 # ])
-sl.stages << Model::Stage::Script.new({
-    order: 1
-  }) << Model::Stage::Script.new({
-    order: 2
-  }) << Model::Stage::Quiz.new({
-    order: 3
-  })
+# sl.stages << Model::Stage::Script.new({
+#     order: 1
+#   }) << Model::Stage::Script.new({
+#     order: 2
+#   }) << Model::Stage::Quiz.new({
+#     order: 3
+#   })
 
 puts sl.stages
 
-slt = sl.create_stage_list_type!({
-    component_type: Model::ComponentType::Form1.new
-  })
+# slt = sl.create_stage_list_type!({
+#     component_type: Model::ComponentType::Form1.new
+#   })
 
 a = slt.answers << Model::Answer::Correct.new({
     value: "곽두팔"

@@ -17,6 +17,7 @@ module Model
         thumbnail
         poster
         map
+        answer
         item_in
         item_out
         open_graph

@@ -1,7 +1,7 @@
 module Model
   class Track < ApplicationRecord
     # Relations
-    belongs_to :stage_list
+    belongs_to :stage_list, class_name: Model.config.stage_list.class_name
     belongs_to :play, class_name: Model.config.play.class_name
 
     def self.serializer
