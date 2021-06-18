@@ -7,9 +7,9 @@ module Model::Serializer
       #   t.super_theme.title
       # end
 
-      field :difficulty do |t|
-        t.difficulty_s
-      end
+      # field :difficulty do |t|
+      #   t.difficulty_s
+      # end
   
       fields  :type,
               :status,
@@ -25,7 +25,7 @@ module Model::Serializer
               :is_reviewable,
               :start_address,
               :start_position,
-              # :difficulty,
+              :difficulty,
               :render_type,
               :price,
               :play_time,
