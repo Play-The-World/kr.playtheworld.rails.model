@@ -23,13 +23,13 @@ module Model
       # Relations
       belongs_to :theme_data
       # has_many :stages, -> { order(order: :asc) }, dependent: :destroy
-      has_many :stages, dependent: :destroy
-      has_many :tracks, dependent: :destroy
+      has_many :stages, dependent: :destroy, foreign_key: "stage_list_id"
+      has_many :tracks, dependent: :destroy, foreign_key: "stage_list_id"
       has_many :plays, through: :tracks, class_name: Model.config.play.class_name
       include Model::Conditioner
-      has_many :answers, class_name: Model.config.answer.class_name, dependent: :destroy
-      has_many :hints, dependent: :destroy
-      has_many :branches, dependent: :destroy
+      has_many :answers, class_name: Model.config.answer.class_name, dependent: :destroy, foreign_key: "stage_list_id"
+      has_many :hints, dependent: :destroy, foreign_key: "stage_list_id"
+      has_many :branches, dependent: :destroy, foreign_key: "stage_list_id"
       has_many :target_branches, dependent: :destroy, foreign_key: 'target_stage_list_id'
       has_many :target_stage_lists, through: :branches, class_name: Model.config.stage_list.class_name
       alias_attribute :next_stage_lists, :target_stage_lists
