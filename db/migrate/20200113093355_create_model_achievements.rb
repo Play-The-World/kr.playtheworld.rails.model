@@ -3,7 +3,7 @@ class CreateModelAchievements < ActiveRecord::Migration[6.0]
     create_table :model_achievements do |t|
       # Relations
       t.references :object, polymorphic: true, index: false
-      t.references :stackable
+      t.references :stackable, index: false
 
       # Attributes
       t.integer :level, null: false, default: 0

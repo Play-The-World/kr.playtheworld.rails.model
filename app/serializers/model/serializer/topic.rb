@@ -8,15 +8,15 @@ module Model::Serializer
     view :banner do
       include_view :base
 
-
-      field :super_themes do |t|
-        t.topicable_in_topics.map { |a|
-          s = a.topicable
-          s.topic_styles = t.styles
-          s.as_json(:show)
-        }
-      end
+      # field :super_themes do |t|
+      #   t.topicable_in_topics.map { |a|
+      #     s = a.topicable
+      #     s.topic_styles = t.styles
+      #     s.as_json(:show)
+      #   }
+      # end
       # association :super_themes, blueprint: SuperTheme, view: :show
+      association :topicable_in_topics, blueprint: TopicableInTopic, view: :show
       association :styles, blueprint: Style
     end
 

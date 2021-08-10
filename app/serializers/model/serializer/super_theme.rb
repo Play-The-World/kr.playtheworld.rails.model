@@ -1,7 +1,8 @@
 module Model::Serializer
   class SuperTheme < Base
-    fields :fake_id
-    # identifier :fake_id, name: :id
+    # fields :fake_id
+    identifier :fake_id, name: :id
+    
     view :base do
       fields  :title,
               :type,
