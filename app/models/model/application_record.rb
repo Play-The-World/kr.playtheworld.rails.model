@@ -13,8 +13,8 @@ module Model
       self.class.table_name
     end
 
-    def as_json(view = nil)
-      view = nil if view == {}
+    def as_json(view = :base)
+      view = :base if view == {}
       serializer.render_as_hash(self, view: view)
     # TODO: production에서만 활성화 하기.
     # rescue
@@ -36,6 +36,10 @@ module Model
         Model::Repository::Base.new(self)
       end
       def serializer
+        names = name.split("::")
+        s_name = names[-1] == "Base" ? names[-2] : names[-1]
+        "Model::Serializer::#{s_name}".constantize
+      rescue
         Model::Serializer::Base
       end
     end
