@@ -1,10 +1,10 @@
 module Model::Serializer
   class StageList < Base
     view :base do
-      fields  :type,
-              :theme_data_id,
+      fields  :theme_data_id,
               :number,
-              :title
+              :title,
+              :type
       
       # Relations
       # association :images, blueprint: Image

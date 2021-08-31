@@ -2,8 +2,8 @@ module Model::Serializer
   class Stage < Base
     view :base do
       fields  :stage_list_id,
-              :type,
               :order,
+              :title,
               :content
       
       # Relations
