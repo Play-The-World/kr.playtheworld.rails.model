@@ -4,12 +4,11 @@ module Model::Serializer
       fields  :audioable_id,
               :audioable_type,
               :type,
-              :value,
               :order,
-              :name
-      field :url do |a|
-        a.value
-      end
+              :url
+      # field :url do |a|
+      #   a.value
+      # end
     end
 
     view :play do

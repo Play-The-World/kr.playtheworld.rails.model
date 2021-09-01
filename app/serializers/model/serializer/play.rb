@@ -20,6 +20,7 @@ module Model::Serializer
       association :inventory, blueprint: Inventory, view: :play
       # association :stage_lists, blueprint: StageList, view: :play
       association :tracks, blueprint: Track, view: :play
+      association :theme_data, blueprint: ThemeData, view: :play
     end
 
     view :making do

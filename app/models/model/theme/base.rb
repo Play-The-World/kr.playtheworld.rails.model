@@ -78,7 +78,7 @@ module Model
       end
 
       def end_stages
-        stage_lists.select { |a| a.type == Model::StageList::End }
+        stage_lists.select { |a| a.type == Model::StageList::End.to_s }
       end
 
       def preview_images
@@ -86,6 +86,9 @@ module Model
         if imgs.empty?
           imgs = stages.first(5).map { |s| s.selected_image(:background) }
         end
+        # imgs.compact.map do |i|
+        #   i.type = :preview
+        # end
         imgs.compact
       end
 

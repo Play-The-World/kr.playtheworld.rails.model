@@ -31,12 +31,12 @@ Model::TopicInSetting.first_or_create!([
     order: 3
   }
 ])
-t[0].super_themes << Model::SuperTheme::Base.first rescue nil
+t[0].super_themes << Model::SuperTheme::Base.first(3) rescue nil
 
 banner = Model::Topic::Banner.create!(
   title: "배너임"
 )
-banner.super_themes << Model::SuperTheme::Base.first rescue nil
+banner.super_themes << Model::SuperTheme::Base.first(3) rescue nil
 
 board = Model::Board::Notice.first_or_create!(
   title: "공지사항",

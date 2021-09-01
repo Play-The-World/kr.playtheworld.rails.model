@@ -38,6 +38,7 @@ module Model::Serializer
 
     view :images do
       association :images, blueprint: Image, view: :base
+      association :preview_images, blueprint: Image, view: :base
     end
 
     # 상세 보기 페이지 등.
@@ -49,6 +50,18 @@ module Model::Serializer
       end
       field :achievements_count do |a|
         a.achievements.size
+      end
+
+      field :plays do |a|
+        [
+          a.current_play_by(Model::Current.user)
+        ].compact
+      end
+
+      field :finished_plays do |a|
+        [
+          a.finished_play_by(Model::Current.user)
+        ].compact
       end
 
       # association :super_theme, blueprint: SuperTheme, view: :base
