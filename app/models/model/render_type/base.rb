@@ -18,13 +18,15 @@ module Model
       # def str; "unknown" end
 
       def to_s
+        as_json.to_json
+      end
+
+      def as_json(options = {})
         {
           type: self.class.to_s.split("::").last,
           options: @options
-        }.to_json
+        }
       end
-
-      # def as_json(options = {}); JSON.parse(to_s) end
 
       class << self
         # Load serialized data into the model scope with our expected transformation.

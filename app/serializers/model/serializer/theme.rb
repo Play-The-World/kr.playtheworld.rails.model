@@ -26,7 +26,7 @@ module Model::Serializer
               :start_address,
               :start_position,
               :difficulty,
-              :render_type,
+              # :render_type,
               :price,
               :play_time,
               :data_size,
@@ -34,6 +34,10 @@ module Model::Serializer
               :need_agreement,
               :super_theme_id,
               :fake_id
+
+      field :render_type do |a|
+        a.render_type.as_json
+      end
     end
 
     view :images do

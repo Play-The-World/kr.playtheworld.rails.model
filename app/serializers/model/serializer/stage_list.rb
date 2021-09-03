@@ -12,6 +12,31 @@ module Model::Serializer
 
     view :play do
       include_view :base
+      field :game_component do |a|
+        a.game_component.as_json
+      end
+      fields :answer_lengths
+
+      field :answers do |a|
+        case a.game_component.type
+        when 'Choice1'
+          a.answers.map do |answer|
+            answer.converted_values.map do |cv|
+              {
+                stage_list_id: a.id,
+                value: answer.value,
+                content: cv
+              }
+            end
+          end.flatten.uniq
+        else
+          []
+        end
+      end
+
+      field :hints_count do |a|
+        a.hints.size
+      end
 
       association :stages, blueprint: Stage, view: :play
     end

@@ -7,6 +7,7 @@ module Model
 
     # Relations
     belongs_to :audioable, polymorphic: true
+    has_many :musics, dependent: :destroy
 
     # Enums
     extend Enumerize

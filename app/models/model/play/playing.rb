@@ -33,7 +33,7 @@ module Model::Play
     # 
     # * Bool, Branch?
     def submit_answer(user_answer = nil)
-      # log("'#{theme.title}'테마의 '#{current_stage.title}' 스테이지에서 '#{team.users.take.username}'유저가 정답 제출 #{user_answer}")
+      puts("'#{theme.title}'테마의 '#{current_stage_list.title}' 스테이지에서 '#{user.nickname}'유저가 정답 제출 #{user_answer}")
 
       # 정답들 중 가능한 Branch를 찾는다.
       get_answers_by(user_answer).each do |answer|

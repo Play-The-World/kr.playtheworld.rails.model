@@ -12,7 +12,8 @@ module Model
     # has_many :canvases, foreign_key: "stage_id", dependent: :destroy
     include Model::Imageable
     include Model::Videoable
-    include Model::Audioable
+    # include Model::Audioable
+    include Model::Musicable
     include Model::Textable
     include Model::Interpolatable
     include Model::Conditioner

@@ -23,6 +23,7 @@ module Model
       has_many :answers_branches, dependent: :destroy, foreign_key: "answer_id"
       has_many :branches, through: :answers_branches
       include Model::Linkable
+      include Model::Interpolatable
 
       # Enums
       extend Enumerize
@@ -40,6 +41,10 @@ module Model
       #
       # * Bool
       def correct?; !wrong? end
+
+      def converted_values
+        [interpolate(value)]
+      end
 
       # 접근 가능한 가지를 찾습니다.
       #

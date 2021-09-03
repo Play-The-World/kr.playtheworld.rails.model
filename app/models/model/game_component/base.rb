@@ -16,11 +16,23 @@ module Model
       end
 
       def to_s
-        {
-          type: self.class.to_s.split("::").last,
-          options: @options
-        }.to_json
+        as_json.to_json
       end
+
+      def type
+        self.class.to_s.split("::").last
+      end
+
+      def as_json(options = {})
+        {
+          type: type,
+          options: @options
+        }
+      end
+
+      # def answer_lengths
+        
+      # end
 
       class << self
         # Load serialized data into the model scope with our expected transformation.

@@ -11,6 +11,7 @@ module Model::Serializer
 
     view :play do
       include_view :base
+      association :theme, blueprint: Theme, view: :base
     end
 
     view :making do

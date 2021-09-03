@@ -26,6 +26,9 @@ module Model
       # Callbacks
       after_create :init_play
 
+      # Delegation
+      delegate :theme, to: :theme_data
+
       # def stages
       #   Model.stage.constant
       #     .joins(stage_list: :plays)

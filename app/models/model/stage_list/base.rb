@@ -43,6 +43,17 @@ module Model
       # Callbacks
       before_create :set_number
 
+      def answer_lengths
+        answers.select do |a|
+          [
+            "Model::Answer::Pass",
+            "Model::Answer::Correct",
+          ].include?(a.type)
+        end.map do |a|
+          a.converted_values.map { |v| v.size }.uniq
+        end.flatten.uniq
+      end
+
       # 해당하는 Answer를 찾음 => Answer?
       def answer(user_answer = nil)
         # _answer = answers.where(value: user_answer).or(answers.where(type: Model::Answer::Pass.to_s)).take
