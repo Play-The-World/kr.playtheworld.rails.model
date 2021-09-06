@@ -5,10 +5,10 @@ module Model::Job
 
     def perform(options)
       # debounce 옵션으로 debounce를 강제로 사용안하게 할 수도 있음.
-      unless !options['debounce'].nil? and options['debounce'] == false
-        # Bouncer를 사용하는 경우 + 뒤에 같은 작업이 있는 경우 skip
-        return if debounce? and !self.class.bouncer.let_in?(options)
-      end
+      # unless defined?(Sidekiq) and !options['debounce'].nil? and options['debounce'] == false
+      #   # Bouncer를 사용하는 경우 + 뒤에 같은 작업이 있는 경우 skip
+      #   return if debounce? and !self.class.bouncer.let_in?(options)
+      # end
 
       options.symbolize_keys!
       Model.current.user = Model.config.user.constant.find_by(id: options[:user_id]) if options[:user_id]
@@ -18,6 +18,9 @@ module Model::Job
     end
 
     def run(options = {})
+      self.perform(options)
+      return
+
       if debounce?
         self.class.bouncer.debounce(options)
       else

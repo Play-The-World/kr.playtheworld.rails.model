@@ -49,6 +49,10 @@ module Model::Play
     end
 
     def on_stage(stage_index:, stage_list_index:)
+      return if stage_lists.size <= stage_list_index or stage_list_index < 0 or stage_index < 0
+      sl = stage_lists[stage_list_index]
+      return if sl.stages.size - 1 < stage_index
+
       Model::Job::Play::OnStage.run({
         play_id: self.id,
         stage_index: stage_index,
@@ -82,11 +86,14 @@ module Model::Play
     # 
     # * Self
     def go_to(branch = nil)
-      stage_lists << branch&.target_stage_list
-      Model::Job::Play::NextStageLists.run({
-        play_id: self.id,
-        stage_list_index: self.stage_lists.size - 1
-      })
+      unless branch.nil?
+        stage_lists << branch&.target_stage_list
+        Model::Job::Play::NextStageLists.run({
+          play_id: self.id,
+          stage_list_index: self.stage_lists.size - 1
+        })
+      end
+
       self
     end
 

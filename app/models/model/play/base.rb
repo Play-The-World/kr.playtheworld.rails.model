@@ -89,7 +89,7 @@ module Model
 
       def channel_name
         # "private-play#{id}"
-        "PlayChannel"
+        "PlayChannel#{id}"
       end
 
       private
