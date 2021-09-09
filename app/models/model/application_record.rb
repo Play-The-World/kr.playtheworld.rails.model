@@ -3,7 +3,7 @@ module Model
     self.abstract_class = true
 
     # 테스트 시에 사용
-    connects_to database: { writing: :new_model }
+    connects_to database: { writing: :new_model, reading: :new_model }
 
     # Targetable
     has_many :target_events, as: :target, class_name: Model.config.event.class_name, dependent: :nullify
