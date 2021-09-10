@@ -5,8 +5,8 @@ module Model
     included do
       include Rails.application.routes.url_helpers
       # TODO: Multi 저장소 설정 가능하도록 변경하기
-      # has_one_attached :file, service: :admin_s3
-      has_one_attached :file, service: :test
+      has_one_attached :file, service: :admin_s3
+      # has_one_attached :file, service: :test
 
       # Enums
       extend Enumerize
