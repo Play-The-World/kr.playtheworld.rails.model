@@ -45,6 +45,9 @@ module Model
       def converted_values
         [interpolate(value)]
       end
+      def converted_contents
+        [interpolate(content)]
+      end
 
       # 접근 가능한 가지를 찾습니다.
       #

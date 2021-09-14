@@ -14,7 +14,7 @@ module Model::GameComponent
     end
 
     class Map
-      attr_accessor :shape, :coord, :image_order, :click_count, :answer, :next_image_order
+      attr_accessor :shape, :coords, :image_order, :click_count, :answer, :next_image_order
 
       # SHAPES
       # entire, rect, circle, poly
@@ -26,7 +26,7 @@ module Model::GameComponent
           v = values.symbolize_keys
         end
         @shape = v[:shape]
-        @coord = v[:coord]
+        @coords = v[:coords]
         @image_order = v[:image_order]
         @click_count = v[:click_count]
         @answer = v[:answer]
@@ -36,7 +36,7 @@ module Model::GameComponent
       def to_json
         {
           shape: @shape,
-          coord: @coord,
+          coords: @coords,
           image_order: @image_order,
           click_count: @click_count,
           answer: @answer,

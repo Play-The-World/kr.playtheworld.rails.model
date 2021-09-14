@@ -19,9 +19,19 @@ module Model::Serializer
 
       field :answers do |a|
         case a.game_component.type
-        when 'Choice1'
+        # when 'Choice1'
+        #   a.answers.map do |answer|
+        #     answer.converted_values.map do |cv|
+        #       {
+        #         stage_list_id: a.id,
+        #         value: answer.value,
+        #         content: cv
+        #       }
+        #     end
+        #   end.flatten.uniq
+        when 'Choice1', 'Script1'
           a.answers.map do |answer|
-            answer.converted_values.map do |cv|
+            answer.converted_contents.map do |cv|
               {
                 stage_list_id: a.id,
                 value: answer.value,
