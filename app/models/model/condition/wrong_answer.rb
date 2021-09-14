@@ -21,7 +21,7 @@ module Model::Condition # :nodoc:
       on: :create,
       message: "value1 %s is not correct type"
 
-    validate_presence_of :value2
+    validates_presence_of :value2
     # value1 = type
     # answer: 특정 Answer를 입력한 경우 (conditioner가 Answer여야 함.)
     # gte: greater than or equal to (a >= X)

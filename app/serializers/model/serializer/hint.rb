@@ -2,7 +2,7 @@ module Model::Serializer
   class Hint < Base
     view :base do
       fields  :type,
-              :content
+              :content,
               :order,
               :stage_list_id
       association :images, blueprint: Image

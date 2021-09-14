@@ -13,7 +13,7 @@ module Model::Serializer
 
     view :making do
       include_view :base
-      association :branches, blueprint: Branch, view: :making
+      # association :branches, blueprint: Branch, view: :making
     end
   end
 end
