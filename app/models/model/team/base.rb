@@ -33,6 +33,7 @@ module Model
       has_many :users, through: :entries, class_name: Model.config.user.class_name
       has_many :super_plays, class_name: Model.config.super_play.class_name, foreign_key: 'team_id'
       include Model::Clearer
+      has_many :game_rooms, dependent: :destroy
 
       # Status
       include Model::HasStatus
@@ -41,6 +42,7 @@ module Model
       # Enums
       # extend Enumerize
       # enumerize :type, in: %i(default solo), default: :default
+      enumerize :purpose, in: %i(default one_time), default: :default
       
       def start_play(options = {})
         raise "start_play(options) must be defined in child class."

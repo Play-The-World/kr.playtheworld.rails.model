@@ -1,6 +1,5 @@
 module Model
   module StageList
-
     # Game Component
     GAME_COMPONENT = ::Model::GameComponent
 
@@ -37,6 +36,10 @@ module Model
       include Model::Imageable
       include Model::Textable
 
+      # Render Type
+      RENDER_TYPE = Model::RenderType
+      serialize :render_type, RENDER_TYPE::Base
+
       # Serialize
       serialize :game_component, GAME_COMPONENT::Base 
 
@@ -64,18 +67,24 @@ module Model
 
       def get_answers_by(user_answer = nil)
         # TODO: case_sensitive, ordered 구현
-        # TODO: 이러면 오답인 경우에 쿼리 3번인데.. => select로 변경?
-        _answers = answers.where(value: user_answer)
-        _answers = answers.where(type: Model::Answer::Pass) if _answers.empty?
-        _answers = answers.where(type: Model::Answer::Fail) if _answers.empty?
+        # _answers = answers.where(value: user_answer)
+        # _answers = answers.where(type: Model::Answer::Pass) if _answers.empty?
+        # _answers = answers.where(type: Model::Answer::Fail) if _answers.empty?
+
+        _answers = answers.select { |a| a.value == user_answer }
+        _answers = answers.select { |a| a.type == Model::Answer::Pass.to_s } if _answers.empty?
+        _answers = answers.select { |a| a.type == Model::Answer::Fail.to_s } if _answers.empty?
+
         _answers
       # rescue
       #   []
       end
 
       def get_answer!
-        _answer = answers.where(type: [Model::Answer::Correct, Model::Answer::Pass]).take
-        _answer ||= answers.take
+        # _answer = answers.where(type: [Model::Answer::Correct, Model::Answer::Pass]).take
+        # _answer ||= answers.take
+        _answer = answers.find { |a| [Model::Answer::Correct.to_s, Model::Answer::Pass.to_s].include?(a.type) }
+        _answer ||= answers.first
         _answer
       end
 

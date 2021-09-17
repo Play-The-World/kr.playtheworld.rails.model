@@ -21,6 +21,11 @@ module Model
       include Model::Modalable
       include Model::Expressable
       has_many :reviews, through: :themes
+      has_many :traits, dependent: :destroy, foreign_key: "super_theme_id"
+      has_many :game_maps, dependent: :destroy, foreign_key: "super_theme_id"
+      has_many :game_rooms, dependent: :destroy, foreign_key: "super_theme_id"
+      has_many :clues, class_name: Model.config.clue.class_name, dependent: :destroy, foreign_key: "super_theme_id"
+      has_many :characters, class_name: Model.config.character.class_name, dependent: :destroy, foreign_key: "super_theme_id"
 
       # Status
       include Model::HasStatus

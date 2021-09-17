@@ -1,6 +1,7 @@
 module Model::Team
   class Default < Base
     # Relations
+    # has_many :game_rooms, dependent: :destroy
 
     # Validates
     # validates ${:attribute}

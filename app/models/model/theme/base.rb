@@ -32,6 +32,8 @@ module Model
       # include Model::Rankable
       has_many :ranks, through: :theme_data
       include Model::Reviewable
+      has_many :character_in_themes, dependent: :destroy, foreign_key: 'theme_id'
+      has_many :clue_in_themes, dependent: :destroy, foreign_key: 'theme_id'
 
       # Render Type
       RENDER_TYPE = Model::RenderType

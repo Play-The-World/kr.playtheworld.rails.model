@@ -4,6 +4,7 @@ class CreateModelTeams < ActiveRecord::Migration[6.0]
       # Attributes
       t.string :status
       t.string :type
+      t.string :purpose
       t.string :name
       t.text :content
       t.integer :super_plays_count, default: 0

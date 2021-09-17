@@ -13,8 +13,8 @@ class CreateModelThemes < ActiveRecord::Migration[6.0]
       t.integer :difficulty, default: 0
       t.text :render_type
       t.integer :price, null: false, default: 0
-      t.integer :play_time
-      t.integer :data_size
+      t.integer :play_time, default: 0
+      t.integer :data_size, default: 0
       t.integer :super_plays_count, null: false, default: 0
       t.integer :current_version, null: false, default: 1
       t.integer :play_user_count, null: false, default: 1
