@@ -29,8 +29,9 @@ module Model
       # translates :name, :content
 
       # Relations
-      has_many :entries, dependent: :destroy, foreign_key: 'team_id'
-      has_many :users, through: :entries, class_name: Model.config.user.class_name
+      # has_many :entries, dependent: :destroy, foreign_key: 'team_id'
+      # has_many :users, through: :entries, class_name: Model.config.user.class_name
+      include Model::Entryable
       has_many :super_plays, class_name: Model.config.super_play.class_name, foreign_key: 'team_id'
       include Model::Clearer
       has_many :game_rooms, dependent: :destroy
