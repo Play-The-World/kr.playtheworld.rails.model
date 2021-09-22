@@ -66,6 +66,11 @@ module Model
         Model::Serializer::SuperTheme
       end
 
+      def play_user_counts
+        c = themes.pluck(:play_user_count)
+        return [c.min, c.max]
+      end
+
       private
         def init
           return unless fake_id.nil? or fake_id.empty?

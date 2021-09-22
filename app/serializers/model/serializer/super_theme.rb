@@ -21,6 +21,18 @@ module Model::Serializer
       association :themes, blueprint: Theme, view: :show
     end
 
+    view :crime do
+      association :characters, blueprint: Character, view: :play
+      association :clues, blueprint: Clue, view: :base
+      association :game_maps, blueprint: GameMap, view: :base
+      # association :characters, blueprint: Character, view: :show
+    end
+
+    view :crime_show do
+      include_view :show
+      include_view :crime
+    end
+
     view :play do
       include_view :base
     end

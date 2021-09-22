@@ -32,8 +32,9 @@ module Model
       # include Model::Rankable
       has_many :ranks, through: :theme_data
       include Model::Reviewable
-      has_many :character_in_themes, dependent: :destroy, foreign_key: 'theme_id'
-      has_many :clue_in_themes, dependent: :destroy, foreign_key: 'theme_id'
+      # has_many :character_in_themes, dependent: :destroy, foreign_key: 'theme_id'
+      # has_many :clue_in_themes, dependent: :destroy, foreign_key: 'theme_id'
+      # has_many :game_rooms, dependent: :destroy, foreign_key: "theme_id"
 
       # Render Type
       RENDER_TYPE = Model::RenderType
@@ -62,6 +63,8 @@ module Model
                :finished_play_by,
                :stages,
                :stage_lists,
+               :characters,
+               :clues,
                to: :current_theme_data
 
       def current_theme_data

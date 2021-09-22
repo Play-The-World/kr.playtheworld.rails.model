@@ -1,10 +1,11 @@
 module Model::Serializer
   class Entry < Base
     view :base do
-      fields  :type,
-              :status,
-              :team_id,
-              :user_id
+      fields  :status,
+              :entryable_id,
+              :entryable_type,
+              :user_id,
+              :ready
     end
 
     view :play do

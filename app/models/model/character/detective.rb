@@ -1,5 +1,5 @@
 module Model::Character
-  class Default < Base
+  class Detective < Base
     def pickable?; true end
   end
 end

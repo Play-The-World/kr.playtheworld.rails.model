@@ -13,6 +13,7 @@ module Model::Serializer
 
     view :play do
       include_view :base
+      association :entries, blueprint: Entry, view: :play
     end
 
     view :making do

@@ -9,10 +9,7 @@ module Model
       # belongs_to :theme_data
       belongs_to :super_theme, counter_cache: 'super_plays_count', class_name: Model.config.super_theme.class_name, foreign_key: 'super_theme_id'
       has_many :plays, class_name: Model.config.play.class_name, dependent: :destroy, foreign_key: "super_play_id"
-
-      def self.serializer
-        Model::Serializer::SuperPlay
-      end
+      has_one :game_room, dependent: :destroy
     end
   end
 end

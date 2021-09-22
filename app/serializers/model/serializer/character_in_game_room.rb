@@ -1,7 +1,7 @@
 module Model::Serializer
-  class A < Base
+  class CharacterInGameRoom < Base
     view :base do
-      fields :type, :value
+      fields :character_id, :game_room_id, :user_id
       
       # Relations
       # association :images, blueprint: Image

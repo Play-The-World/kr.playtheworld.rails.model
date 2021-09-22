@@ -7,6 +7,7 @@ module Model
       team
       play
       theme
+      game_room
     )
 
     MODELS.each do |accessor|

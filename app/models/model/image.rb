@@ -21,6 +21,7 @@ module Model
         item_in
         item_out
         open_graph
+        relation
       ),
       default: :default
     # enumerize :store_type, in: %i(external), default: :external

@@ -3,7 +3,8 @@ module Model::Serializer
     view :base do
       fields  :status,
               :email,
-              :nickname
+              :nickname,
+              :sign_up_step
               # :password,
               # :password_confirmation,
               # :phonenumber,

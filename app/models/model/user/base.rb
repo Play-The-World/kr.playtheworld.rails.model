@@ -41,7 +41,8 @@ module Model::User
 
     # Relations
     has_many :entries, dependent: :destroy, foreign_key: "user_id"
-    has_many :teams, through: :entries, class_name: Model.config.team.class_name, foreign_key: "user_id"
+    # has_many :teams, through: :entries, class_name: Model.config.team.class_name, foreign_key: "user_id"
+    has_many :teams, through: :entries, source: :entryable, source_type: Model.config.team.class_name
     has_one :maker, dependent: :nullify, foreign_key: "user_id"
     has_many :achievements, class_name: Model::UsersAchievement.to_s, foreign_key: "user_id"
     has_many :plays, dependent: :destroy, class_name: Model.config.play.class_name, foreign_key: "user_id"
@@ -71,8 +72,11 @@ module Model::User
     end
 
     def confirm_email(passcode)
-      if passcode == "1234"
-        # update!(status: :default)
+      if passcode == "123456"
+        case sign_up_step.to_sym
+        when :confirmation
+          update!(sign_up_step: :nickname)
+        end
         true
       else
         raise

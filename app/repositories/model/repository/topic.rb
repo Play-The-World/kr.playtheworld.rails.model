@@ -7,6 +7,8 @@ module Model::Repository
       #   .where("#{Model::Setting.table_name}": { id: current_setting.id })
       #   .includes(super_themes: [:genres, :images])
       #   .with_translations
+    # rescue
+    #   []
     end
 
     private

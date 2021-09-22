@@ -7,6 +7,7 @@ class CreateModelChatRooms < ActiveRecord::Migration[6.0]
       # Attributes
       t.string :title
       t.string :status
+      t.string :type, null: false, default: 'default'
       t.integer :chat_messages_count, null: false, default: 0
 
       t.timestamps

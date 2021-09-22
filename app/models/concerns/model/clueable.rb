@@ -3,7 +3,7 @@ module Model
     extend ActiveSupport::Concern
 
     included do
-      has_many :clues, as: :clueable, dependent: :destroy, class_name: Model.config.clue.class_name
+      has_many :clues, as: :clueable, dependent: :nullify, class_name: Model.config.clue.class_name
     end
   end
 end

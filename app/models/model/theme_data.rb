@@ -12,12 +12,32 @@ module Model
     include Model::Musicable
     has_many :finished_plays, dependent: :destroy, class_name: Model::Play::Finished.to_s
     has_many :ranks, through: :finished_plays
+    has_many :character_in_themes, dependent: :destroy
+    has_many :clue_in_themes, dependent: :destroy
+    has_many :game_rooms, dependent: :destroy
 
     # Callbacks
     before_create :set_version
 
-    def self.serializer
-      Model::Serializer::ThemeData
+    # Delegation
+    delegate :title,
+             :online?,
+             :super_theme,
+             :content, :caution, :caution_bold, :start_address, :start_position, :additional_text,
+             to: :theme
+
+    def characters
+      (super_theme.characters.select { |c| c.default } +
+        character_in_themes.map { |c| c.character }).uniq
+    end
+
+    def pickable_characters
+      characters.select { |c| c.pickable? }
+    end
+
+    def clues
+      (super_theme.clues.select { |c| c.default } +
+        clue_in_themes.map { |c| c.clue }).uniq
     end
 
     def test

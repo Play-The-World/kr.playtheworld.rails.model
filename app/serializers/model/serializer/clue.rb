@@ -1,7 +1,7 @@
 module Model::Serializer
-  class A < Base
+  class Clue < Base
     view :base do
-      fields :type, :value
+      fields  :type, :title, :level, :phase, :super_theme_id
       
       # Relations
       # association :images, blueprint: Image

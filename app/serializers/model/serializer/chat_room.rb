@@ -1,14 +1,16 @@
 module Model::Serializer
-  class A < Base
+  class ChatRoom < Base
     view :base do
-      fields :type, :value
+      fields  :title, :status, :type, :chat_messages_count, :chatable_type, :chattable_id
       
       # Relations
       # association :images, blueprint: Image
     end
 
-    view :play do
+    view :show do
       include_view :base
+
+      association :chat_entry, blueprint: ChatRoomEntry, view: :show
     end
 
     view :making do

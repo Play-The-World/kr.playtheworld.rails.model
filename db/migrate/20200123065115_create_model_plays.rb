@@ -5,6 +5,7 @@ class CreateModelPlays < ActiveRecord::Migration[6.0]
       t.references :user
       t.references :super_play
       t.references :theme_data
+      t.references :character
 
       # Attirbutes
       t.integer :stage_list_index, default: 0, null: false

@@ -14,6 +14,7 @@ module Model
       has_many :stages, through: :stage_lists
       has_one :inventory, foreign_key: 'play_id'
       # TODO stages 메소드 작성하거나 Relation으로 설정하기
+      belongs_to :character, class_name: Model.config.character.class_name, optional: true
       include Model::Clearer
 
       # Scopes

@@ -17,6 +17,7 @@ class CreateModelCharacters < ActiveRecord::Migration[6.1]
 
       t.text :statement
       t.text :content
+      t.text :alibi
 
       t.boolean :criminal, default: false
 

@@ -1,14 +1,19 @@
 module Model::Serializer
-  class A < Base
+  class ChatRoomEntry < Base
     view :base do
-      fields :type, :value
+      fields  :status, :chat_room_id, :chatter_id, :chatter_type
       
       # Relations
       # association :images, blueprint: Image
     end
 
-    view :play do
+    view :show do
       include_view :base
+
+      # association :chat_entry, blueprint: Chatter, view: :show
+      field :chatter do |a|
+        a.chatter&.as_json(:base)
+      end
     end
 
     view :making do
