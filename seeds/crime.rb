@@ -261,3 +261,19 @@ Model::TopicInSetting.first_or_create!([
   }
 ])
 topic.super_themes << st
+
+# Production용
+a = Model::Application.create!(mode: :production)
+topic = Model::Topic::Custom.first_or_create!(
+  title: "#크라임씬"
+)
+
+s = a.create_setting!
+Model::TopicInSetting.first_or_create!([
+  {
+    setting: s,
+    topic: topic,
+    order: 1
+  }
+])
+topic.super_themes << st
