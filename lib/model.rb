@@ -16,7 +16,8 @@ Gem.loaded_specs['model']
 
 folders = [
   'model',
-  'extensions'
+  'extensions',
+  'utils'
 ]
 folders.each do |folder|
   Dir[File.join(File.dirname(__FILE__), folder, '*.rb')].each do |file|

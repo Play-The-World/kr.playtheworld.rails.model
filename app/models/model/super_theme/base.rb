@@ -26,6 +26,7 @@ module Model
       has_many :game_rooms, dependent: :destroy, foreign_key: "super_theme_id"
       has_many :clues, class_name: Model.config.clue.class_name, dependent: :destroy, foreign_key: "super_theme_id"
       has_many :characters, class_name: Model.config.character.class_name, dependent: :destroy, foreign_key: "super_theme_id"
+      include Model::Infoable
 
       # Status
       include Model::HasStatus

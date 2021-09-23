@@ -17,8 +17,8 @@ module Model
     enumerize :type, in: %i(default private team), default: :default
 
     # Delegation
-    delegate :purpose,
-             :users,
-             to: :team
+    delegate :purpose, :users, to: :team
+    delegate :theme, :super_theme, to: :theme_data
+    
   end
 end

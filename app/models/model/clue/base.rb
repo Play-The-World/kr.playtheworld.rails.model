@@ -10,6 +10,7 @@ module Model
       belongs_to :clueable, polymorphic: true, optional: true
       has_many :clue_in_inventories, foreign_key: 'clue_id'
       has_many :clue_in_themes, foreign_key: 'clue_id'
+      include Model::Imageable
     end
   end
 end

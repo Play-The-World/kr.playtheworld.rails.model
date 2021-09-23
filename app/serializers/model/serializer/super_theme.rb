@@ -25,7 +25,7 @@ module Model::Serializer
       association :characters, blueprint: Character, view: :play
       association :clues, blueprint: Clue, view: :base
       association :game_maps, blueprint: GameMap, view: :base
-      # association :characters, blueprint: Character, view: :show
+      association :info_files, blueprint: InfoFile, view: :base
     end
 
     view :crime_show do

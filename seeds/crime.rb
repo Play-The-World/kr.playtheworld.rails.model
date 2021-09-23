@@ -14,6 +14,11 @@ st.images.create!(
   value: "https://playtheworld-opengame.s3.ap-northeast-2.amazonaws.com/crime-scene/poster.jpg"
 )
 
+st.images.create!({
+  type: 'game_map',
+  value: "#{BASE_URL}/maps/1.jpg"
+})
+
 chars = st.characters.create!([
   {
     type: Model::Character::Default.to_s,
@@ -190,20 +195,69 @@ t.images.create!({
   value: "#{BASE_URL}/relation.jpg"
 })
 
-# Topic
+# InfoFiles
+st.info_files.create! do |i|
+  i.type = 'introduction'
+  i.value = [
+    {
+      type: 'title',
+      value: '사건 개요',
+    },
+    {
+      type: 'separator'
+    },
+    {
+      type: 'image',
+      value: '%{posterImage}'
+    },
+    {
+      type: 'title',
+      value: '인물 관계도',
+    },
+    {
+      type: 'separator'
+    },
+    {
+      type: 'image',
+      value: '%{relationImage}'
+    },
+    {
+      type: 'title',
+      value: '현장 지도',
+    },
+    {
+      type: 'separator'
+    },
+    {
+      type: 'image',
+      value: '%{gameMapImage}'
+    },
+    {
+      type: 'title',
+      value: '알리바이',
+    },
+    {
+      type: 'separator'
+    },
+    {
+      type: 'alibies',
+    },
+    
+  ]
+end
 
+# Topic
 a = Model::Application.current
-t = [
-  Model::Topic::Today.first_or_create!(
-    title: "#크라임씬"
-  ),
-]
+topic = Model::Topic::Custom.first_or_create!(
+  title: "#크라임씬"
+)
+
 s = a.create_setting!
 Model::TopicInSetting.first_or_create!([
   {
     setting: s,
-    topic: t[0],
+    topic: topic,
     order: 1
   }
 ])
-t[0].super_themes << Model::SuperTheme::Base.first(3) rescue nil
+topic.super_themes << st

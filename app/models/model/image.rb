@@ -22,6 +22,7 @@ module Model
         item_out
         open_graph
         relation
+        game_map
       ),
       default: :default
     # enumerize :store_type, in: %i(external), default: :external

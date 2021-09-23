@@ -12,6 +12,7 @@ module Model
       include Model::Imageable
       has_many :related_clues, class_name: Model.config.clue.class_name, foreign_key: 'character_id', dependent: :nullify
       has_many :plays, class_name: Model.config.play.class_name, foreign_key: 'character_id', dependent: :nullify
+      has_many :info_files, foreign_key: 'character_id', dependent: :destroy
 
       def pickable?; false end
     end
