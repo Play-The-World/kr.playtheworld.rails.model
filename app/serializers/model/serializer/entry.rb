@@ -8,6 +8,11 @@ module Model::Serializer
               :ready
     end
 
+    view :show do
+      include_view :base
+      association :user, blueprint: User, view: :base
+    end
+
     view :play do
       include_view :base
     end

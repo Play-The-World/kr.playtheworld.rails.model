@@ -18,7 +18,7 @@ module Model::Serializer
     view :play do
       include_view :base
       association :team, blueprint: Team, view: :play
-      association :entries, blueprint: Entry, view: :play
+      association :entries, blueprint: Entry, view: :show
     end
 
     view :crime do
