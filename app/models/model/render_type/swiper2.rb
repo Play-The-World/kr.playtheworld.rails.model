@@ -1,4 +1,4 @@
 module Model::RenderType
-  class Swiper < Base
+  class Swiper2 < Base
   end
 end

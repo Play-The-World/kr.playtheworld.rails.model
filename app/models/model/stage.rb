@@ -1,5 +1,7 @@
 module Model
   class Stage < ApplicationRecord
+    self.inheritance_column = "not_sti"
+
     # New in Rails 6! TEST NEEDED
     self.implicit_order_column = 'order'
 
@@ -19,7 +21,8 @@ module Model
     include Model::Conditioner
 
     # Enums
-    # extend Enumerize
+    extend Enumerize
+    enumerize :type, in: %i(default search), default: :default
     # enumerize :stage_type, in: %i(script quiz end)
 
     # Scopes

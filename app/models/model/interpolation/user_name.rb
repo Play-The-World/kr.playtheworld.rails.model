@@ -4,7 +4,7 @@ module Model::Interpolation
       "%{user_name}"
     end
     def result(ref = nil)
-      Model::Current.user.name
+      Model.current.user.name
     rescue
       super(ref)
     end

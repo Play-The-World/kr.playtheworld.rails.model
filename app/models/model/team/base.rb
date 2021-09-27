@@ -20,6 +20,7 @@ module Model
     # * +:name+
     # * +:content+
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.team.table_name
 

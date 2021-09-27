@@ -1,6 +1,7 @@
 module Model
   module GameStat
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.game_stat.table_name
 

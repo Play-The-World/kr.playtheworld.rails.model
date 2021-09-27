@@ -1,13 +1,7 @@
 module Model::Serializer
-  class GameMap < Base
+  class MapArea < Base
     view :base do
-      fields :title, :content, :super_theme_id, :order, :width, :height#, :searchable
-      # field :users_count do |a|
-      #   a.entries.size
-      # end
-      # Relations
-      association :images, blueprint: Image, view: :base
-      association :map_areas, blueprint: MapArea, view: :base
+      fields :type, :shape, :coords, :value, :title, :click_count, :game_map_id
     end
 
     # view :play do

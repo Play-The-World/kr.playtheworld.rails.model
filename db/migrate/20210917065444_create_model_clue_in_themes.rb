@@ -7,7 +7,7 @@ class CreateModelClueInThemes < ActiveRecord::Migration[6.1]
       t.references :clue
 
       # Attributes
-      t.boolean :shared, default: false
+      # t.boolean :shared, default: false
 
       t.timestamps
     end

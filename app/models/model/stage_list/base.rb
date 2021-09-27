@@ -12,6 +12,7 @@ module Model
     end
 
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.stage_list.table_name
 
@@ -37,11 +38,12 @@ module Model
       include Model::Textable
 
       # Render Type
-      RENDER_TYPE = Model::RenderType
-      serialize :render_type, RENDER_TYPE::Base
+      # RENDER_TYPE = Model::RenderType
+      # serialize :render_type, RENDER_TYPE::Base
 
       # Serialize
       serialize :game_component, GAME_COMPONENT::Base 
+      serialize :content, Model::ArrayHashSerializer
 
       # Callbacks
       before_create :set_number

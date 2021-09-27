@@ -9,6 +9,7 @@ class CreateModelMapAreas < ActiveRecord::Migration[6.1]
       t.string :shape
       t.string :coords
       t.string :value
+      t.string :title
       t.integer :click_count, default: 1
 
       t.timestamps

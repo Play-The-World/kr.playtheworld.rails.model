@@ -1,6 +1,7 @@
 module Model
   module Event
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.event.table_name
 

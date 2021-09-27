@@ -14,6 +14,7 @@ module Model
     # * Branch
     #
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.answer.table_name
 

@@ -13,6 +13,7 @@ module Model
     # 
     # * ConditionClear
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.condition.table_name
 

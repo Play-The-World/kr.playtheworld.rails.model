@@ -47,7 +47,7 @@ module Model
 
     def start_stage_list
       # stage_lists.find_by(number: start_stage_list_number) || stages_lists.first
-      stage_lists.find { |sl| sl.number == start_stage_list_number } || stages_lists.first
+      stage_lists.find { |sl| sl.number == start_stage_list_number } || stage_lists.first
     end
 
     def current_play_by(user)

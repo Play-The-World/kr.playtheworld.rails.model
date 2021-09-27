@@ -1,6 +1,7 @@
 module Model
   module SuperTheme
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.super_theme.table_name
 

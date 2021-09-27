@@ -58,13 +58,13 @@ module Model::Serializer
 
       field :plays do |a|
         [
-          a.current_play_by(Model::Current.user)
+          a.current_play_by(Model.current.user)
         ].compact
       end
 
       field :finished_plays do |a|
         [
-          a.finished_play_by(Model::Current.user)
+          a.finished_play_by(Model.current.user)
         ].compact
       end
 

@@ -1,6 +1,7 @@
 module Model
   module Achievement
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.achievement.table_name
 

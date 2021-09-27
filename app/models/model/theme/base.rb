@@ -1,6 +1,7 @@
 module Model
   module Theme
     class Base < ApplicationRecord
+      # include Model::StiPreload
       # Table Name
       self.table_name = Model.config.theme.table_name
 

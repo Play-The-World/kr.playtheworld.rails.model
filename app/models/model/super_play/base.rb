@@ -1,6 +1,7 @@
 module Model
   module SuperPlay
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.super_play.table_name
 

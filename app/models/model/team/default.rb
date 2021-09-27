@@ -7,17 +7,32 @@ module Model::Team
     # validates ${:attribute}
 
     def start_play(options = {})
-      if options[:theme]
-        sp = super_plays.create(super_theme: options[:theme].super_theme)
-        Model::Play::Playing.create(super_play: sp, user: user, theme_data: options[:theme].current_theme_data)
-      elsif options[:super_theme]
-        theme = options[:super_theme].themes.find_by(theme_type: options[:theme_type])
-        raise "Invalid theme_type: #{options[:theme_type]}" if theme.nil?
+      if options[:theme_data]
+        sp = super_plays.create(super_theme: options[:theme_data].super_theme)
+        puts 1
+        if Model.current.game_room
+          Model.current.game_room.update!(super_play: sp, status: :started)
+        end
+        puts 2
+        Model::Play::Playing.create!(users.map { |u|
+          {
+            super_play: sp,
+            user: u,
+            theme_data: options[:theme_data],
+            character: Model.current.game_room&.character_in_game_rooms&.find { |cig| cig.user == u }&.character,
+          }
+        })
+      # elsif options[:theme]
+      #   sp = super_plays.create(super_theme: options[:theme].super_theme)
+      #   Model::Play::Playing.create(super_play: sp, user: user, theme_data: options[:theme].current_theme_data)
+      # elsif options[:super_theme]
+      #   theme = options[:super_theme].themes.find_by(theme_type: options[:theme_type])
+      #   raise "Invalid theme_type: #{options[:theme_type]}" if theme.nil?
 
-        sp = super_plays.create(super_theme: options[:super_theme])
-        Model::Play::Playing.create(super_play: sp, user: user, theme_data: theme.current_theme_data)
+      #   sp = super_plays.create(super_theme: options[:super_theme])
+      #   Model::Play::Playing.create(super_play: sp, user: user, theme_data: theme.current_theme_data)
       else
-        raise "theme or super_theme must not be nil"
+        raise "theme_data or theme or super_theme must not be nil"
       end
     end
 

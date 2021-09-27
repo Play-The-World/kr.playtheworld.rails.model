@@ -1,6 +1,7 @@
 module Model
   module Play
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.play.table_name
   
@@ -28,7 +29,7 @@ module Model
       after_create :init_play
 
       # Delegation
-      delegate :theme, to: :theme_data
+      delegate :theme, :super_theme, to: :theme_data
 
       # def stages
       #   Model.stage.constant
@@ -96,7 +97,7 @@ module Model
       private
         def init_play
           # 첫 스테이지 리스트
-          stage_lists << theme_data.start_stage_list
+          stage_lists << theme_data.start_stage_list unless theme_data.start_stage_list.nil?
           # Inventory
           create_inventory
         end

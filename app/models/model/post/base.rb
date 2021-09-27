@@ -1,6 +1,7 @@
 module Model
   module Post
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table
       self.table_name = Model.config.post.table_name
 

@@ -26,6 +26,7 @@ module Model::User
   # * +:temp+ - 임시 사용자(비로그인)
   #
   class Base < Model::ApplicationRecord
+    include Model::StiPreload
     # Table Name
     self.table_name = Model.config.user.table_name
 

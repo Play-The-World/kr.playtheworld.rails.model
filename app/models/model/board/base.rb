@@ -19,6 +19,7 @@ module Model
     # * +:content+
     #
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.board.table_name
 

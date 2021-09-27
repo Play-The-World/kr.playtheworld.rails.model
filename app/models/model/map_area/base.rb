@@ -1,6 +1,7 @@
 module Model
   module MapArea
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.map_area.table_name
 

@@ -89,6 +89,12 @@ chars = st.characters.create!([
 ])
 
 chars.each.with_index do |c, i|
+  if i >= 5
+    c.images.create!(
+      value: "https://playtheworld-opengame.s3.ap-northeast-2.amazonaws.com/crime-scene/char/#{i+1}.png"
+    )
+    next
+  end
   c.images.create!(
     value: "https://playtheworld-opengame.s3.ap-northeast-2.amazonaws.com/crime-scene/char/#{i+1}.jpeg"
   )
@@ -99,85 +105,153 @@ gms = st.game_maps.create!([
   {
     order: 1,
     title: '전체 지도',
-    width: 500,
-    height: 500,
+    width: 1000,
+    height: 562,
   },
   {
     order: 2,
     title: '홍변호 방',
     content: '별채',
-    width: 500,
-    height: 500,
+    width: 2084,
+    height: 1165,
   },
   {
     order: 3,
     title: '양손님 객실',
     content: '2F',
-    width: 500,
-    height: 500,
+    width: 1883,
+    height: 1150,
   },
   {
     order: 4,
     title: '장아들 방',
     content: '2F',
-    width: 500,
-    height: 500,
+    width: 2045,
+    height: 1245,
   },
   {
     order: 5,
     title: '정손녀 방',
     content: '2F',
-    width: 500,
-    height: 500,
+    width: 2112,
+    height: 1255,
   },
   {
     order: 6,
     title: '박케어 방',
     content: '1F',
-    width: 500,
-    height: 500,
+    width: 2220,
+    height: 1247,
   },
   {
     order: 7,
     title: '대저택 거실',
     content: '1F',
-    width: 500,
-    height: 500,
+    width: 612,
+    height: 431,
   },
   {
     order: 8,
     title: '장세민 침실',
     content: '1F',
-    width: 500,
-    height: 500,
+    width: 808,
+    height: 430,
   },
   {
     order: 9,
     title: '대저택 욕실',
     content: '1F',
-    width: 500,
-    height: 500,
+    width: 1460,
+    height: 902,
   },
   {
     order: 10,
     title: '장세민 서재',
     content: '1F',
-    width: 500,
-    height: 500,
+    width: 2094,
+    height: 1271,
   },
 ])
 gms.each do |g|
   g.images.create!(
-    value: "https://playtheworld-opengame.s3.ap-northeast-2.amazonaws.com/crime-scene/maps/#{g.order}.jpg"
+    value: "https://playtheworld-opengame.s3.ap-northeast-2.amazonaws.com/crime-scene/maps/#{g.order}.png"
   )
 end
 
+# 전체 지도
+gms[0].map_areas.create!([
+  {
+    title: '홍변호 방',
+    shape: 'rect',
+    type: 'Model::MapArea::NextMap',
+    coords: '116,206,268,39',
+    value: '2',
+  },
+  {
+    title: '양손님 객실',
+    shape: 'rect',
+    type: 'Model::MapArea::NextMap',
+    coords: '460,135,283,24',
+    value: '3',
+  },
+  {
+    title: '장아들 방',
+    shape: 'rect',
+    type: 'Model::MapArea::NextMap',
+    coords: '487,34,692,131',
+    value: '4',
+  },
+  {
+    title: '정손녀 방',
+    shape: 'rect',
+    type: 'Model::MapArea::NextMap',
+    coords: '704,39,887,137',
+    value: '5',
+  },
+  {
+    title: '박케어 방',
+    shape: 'rect',
+    type: 'Model::MapArea::NextMap',
+    coords: '14,361,238,549',
+    value: '6',
+  },
+  {
+    title: '대저택 거실',
+    shape: 'rect',
+    type: 'Model::MapArea::NextMap',
+    coords: '575,531,281,186',
+    value: '7',
+  },
+  {
+    title: '장세민 침실',
+    shape: 'rect',
+    type: 'Model::MapArea::NextMap',
+    coords: '592,181,760,349',
+    value: '8',
+  },
+  {
+    title: '대저택 욕실',
+    shape: 'rect',
+    type: 'Model::MapArea::NextMap',
+    coords: '776,187,930,342',
+    value: '9',
+  },
+  {
+    title: '장세민 서재',
+    shape: 'rect',
+    type: 'Model::MapArea::NextMap',
+    coords: '601,372,913,533',
+    value: '10',
+  },
+  
+])
+
 # Theme
 t = st.themes.create!(
-  type: Model::Theme::Crime.to_s,
+  type: 'Model::Theme::Crime',
   difficulty: 10,
   play_time: 120,
-  render_type: Model::RenderType::Complex.new,
+  render_type: Model::RenderType::Swiper2.new,
   play_user_count: 5,
   content: '2017년 6월 23일 새벽 서울 외곽에 위치한 호화 대저택의 욕실에서 날카로운 비명이 울려 퍼진다. 욕조 안에 쓰러진 모습으로 간병인에 의해 발견된 피해자는 대저택의 주인이자 추리소설계의 거장으로 불리는 장세민 작가. 사체 발견 당시, 특별한 외상은 보이지 않았는데... 사건 현장을 둘러본 탐정은 사망 추정 시각, 대저택에 머물고 있던 5명의 용의자를 소환한다. 유언장 공표를 하루 앞둔 채 싸늘한 주검으로 발견된 장세민! 과연 그를 죽음에 이르게 한 범인은 누구인가?'
 )
@@ -246,6 +320,20 @@ st.info_files.create! do |i|
   ]
 end
 
+td = t.current_theme_data
+
+sl = Model::StageList::Search.create!(
+  theme_data: td,
+  number: 1,
+  game_component: Model::GameComponent::None.new,
+  title: '현장 검증1'
+)
+s = sl.stages.create!(
+  order: 1,
+)
+
+
+
 # Topic
 a = Model::Application.current
 topic = Model::Topic::Custom.first_or_create!(
@@ -276,4 +364,4 @@ Model::TopicInSetting.first_or_create!([
     order: 1
   }
 ])
-topic.super_themes << st
+topic.super_themes << st rescue nil

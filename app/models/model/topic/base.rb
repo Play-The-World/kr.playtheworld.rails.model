@@ -1,6 +1,7 @@
 module Model
   module Topic
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.topic.table_name
 

@@ -5,6 +5,7 @@ module Model
     # Relations
     belongs_to :team, class_name: Model.config.team.class_name, optional: true
     belongs_to :super_theme, class_name: Model.config.super_theme.class_name
+    belongs_to :super_play, class_name: Model.config.super_play.class_name, optional: true
     # belongs_to :theme, class_name: Model.config.theme.class_name
     belongs_to :theme_data
     include Model::Chattables
@@ -17,7 +18,7 @@ module Model
     enumerize :type, in: %i(default private team), default: :default
 
     # Delegation
-    delegate :purpose, :users, to: :team
+    delegate :purpose, to: :team
     delegate :theme, :super_theme, to: :theme_data
     
   end

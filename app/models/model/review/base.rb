@@ -1,6 +1,7 @@
 module Model
   module Review
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.review.table_name
       

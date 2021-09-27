@@ -20,6 +20,7 @@ module Model
     # * +:blocked+ - 차단된 상태
     #
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.comment.table_name
 

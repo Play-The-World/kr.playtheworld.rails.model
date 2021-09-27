@@ -11,7 +11,7 @@ module Model::Serializer
       include_view :base
 
       field :user_id do |a|
-        if ::Model::Current.game_room
+        if Model.current.game_room
           # pick
         end
       end

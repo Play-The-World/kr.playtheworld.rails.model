@@ -1,6 +1,7 @@
 module Model
   module Token
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.token.table_name
 

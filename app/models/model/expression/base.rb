@@ -1,6 +1,7 @@
 module Model
   module Expression
     class Base < ApplicationRecord
+      include Model::StiPreload
       # Table Name
       self.table_name = Model.config.expression.table_name
 

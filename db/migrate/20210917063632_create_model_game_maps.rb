@@ -10,6 +10,7 @@ class CreateModelGameMaps < ActiveRecord::Migration[6.1]
       t.text :content
       t.integer :width
       t.integer :height
+      t.boolean :searchable, default: false
 
       t.timestamps
     end
