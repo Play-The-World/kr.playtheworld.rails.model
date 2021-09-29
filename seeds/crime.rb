@@ -114,6 +114,7 @@ gms = st.game_maps.create!([
     content: '별채',
     width: 2084,
     height: 1165,
+    searchable: true,
   },
   {
     order: 3,
@@ -121,6 +122,7 @@ gms = st.game_maps.create!([
     content: '2F',
     width: 1883,
     height: 1150,
+    searchable: true,
   },
   {
     order: 4,
@@ -128,6 +130,7 @@ gms = st.game_maps.create!([
     content: '2F',
     width: 2045,
     height: 1245,
+    searchable: true,
   },
   {
     order: 5,
@@ -135,6 +138,7 @@ gms = st.game_maps.create!([
     content: '2F',
     width: 2112,
     height: 1255,
+    searchable: true,
   },
   {
     order: 6,
@@ -142,6 +146,7 @@ gms = st.game_maps.create!([
     content: '1F',
     width: 2220,
     height: 1247,
+    searchable: true,
   },
   {
     order: 7,
@@ -149,6 +154,7 @@ gms = st.game_maps.create!([
     content: '1F',
     width: 612,
     height: 431,
+    searchable: true,
   },
   {
     order: 8,
@@ -156,6 +162,7 @@ gms = st.game_maps.create!([
     content: '1F',
     width: 808,
     height: 430,
+    searchable: true,
   },
   {
     order: 9,
@@ -163,6 +170,7 @@ gms = st.game_maps.create!([
     content: '1F',
     width: 1460,
     height: 902,
+    searchable: true,
   },
   {
     order: 10,
@@ -170,6 +178,7 @@ gms = st.game_maps.create!([
     content: '1F',
     width: 2094,
     height: 1271,
+    searchable: true,
   },
 ])
 gms.each do |g|
@@ -326,12 +335,42 @@ sl = Model::StageList::Search.create!(
   theme_data: td,
   number: 1,
   game_component: Model::GameComponent::None.new,
-  title: '현장 검증1'
+  title: '현장 검증 1'
 )
 s = sl.stages.create!(
   order: 1,
 )
 
+eg = Model::EventGroup.create!(
+  eventable: td,
+  title: '플레이 시작 시'
+)
+eg.events.create!([
+  {
+    type: 'Model::Event::SetTrackValue1',
+    value1: '600',
+    target: sl,
+  }
+])
+eg.conditions.create!({
+  type: 'Model::Condition::OnPlayStarted',
+  conditioner: td,
+})
+
+# Clues
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '외상 없는 사체',
+  location: '욕조 안',
+  content: '외상이 없어 보이는 사체',
+  hint: '',
+)
+c.clue_in_characters.create!(character: chars[5])
 
 
 # Topic

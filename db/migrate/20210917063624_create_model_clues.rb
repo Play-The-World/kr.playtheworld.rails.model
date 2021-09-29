@@ -4,7 +4,7 @@ class CreateModelClues < ActiveRecord::Migration[6.1]
       # Relations
       t.references :super_theme
       t.references :clueable, polymorphic: true
-      t.references :character
+      # t.references :character
 
       # Attributes
       t.boolean :default, default: true

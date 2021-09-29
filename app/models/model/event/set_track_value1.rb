@@ -10,11 +10,13 @@ module Model::Event # :nodoc:
   # * EventGroup
   # * Target(polymorphic)
   #
-  class SetPlayValue1 < Base
+  class SetTrackValue1 < Base
     # Target: Branch
     # 실행
     def trigger
-      play.update(value1: value1)
+      puts "SET TRACK VALUE1 triggered"
+      return unless target
+      play.trakcs.find { |t| t.stage_list == target }&.update(value1: value1.to_i)
     end
 
     private

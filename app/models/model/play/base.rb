@@ -100,6 +100,13 @@ module Model
           stage_lists << theme_data.start_stage_list unless theme_data.start_stage_list.nil?
           # Inventory
           create_inventory
+
+          # ConditionClear
+          theme_data.conditions
+            .select { |c| c.type == Model::Condition::OnPlayStarted }
+            .each do |c|
+              c.clear
+          end
         end
 
         def hints

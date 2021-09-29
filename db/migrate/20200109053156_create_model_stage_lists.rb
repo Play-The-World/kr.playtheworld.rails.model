@@ -10,6 +10,7 @@ class CreateModelStageLists < ActiveRecord::Migration[6.0]
       t.text :game_component
       # t.text :render_type
       t.text :content
+      t.integer :phase, default: 1
       # t.string :custom_type
       # t.boolean :alert_success, null: false, default: true
       # t.boolean :alert_fail, null: false, default: true
