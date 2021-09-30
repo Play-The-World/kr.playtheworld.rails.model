@@ -357,7 +357,24 @@ eg.conditions.create!({
   conditioner: td,
 })
 
+# level: 1~4, 5~8, 9~10
 # Clues
+def ci(arr = [])
+  arr.map.with_index do |a, i|
+    s = ""
+    s += "0" if a < 1000
+    s += "0" if a < 100
+    s += "0" if a < 10
+    s += a.to_s
+    {
+      order: i + 1,
+      value: "#{BASE_URL}/clues/#{s}.png",
+    }
+  end
+end
+
+# 욕실
+
 c = st.clues.create!(
   clueable: gms[8],
   type: 'Model::Clue::Image',
@@ -368,9 +385,368 @@ c = st.clues.create!(
   title: '외상 없는 사체',
   location: '욕조 안',
   content: '외상이 없어 보이는 사체',
-  hint: '',
+  hint: ''
 )
-c.clue_in_characters.create!(character: chars[5])
+c.clue_in_characters.create!([5].map { |i| { character: chars[i] } })
+c.images.create!([
+  {
+    order: 1,
+    value: "#{BASE_URL}/clues/0002.png",
+  },
+])
+
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '오른팔 화상 흉터',
+  location: '욕조 안',
+  content: '별 모양의 오래된 화상 흉터가 있다.',
+  hint: ''
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([3]))
+
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '장세민의 휴대전화 1',
+  location: '욕조',
+  content: '슈베르트의 송어(Die Forelle)를 듣고 있었다.',
+  hint: ''
+)
+c.images.create!(ci([4]))
+
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '장세민의 휴대전화 2',
+  location: '욕조',
+  content: '어제 오후 6시 30분 장세민이 홍변호를 집으로 불러서 만난 문자가 있다.',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([6]))
+
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '젖은 수건',
+  location: '욕조 옆 빨래 바구니',
+  content: '젖은 정도를 볼 때 몸을 닦은 건 아닌 걸로 추정.',
+  hint: '맛을 보니 짠 맛이 난다.'
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([7]))
+
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '블루투스 스피커',
+  location: '욕조 선반',
+  content: '블루투스 스피커',
+  hint: '뒤에 공간이 있다.'
+)
+# c.clue_in_characters.create!([5].map { |i| { character: chars[i] } })
+c.images.create!(ci([5]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '장세민의 저서',
+  location: '책장',
+  content: '피해자는 추리소설계의 대가',
+  hint: ''
+)
+# c.clue_in_characters.create!([5].map { |i| { character: chars[i] } })
+c.images.create!(ci([9]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '1588 살인사건',
+  location: '책장',
+  content: '23년 전 발표한 첫 베스트셀러.',
+  hint: ''
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([10]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 5,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '1588 살인사건 내용',
+  location: '책장',
+  content: '대리운전기사가 어떤 여성을 태우고 쪽지에 적힌 주소로 데려다 달라는 요청을 받고 운전했는데, 알고 보니 그 여자는 칼에 찔려 죽은 상태였고 해당 쪽지는 칼을 산 영수증인것으로 밝혀져서 대리 기사가 살인 누명을 쓰고 25년 동안 감옥살이를 했다는 것이 주요 내용이다.',
+  hint: ''
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([11]))
+
+# 서재
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 4,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '와파린',
+  location: '책상 서랍',
+  content: '심장 질환이 있는 장세민이 먹는 약.',
+  hint: ''
+)
+# c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([12, 13]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '편지',
+  location: '책상 서랍',
+  content: '여러 곳에서 온 편지',
+  hint: '살벌교도소 1004?'
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([14, 15]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 5,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '인터뷰지',
+  location: '책상',
+  content: '<탈옥소년>용 양손님의 인터뷰지',
+  hint: ''
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([16, 17]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '건강검진결과통보서 1',
+  location: '책상',
+  content: '장세민의 건강검진결과통보서',
+  hint: '피해자는 심장이 안 좋았던 것 같다.'
+)
+# c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([18, 19]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '건강검진결과통보서 2',
+  location: '책상',
+  content: '장아들의 건강검진결과통보서',
+  hint: ''
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([20, 21]))
+
+# 장아들 방
+c = st.clues.create!(
+  clueable: gms[3],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '고급 RC카',
+  location: '진열대',
+  content: '장아들의 취미 용품.',
+  hint: ''
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([24]))
+
+c = st.clues.create!(
+  clueable: gms[3],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '명품들',
+  location: '진열대',
+  content: '장아들의 각종 명품들. 사치를 부린다.',
+  hint: '한 달만에 많은 소비를 한 것 같다.'
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([25, 26, 27]))
+
+c = st.clues.create!(
+  clueable: gms[3],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: 'DJ 턴테이블',
+  location: '책상',
+  content: 'DJ 턴테이블. 꽤나 비싸보인다.',
+  hint: ''
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([28]))
+
+c = st.clues.create!(
+  clueable: gms[3],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: 'RC카 설명서',
+  location: '책상',
+  content: 'RC카 설명서',
+  hint: ''
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([29]))
+
+# 박케어 방
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '간호조무사 자격증',
+  location: '책상',
+  content: '1997년 취득했다.',
+  hint: ''
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([31]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '심장 질환 서적',
+  location: '책상',
+  content: '심장 질환이 있는 장세민의 간병인으로서 심장 질환에 대해 공부했다.',
+  hint: ''
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([32]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '박케어의 수첩',
+  location: '책상',
+  content: '장세민 간병 수칙이 적혀 있다.',
+  hint: ''
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([33]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 4,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '찢어진 종이',
+  location: '쓰레기통',
+  content: '어떤 종이가 찢어진 채로 버려져 있다.',
+  hint: ''
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([34]))
+
+# 양손님 방
+
+c = st.clues.create!(
+  clueable: gms[2],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '기사 자격증',
+  location: '책상',
+  content: '전기와 용접의 지식이 있다.',
+  hint: ''
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([36]))
+
+c = st.clues.create!(
+  clueable: gms[2],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '책의 한 페이지',
+  location: '옷장 안 바지 주머니 속',
+  content: '책 한 페이지를 뜯어서 보관하고 있었다.',
+  hint: '1588 살인사건의 내용인 것 같다.'
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([37, 38]))
+
+# 정손녀 방
 
 
 # Topic

@@ -3,7 +3,7 @@ module Model
     extend ActiveSupport::Concern
 
     included do
-      has_many :images, as: :imageable, dependent: :destroy
+      has_many :images, as: :imageable, dependent: :destroy, class_name: 'Model::Image'
 
       def image
         images.take

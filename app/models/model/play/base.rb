@@ -101,9 +101,11 @@ module Model
           # Inventory
           create_inventory
 
+          Model.current.play = self
+          
           # ConditionClear
           theme_data.conditions
-            .select { |c| c.type == Model::Condition::OnPlayStarted }
+            .select { |c| c.type == Model::Condition::OnPlayStarted.to_s }
             .each do |c|
               c.clear
           end

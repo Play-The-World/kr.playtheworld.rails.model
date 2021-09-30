@@ -16,7 +16,7 @@ module Model::Event # :nodoc:
     def trigger
       puts "SET TRACK VALUE1 triggered"
       return unless target
-      play.trakcs.find { |t| t.stage_list == target }&.update(value1: value1.to_i)
+      play.tracks.find { |t| t.stage_list == target }&.update(value1: value1.to_i)
     end
 
     private

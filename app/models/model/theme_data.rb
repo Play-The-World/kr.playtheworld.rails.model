@@ -16,6 +16,7 @@ module Model
     has_many :clue_in_themes, dependent: :destroy
     has_many :game_rooms, dependent: :destroy
     include Model::Infoable
+    include Model::Conditioner
 
     # Callbacks
     before_create :set_version

@@ -1,7 +1,7 @@
 module Model::Serializer
   class GameMap < Base
     view :base do
-      fields :title, :content, :super_theme_id, :order, :width, :height#, :searchable
+      fields :title, :content, :super_theme_id, :order, :width, :height, :searchable
       # field :users_count do |a|
       #   a.entries.size
       # end
