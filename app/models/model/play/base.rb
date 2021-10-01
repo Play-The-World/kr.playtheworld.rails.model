@@ -15,7 +15,8 @@ module Model
       has_many :stages, through: :stage_lists
       has_one :inventory, foreign_key: 'play_id'
       # TODO stages 메소드 작성하거나 Relation으로 설정하기
-      belongs_to :character, class_name: Model.config.character.class_name, optional: true
+      # belongs_to :character, class_name: Model.config.character.class_name, optional: true
+      has_one :character_in_game_room, dependent: :nullify, foreign_key: 'play_id'
       include Model::Clearer
 
       # Scopes
@@ -30,6 +31,7 @@ module Model
 
       # Delegation
       delegate :theme, :super_theme, to: :theme_data
+      delegate :character, to: :character_in_game_room
 
       # def stages
       #   Model.stage.constant
@@ -85,8 +87,11 @@ module Model
       def playing?; false end
       def finished?; false end
 
-      def notify(title:, content:)
+      def notify(content)
         # Pusher...
+        pusher(event: 'notify', params: {
+          content: content
+        })
       end
 
       def channel_name

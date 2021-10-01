@@ -1,7 +1,7 @@
 module Model::Serializer
   class Clue < Base
     view :base do
-      fields  :type, :title, :level, :phase, :super_theme_id
+      fields  :type, :title, :level, :phase, :super_theme_id, :clueable_id, :clueable_type
       
       # Relations
       # association :images, blueprint: Image
@@ -9,6 +9,7 @@ module Model::Serializer
 
     view :play do
       include_view :base
+      association :images, blueprint: Image, view: :base
     end
 
     view :making do

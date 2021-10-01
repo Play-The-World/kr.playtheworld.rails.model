@@ -14,6 +14,18 @@ module Model
       has_many :clue_in_characters, foreign_key: 'clue_id'
       has_many :characters, class_name: Model.config.character.class_name, through: :clue_in_characters, foreign_key: 'clue_id'
       include Model::Imageable
+
+      def computed_chance(search_type = 'normal')
+        l = level.to_f
+
+        case search_type
+        when 'deep'
+          l = l / 2 if l != 1
+        else
+        end
+
+        (chance / l).to_i
+      end
     end
   end
 end

@@ -33,9 +33,9 @@ module Model
       st ||= character&.super_theme
       st ||= infoable&.super_theme rescue nil
       td = infoable if infoable.is_a?(Model::ThemeData)
-      td ||= Current.game_room&.theme_data
-      t = td&.theme
-      t ||= infoable if infoable.is_a?(Model::ThemeData)
+      td ||= Model.current.game_room&.theme_data
+      t = infoable if infoable.is_a?(Model::Theme::Base)
+      t ||= td&.theme
 
       if str.include?('%{posterImage}')
          url = st.images.find { |i| i.type == 'poster' }&.url rescue nil

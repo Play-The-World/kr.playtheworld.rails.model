@@ -17,6 +17,23 @@ module Model
       has_many :info_files, foreign_key: 'character_id', dependent: :destroy
 
       def pickable?; false end
+
+      def search_fail_chance(type = 'normal')
+        case type
+        when 'deep'
+          10
+        else
+          30
+        end
+      end
+      def search_cost(type = 'normal')
+        case type
+        when 'deep'
+          20
+        else
+          10
+        end
+      end
     end
   end
 end

@@ -6,10 +6,13 @@ module Model::Job::Play
     private
       def job(options)
         item_in_inventories = play.inventory.item_in_inventories.as_json(:play)
+        clue_in_inventories = play.inventory.clue_in_inventories.as_json(:play)
+
         play.pusher(
           event: :update_inventory,
           params: {
-            item_in_inventories: item_in_inventories
+            item_in_inventories: item_in_inventories,
+            clue_in_inventories: clue_in_inventories,
           }
         )
 

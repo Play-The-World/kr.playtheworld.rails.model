@@ -348,7 +348,7 @@ eg = Model::EventGroup.create!(
 eg.events.create!([
   {
     type: 'Model::Event::SetTrackValue1',
-    value1: '600',
+    value1: '100',
     target: sl,
   }
 ])
@@ -417,7 +417,7 @@ c = st.clues.create!(
   phase: 1,
   chance: 10,
   unique: false,
-  title: '장세민의 휴대전화 1',
+  title: '장세민의 휴대전화',
   location: '욕조',
   content: '슈베르트의 송어(Die Forelle)를 듣고 있었다.',
   hint: ''
@@ -431,7 +431,7 @@ c = st.clues.create!(
   phase: 1,
   chance: 10,
   unique: false,
-  title: '장세민의 휴대전화 2',
+  title: '장세민의 휴대전화',
   location: '욕조',
   content: '어제 오후 6시 30분 장세민이 홍변호를 집으로 불러서 만난 문자가 있다.',
   hint: ''
@@ -452,7 +452,37 @@ c = st.clues.create!(
   hint: '맛을 보니 짠 맛이 난다.'
 )
 c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
-c.images.create!(ci([7]))
+c.images.create!(ci([7, 80]))
+
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '소금 입욕제',
+  location: '욕조',
+  content: '반신욕에 사용한다.',
+  hint: '소금은 전해질이다.'
+)
+# c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([81]))
+
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '소금 결정',
+  location: '욕조',
+  content: '소금이 다 녹지 않았다.',
+  hint: '반신욕을 시작하고 나서 얼마 지나지 않아 범행이 일어난 것 같다.'
+)
+# c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([91]))
 
 c = st.clues.create!(
   clueable: gms[8],
@@ -468,6 +498,38 @@ c = st.clues.create!(
 )
 # c.clue_in_characters.create!([5].map { |i| { character: chars[i] } })
 c.images.create!(ci([5]))
+
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 9,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '피복이 벗겨진 전선',
+  location: '욕조 선반',
+  content: '블루투스 스피커의 전선 피복이 벗겨져 있다.',
+  hint: '피해자는 감전사했을 확률이 높은 것 같다.'
+)
+# c.clue_in_characters.create!([5].map { |i| { character: chars[i] } })
+c.images.create!(ci([100]))
+
+c = st.clues.create!(
+  clueable: gms[8],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '화상흔',
+  location: '욕조',
+  content: '오른발 뒤꿈치의 화상흔',
+  hint: '위치상 아마도 금속으로 된 배수구 부분이다.'
+)
+# c.clue_in_characters.create!([5].map { |i| { character: chars[i] } })
+c.images.create!(ci([99]))
+
+# 서재
 
 c = st.clues.create!(
   clueable: gms[9],
@@ -502,6 +564,21 @@ c.images.create!(ci([10]))
 c = st.clues.create!(
   clueable: gms[9],
   type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '불놀이야',
+  location: '책장',
+  content: '2005년 작품으로 방화 사건을 소재로 했다.',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([10]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
   level: 5,
   phase: 1,
   chance: 10,
@@ -512,9 +589,22 @@ c = st.clues.create!(
   hint: ''
 )
 c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
-c.images.create!(ci([11]))
+c.images.create!(ci([11, 130, 131]))
 
-# 서재
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 4,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '커플 사진',
+  location: '책상',
+  content: '홍변호와 박케어의 커플 사진',
+  hint: ''
+)
+c.clue_in_characters.create!([2, 3].map { |i| { character: chars[i] } })
+c.images.create!(ci([97]))
 
 c = st.clues.create!(
   clueable: gms[9],
@@ -529,7 +619,22 @@ c = st.clues.create!(
   hint: ''
 )
 # c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
-c.images.create!(ci([12, 13]))
+c.images.create!(ci([12, 13, 137]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 10,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '유언장',
+  location: '금고',
+  content: '장세민이 내일 아침 공표하려고 했던 유언장.',
+  hint: '장아들 절반, 세민재단 절반'
+)
+c.clue_in_characters.create!([1, 3].map { |i| { character: chars[i] } })
+c.images.create!(ci([104, 105, 106, 107]))
 
 c = st.clues.create!(
   clueable: gms[9],
@@ -568,7 +673,7 @@ c = st.clues.create!(
   phase: 1,
   chance: 10,
   unique: false,
-  title: '건강검진결과통보서 1',
+  title: '건강검진결과통보서',
   location: '책상',
   content: '장세민의 건강검진결과통보서',
   hint: '피해자는 심장이 안 좋았던 것 같다.'
@@ -579,11 +684,26 @@ c.images.create!(ci([18, 19]))
 c = st.clues.create!(
   clueable: gms[9],
   type: 'Model::Clue::Image',
+  level: 8,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '누전차단기 자동복구 시스템',
+  location: '벽',
+  content: '정전이 일어나도 자동으로 전력이 복구되는 시스템',
+  hint: ''
+)
+# c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([147]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
   level: 2,
   phase: 1,
   chance: 10,
   unique: false,
-  title: '건강검진결과통보서 2',
+  title: '건강검진결과통보서',
   location: '책상',
   content: '장아들의 건강검진결과통보서',
   hint: ''
@@ -591,7 +711,128 @@ c = st.clues.create!(
 c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
 c.images.create!(ci([20, 21]))
 
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 4,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '주민등록등본',
+  location: '책상',
+  content: '주민등록등본',
+  hint: ''
+)
+c.clue_in_characters.create!([1].map { |i| { character: chars[i] } })
+c.images.create!(ci([92]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 4,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '광팬 시놉시스',
+  location: '책상',
+  content: '광팬 시놉시스',
+  hint: ''
+)
+# c.clue_in_characters.create!([1].map { |i| { character: chars[i] } })
+c.images.create!(ci([93, 94, 95, 122, 124]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 5,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '건강검진결과통보서',
+  location: '컴퓨터',
+  content: '정손녀의 건강검진결과통보서',
+  hint: ''
+)
+c.clue_in_characters.create!([1].map { |i| { character: chars[i] } })
+c.images.create!(ci([110]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 5,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '건강검진결과통보서',
+  location: '컴퓨터',
+  content: '정손녀 부모의 건강검진결과통보서',
+  hint: ''
+)
+c.clue_in_characters.create!([1].map { |i| { character: chars[i] } })
+c.images.create!(ci([111, 112]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 10,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '비밀공간',
+  location: '비밀공간',
+  content: '저서에 들어가는 관련 자료 스크랩',
+  hint: ''
+)
+c.clue_in_characters.create!([3, 4].map { |i| { character: chars[i] } })
+c.images.create!(ci([123]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 10,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '뜯어간 흔적',
+  location: '비밀공간',
+  content: '어떤 종이가 오른쪽 위 모퉁이만 남고 뜯어진 흔적이 있다.',
+  hint: ''
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([125]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 10,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '범행 계획',
+  location: '비밀공간',
+  content: '불놀이야의 소재가 된 방화 사건의 범행 계획',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([127, 128, 133]))
+
+c = st.clues.create!(
+  clueable: gms[9],
+  type: 'Model::Clue::Image',
+  level: 10,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '기사 스크랩',
+  location: '비밀공간',
+  content: '<1588 살인사건>의 배경이 된 실제 사건의 신문 기사가 있다.',
+  hint: ''
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([129, 132]))
+
 # 장아들 방
+
 c = st.clues.create!(
   clueable: gms[3],
   type: 'Model::Clue::Image',
@@ -652,6 +893,36 @@ c = st.clues.create!(
 c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
 c.images.create!(ci([29]))
 
+c = st.clues.create!(
+  clueable: gms[3],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '장기기증자 등록신청서',
+  location: '책상',
+  content: '장기기증자 등록신청서',
+  hint: '6월 2일 등록했다.'
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([54, 55]))
+
+c = st.clues.create!(
+  clueable: gms[3],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '일기장',
+  location: '책상',
+  content: '유산의 절반을 물려줄 것이라고 적혀있다.',
+  hint: '하지만 새로운 유언을 공표한다고 했는데?'
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([67]))
+
 # 박케어 방
 
 c = st.clues.create!(
@@ -682,7 +953,97 @@ c = st.clues.create!(
   hint: ''
 )
 c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
-c.images.create!(ci([32]))
+c.images.create!(ci([32, 83]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '입금증',
+  location: '책상 서랍',
+  content: '홍정비에게 500만원을 입금한 영수증',
+  hint: '7월 14일?'
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([113]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '사진들',
+  location: '책상 서랍',
+  content: '정손녀의 사진들',
+  hint: '7월 14일?'
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([114, 115, 116, 119]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '이력서',
+  location: '책상 서랍',
+  content: '박케어의 이력서',
+  hint: '빨리나아병원?'
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([117]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 8,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '혼인신고서',
+  location: '쓰레기통',
+  content: '쓰레기통에서 발견한 찢어진 종이는 혼인신고서였다.',
+  hint: ''
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([98]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '입양동의서',
+  location: '책상 서랍',
+  content: '입양동의서',
+  hint: ''
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([118]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 4,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '공부한 흔적',
+  location: '책상',
+  content: '심장질환에는 소금이 치명적일 수 있다는 사실을 알고 있다.',
+  hint: ''
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([84]))
 
 c = st.clues.create!(
   clueable: gms[5],
@@ -698,6 +1059,21 @@ c = st.clues.create!(
 )
 c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
 c.images.create!(ci([33]))
+
+c = st.clues.create!(
+  clueable: gms[5],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '박케어의 일기',
+  location: '책상',
+  content: '박케어가 사건 전날 쓴 일기.',
+  hint: ''
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([53]))
 
 c = st.clues.create!(
   clueable: gms[5],
@@ -738,6 +1114,21 @@ c = st.clues.create!(
   phase: 1,
   chance: 10,
   unique: false,
+  title: '출소증명서',
+  location: '책상 서랍',
+  content: '출소증명서',
+  hint: ''
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([96]))
+
+c = st.clues.create!(
+  clueable: gms[2],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
   title: '책의 한 페이지',
   location: '옷장 안 바지 주머니 속',
   content: '책 한 페이지를 뜯어서 보관하고 있었다.',
@@ -748,6 +1139,418 @@ c.images.create!(ci([37, 38]))
 
 # 정손녀 방
 
+c = st.clues.create!(
+  clueable: gms[4],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '육아수첩',
+  location: '책상',
+  content: '빨리나아여성병원에서 태어났다.',
+  hint: ''
+)
+c.clue_in_characters.create!([1].map { |i| { character: chars[i] } })
+c.images.create!(ci([41]))
+
+c = st.clues.create!(
+  clueable: gms[4],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '성형 수술 확인서',
+  location: '책상',
+  content: '2016년에 성형수술을 했다.',
+  hint: ''
+)
+c.clue_in_characters.create!([1].map { |i| { character: chars[i] } })
+c.images.create!(ci([42, 43]))
+
+c = st.clues.create!(
+  clueable: gms[4],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '사채 빚 독촉장',
+  location: '책상',
+  content: '사채 빚 독촉장',
+  hint: '상환일이 오늘이다.'
+)
+c.clue_in_characters.create!([1].map { |i| { character: chars[i] } })
+c.images.create!(ci([66, 44, 64, 65]))
+
+c = st.clues.create!(
+  clueable: gms[4],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '커플 사진',
+  location: '책상',
+  content: '장아들과 정손녀의 커플 사진',
+  hint: ''
+)
+c.clue_in_characters.create!([0, 1].map { |i| { character: chars[i] } })
+c.images.create!(ci([61, 62]))
+
+c = st.clues.create!(
+  clueable: gms[4],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '달력',
+  location: '책장',
+  content: '1월~4월 월미도 데이트',
+  hint: ''
+)
+c.clue_in_characters.create!([0, 1].map { |i| { character: chars[i] } })
+c.images.create!(ci([56, 57, 58, 59]))
+
+c = st.clues.create!(
+  clueable: gms[4],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '연애편지',
+  location: '책상',
+  content: '정손녀의 연애편지',
+  hint: ''
+)
+c.clue_in_characters.create!([0, 1].map { |i| { character: chars[i] } })
+c.images.create!(ci([63]))
+
+# 홍변호 방
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 4,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '빈 택배 상자',
+  location: '책상 옆',
+  content: '6월 21일 수령',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([47, 78]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '사진',
+  location: '책상',
+  content: '친구와 찍은 사진',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([48, 68, 69, 70]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '법학관련 서적',
+  location: '책장',
+  content: 'KBW라는 이니셜이 쓰여있다.',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([49, 85, 96, 87]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '의대 졸업증',
+  location: '책장',
+  content: '의대 졸업증',
+  hint: '왜 변호사가 되었을까?'
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([50, 88]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '변호사 합격 증서',
+  location: '책장',
+  content: '변호사 합격 증서',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([89]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: 'RC카 설명서',
+  location: '서랍',
+  content: 'RC카 설명서',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([90]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '신문기사',
+  location: '책장',
+  content: '스크랩된 신문 기사',
+  hint: '2002년 7월 25일 화재로 인해 남자 1명이 사망했다. 피해자의 친구 홍 씨(홍변호)는 팔에 특이한 모양의 화상을 입은 의문의 남성을 목격했다고 한다.'
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([71, 72, 75]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 6,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '장세민 인터뷰 스크랩',
+  location: '책장',
+  content: '<불놀이야>의 섬세하면서 뛰어난 묘사로 독자들에게 극찬받은 비결로 사건 속 방화범과 나를 동일시하는 게 중요하다고 한다.',
+  hint: '불놀이야 집필 당시 실제로 불을 가까이 하다가 팔에 화상을 입었다고 한다.'
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([73, 74, 138]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 4,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '세민 재단 설립 신청서',
+  location: '책상',
+  content: '장세민은 본인을 기념하기 위해 재단을 설립하려고 했다.',
+  hint: '대표자가 홍변호로 되어있다.'
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([76, 108]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 2,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '재단법인 세민재단 정관',
+  location: '책상',
+  content: '재단법인 세민재단 정관',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([77]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '여성용 클러치 백',
+  location: '서랍',
+  content: '여성용 클러치 백',
+  hint: '홍변호는 미혼이다.'
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([79]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 5,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '골프 장갑',
+  location: '골프 가방',
+  content: '골프 장갑',
+  hint: '골프 장갑이 아닌 것 같기도 하다.'
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([139]))
+
+c = st.clues.create!(
+  clueable: gms[1],
+  type: 'Model::Clue::Image',
+  level: 7,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '샤샤샥 닷컴',
+  location: '컴퓨터',
+  content: '홍변호가 이용하는 사이트',
+  hint: ''
+)
+c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([140]))
+
+# 거실
+
+c = st.clues.create!(
+  clueable: gms[6],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: 'RC카',
+  location: '진열대',
+  content: '고급 RC카',
+  hint: ''
+)
+# c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([145]))
+
+c = st.clues.create!(
+  clueable: gms[6],
+  type: 'Model::Clue::Image',
+  level: 9,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: 'RC카',
+  location: '진열대',
+  content: '내부를 보면 물이 증발하고 남은 소금이 있다.',
+  hint: ''
+)
+# c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([101]))
+
+c = st.clues.create!(
+  clueable: gms[6],
+  type: 'Model::Clue::Image',
+  level: 1,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '하루일과표',
+  location: '벽',
+  content: '장세민의 하루 일과표',
+  hint: '거실에 있어서 누구나 반신욕 시간을 알 수 있었다.'
+)
+# c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
+c.images.create!(ci([103, 144]))
+
+# 침실
+
+c = st.clues.create!(
+  clueable: gms[6],
+  type: 'Model::Clue::Image',
+  level: 7,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '뇌사 판정 신청서',
+  location: '침대 밑',
+  content: '6월 19일 작성된 장아들의 뇌사 판정 신청서',
+  hint: ''
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([141]))
+
+c = st.clues.create!(
+  clueable: gms[6],
+  type: 'Model::Clue::Image',
+  level: 4,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '장기이식 안내서',
+  location: '침대',
+  content: '장기기증은 친족이 1순위로 배정된다.',
+  hint: ''
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([142]))
+
+# 사람들
+
+c = st.clues.create!(
+  clueable: chars[0],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '사진',
+  location: '지갑',
+  content: '장아들이 엄마와 함께 찍은 사진',
+  hint: ''
+)
+c.clue_in_characters.create!([0].map { |i| { character: chars[i] } })
+c.images.create!(ci([120]))
+
+c = st.clues.create!(
+  clueable: chars[4],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '사진',
+  location: '지갑',
+  content: '양손님과 의문의 여자가 함께 찍은 사진',
+  hint: ''
+)
+c.clue_in_characters.create!([4].map { |i| { character: chars[i] } })
+c.images.create!(ci([121]))
+
+c = st.clues.create!(
+  clueable: chars[2],
+  type: 'Model::Clue::Image',
+  level: 3,
+  phase: 1,
+  chance: 10,
+  unique: false,
+  title: '검색 기록',
+  location: '핸드폰',
+  content: '6월 9일 상속권에 대해 조사한 기록',
+  hint: ''
+)
+c.clue_in_characters.create!([2].map { |i| { character: chars[i] } })
+c.images.create!(ci([143]))
 
 # Topic
 a = Model::Application.current

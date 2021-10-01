@@ -8,20 +8,22 @@ module Model::Team
 
     def start_play(options = {})
       if options[:theme_data]
+        # return if Model.current.game_room&.status == :started
+
         sp = super_plays.create(super_theme: options[:theme_data].super_theme)
-        puts 1
         if Model.current.game_room
           Model.current.game_room.update!(super_play: sp, status: :started)
         end
-        puts 2
-        Model::Play::Playing.create!(users.map { |u|
-          {
+        users.map do |u|
+          play = Model::Play::Playing.create!({
             super_play: sp,
             user: u,
             theme_data: options[:theme_data],
-            character: Model.current.game_room&.character_in_game_rooms&.find { |cig| cig.user == u }&.character,
-          }
-        })
+            # character: Model.current.game_room&.character_in_game_rooms&.find { |cig| cig.user == u }&.character,
+          })
+          Model.current.game_room&.character_in_game_rooms&.find { |cig| cig.user == u }&.update(play: play)
+          play
+        end
       # elsif options[:theme]
       #   sp = super_plays.create(super_theme: options[:theme].super_theme)
       #   Model::Play::Playing.create(super_play: sp, user: user, theme_data: options[:theme].current_theme_data)

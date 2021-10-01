@@ -1,13 +1,7 @@
 module Model::Serializer
-  class Track < Base
+  class ClueInInventory < Base
     view :base do
-      fields  :play_id,
-              :stage_list_id,
-              :value1,
-              :value2,
-              :wrong_answer_count,
-              :used_hint_count,
-              :used_answer_count
+      fields :clue_id, :inventory_id, :shared
       
       # Relations
       # association :images, blueprint: Image
@@ -15,7 +9,8 @@ module Model::Serializer
 
     view :play do
       include_view :base
-      association :stage_list, blueprint: StageList, view: :play
+
+      association :clue, blueprint: Clue, view: :play
     end
 
     view :making do

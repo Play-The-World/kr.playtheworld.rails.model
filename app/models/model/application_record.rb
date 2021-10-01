@@ -37,7 +37,8 @@ module Model
       end
       def serializer
         names = name.split("::")
-        s_name = names[-1] == "Base" ? names[-2] : names[-1]
+        # s_name = names[-1] == "Base" ? names[-2] : names[-1]
+        s_name = names.size >= 3 ? names[-2] : names[-1]
         "Model::Serializer::#{s_name}".constantize
       rescue
         Model::Serializer::Base

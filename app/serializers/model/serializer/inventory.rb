@@ -11,7 +11,8 @@ module Model::Serializer
     view :play do
       include_view :base
       # association :items, blueprint: Item, view: :play
-      # association :item_in_inventories, blueprint: ItemInInventory, view: :play
+      association :item_in_inventories, blueprint: ItemInInventory, view: :play
+      association :clue_in_inventories, blueprint: ClueInInventory, view: :play
     end
 
     view :making do

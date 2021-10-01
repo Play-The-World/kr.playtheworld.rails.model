@@ -104,5 +104,44 @@ module Model::Play
     end
 
     def playing?; true end
+
+    def search(search_type = 'normal', searchable)
+      t = tracks.last
+      return [] if searchable.search_cost > t.value1
+      t.update(value1: t.value1 - searchable.search_cost)
+      pusher(
+        event: 'track',
+        params: t.as_json(:base)
+      )
+
+      chance_count = search_type == 'deep' ? 3 : 1
+      ics = inventory.clues
+      all_clues = searchable.clues.select do |c|
+        !ics.include?(c)
+      end
+
+      ranges = []
+      current = 0
+      max = current - 1
+      all_clues.each do |ac|
+        max = current + ac.computed_chance(search_type)
+        ranges << (current..max)
+        current = max + 1
+      end
+
+      max = current + searchable.search_fail_chance(search_type)
+      ranges << (current..max)
+      
+      clues = []
+      chance_count.times.each do |i|
+        r = rand(max+1)
+        index = ranges.find_index { |a| a === r }
+        clues << all_clues[index] rescue nil
+      end
+
+      inventory.clue_in_inventories.create(clues.compact.uniq.map do |c|
+        { clue: c }
+      end)
+    end
   end
 end

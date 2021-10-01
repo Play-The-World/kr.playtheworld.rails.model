@@ -5,6 +5,7 @@ class CreateModelCharacterInGameRooms < ActiveRecord::Migration[6.1]
       t.references :character
       t.references :game_room
       t.references :user
+      t.references :play
 
       # Attributes
 
