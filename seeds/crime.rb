@@ -574,7 +574,7 @@ c = st.clues.create!(
   hint: ''
 )
 c.clue_in_characters.create!([3].map { |i| { character: chars[i] } })
-c.images.create!(ci([10]))
+c.images.create!(ci([126]))
 
 c = st.clues.create!(
   clueable: gms[9],
