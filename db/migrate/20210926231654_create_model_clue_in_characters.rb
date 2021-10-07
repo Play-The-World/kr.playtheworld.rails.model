@@ -5,6 +5,9 @@ class CreateModelClueInCharacters < ActiveRecord::Migration[6.1]
       t.references :clue
       t.references :character
 
+      # Attributes
+      t.text :content
+
       t.timestamps
     end
   end

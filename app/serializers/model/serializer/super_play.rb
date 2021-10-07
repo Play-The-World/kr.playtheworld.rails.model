@@ -15,6 +15,11 @@ module Model::Serializer
       include_view :base
     end
 
+    view :crime do
+      include_view :base
+      association :plays, blueprint: Play, view: :character
+    end
+
     view :making do
       include_view :base
       # association :branches, blueprint: Branch, view: :making

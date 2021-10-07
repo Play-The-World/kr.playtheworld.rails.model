@@ -14,6 +14,7 @@ class CreateModelPlays < ActiveRecord::Migration[6.0]
       t.string :type
       t.boolean :is_failed
       t.datetime :finished_at
+      t.boolean :ready, default: false
 
       t.timestamps
 

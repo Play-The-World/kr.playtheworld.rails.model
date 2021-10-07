@@ -36,6 +36,7 @@ module Model
       td ||= Model.current.game_room&.theme_data
       t = infoable if infoable.is_a?(Model::Theme::Base)
       t ||= td&.theme
+      t ||= st&.themes.take
 
       if str.include?('%{posterImage}')
          url = st.images.find { |i| i.type == 'poster' }&.url rescue nil
