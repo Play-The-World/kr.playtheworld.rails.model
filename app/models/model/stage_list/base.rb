@@ -94,6 +94,8 @@ module Model
         Model::Serializer::StageList
       end
 
+      def skipable?; false end
+
       private
         # Set default number
         def set_number

@@ -13,7 +13,7 @@ module Model
 
     # Enums
     extend Enumerize
-    enumerize :type, in: %i(default next retry), default: :default
+    enumerize :type, in: %i(default retry), default: :default
 
     def reachable?; all_cleared? end
 

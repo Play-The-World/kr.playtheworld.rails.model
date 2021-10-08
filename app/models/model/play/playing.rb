@@ -86,11 +86,33 @@ module Model::Play
     # 
     # * Self
     def go_to(branch = nil)
-      unless branch.nil?
-        stage_lists << branch&.target_stage_list
+      Model.current.play = self
+
+      from = self.stage_lists.size - 1
+      tsl = branch&.target_stage_list
+      added = 0
+      while !tsl.nil?
+        added += 1
+        stage_lists << tsl
+
+        # ConditionClear
+        tsl.conditions
+          .select { |c| c.type == Model::Condition::OnNextStageList.to_s }
+          .each do |c|
+            c.clear
+          end
+
+        if tsl.skipable?
+          tsl = tsl.branches.take&.target_stage_list
+        else
+          break
+        end
+      end
+
+      if added > 0
         Model::Job::Play::NextStageLists.run({
           play_id: self.id,
-          stage_list_index: self.stage_lists.size - 1
+          stage_list_index: from
         })
       end
 
@@ -98,7 +120,8 @@ module Model::Play
     end
 
     def go_next!
-      branch = current_last_stage_list.get_answer!.branch!
+      # branch = current_last_stage_list.get_answer!.branch!
+      branch = current_last_stage_list.branches.take
       go_to(branch)
       self
     end
@@ -142,6 +165,21 @@ module Model::Play
       inventory.clue_in_inventories.create(clues.compact.uniq.map do |c|
         { clue: c }
       end)
+    end
+
+    def set_ready(ready_state = false, push = true)
+      update(ready: ready_state)
+
+      if push
+        super_play.pusher(event: 'ready', params: {
+          plays: [
+            {
+              id: id,
+              ready: ready
+            }
+          ]
+        })
+      end
     end
   end
 end

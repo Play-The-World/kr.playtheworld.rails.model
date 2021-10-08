@@ -13,6 +13,10 @@ module Model::Serializer
       # end
       # Relations
       # association :images, blueprint: Image
+
+      field :owner_id do |a|
+        a.entries[0].user_id rescue nil
+      end
     end
 
     view :play do
