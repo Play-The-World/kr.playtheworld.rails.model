@@ -17,6 +17,9 @@ module Model
       # include Model::Translatable
       # translates :title, :content
 
+      # Status
+      include Model::HasStatus
+      set_status %i(removed blocked)
 
       def self.serializer
         Model::Serializer::Post

@@ -37,6 +37,15 @@ module Model
           })
         end
       end
+
+      def notify(message = nil)
+        unless message.nil? or message == ''
+          pusher(event: 'notify', params: {
+            message: message
+          })
+        end
+      end
+
     end
   end
 end

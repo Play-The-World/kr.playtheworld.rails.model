@@ -5,8 +5,10 @@ module Model
     MODELS = %i(
       user
       team
+      super_play
       play
       theme
+      super_theme
       game_room
     )
 

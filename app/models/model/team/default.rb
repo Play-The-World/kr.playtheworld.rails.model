@@ -21,7 +21,11 @@ module Model::Team
             theme_data: options[:theme_data],
             # character: Model.current.game_room&.character_in_game_rooms&.find { |cig| cig.user == u }&.character,
           })
-          Model.current.game_room&.character_in_game_rooms&.find { |cig| cig.user == u }&.update(play: play)
+          if options[:game_room]
+            options[:game_room].character_in_game_rooms.find { |cig| cig.user_id == u.id }&.update(play: play)
+          else
+            Model.current.game_room&.character_in_game_rooms&.find { |cig| cig.user_id == u.id }&.update(play: play)
+          end
           play
         end
       # elsif options[:theme]
