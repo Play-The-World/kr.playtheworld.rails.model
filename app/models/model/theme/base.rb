@@ -59,6 +59,9 @@ module Model
       # Delegation
       delegate :title,
                :online?,
+               :genres,
+               :locations,
+               :categories,
                to: :super_theme
       delegate :current_play_by,
                :finished_play_by,
@@ -100,6 +103,38 @@ module Model
 
       def play_time_s(time = self.play_time)
         self.class.play_time_s(time)
+      end
+
+      def header_types
+        [
+          {
+            title: '1위 메추리',
+            content: '챌린지'
+          },
+          {
+            title: "총 #{achievements.size}개",
+            content: '업적'
+          },
+          {
+            title: "총 #{end_stages.size}개",
+            content: '엔딩'
+          }
+        ]
+      end
+
+      def detail
+        [
+          {
+            title: '카테고리',
+            content: online? ? '온라인' : '오프라인',
+          },
+          {
+            title: '장르',
+            content: genres.map do |g|
+              g.title
+            end.join(', ')
+          }
+        ]
       end
 
       class << self

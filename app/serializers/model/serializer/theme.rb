@@ -49,12 +49,14 @@ module Model::Serializer
     view :show do
       include_view :base
       include_view :images
-      field :end_stages_count do |a|
-        a.end_stages.size
-      end
-      field :achievements_count do |a|
-        a.achievements.size
-      end
+      
+      fields :detail, :header_types
+      # field :end_stages_count do |a|
+      #   a.end_stages.size
+      # end
+      # field :achievements_count do |a|
+      #   a.achievements.size
+      # end
 
       field :plays do |a|
         [
@@ -67,6 +69,9 @@ module Model::Serializer
           a.finished_play_by(Model.current.user)
         ].compact
       end
+
+      # field :details do |a|
+      # end
 
       # association :super_theme, blueprint: SuperTheme, view: :base
     end
