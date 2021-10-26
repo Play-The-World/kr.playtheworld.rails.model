@@ -3,6 +3,7 @@ class CreateModelPosts < ActiveRecord::Migration[6.0]
     create_table :model_posts do |t|
       # Relations
       t.references :board, index: false
+      t.references :poster, polymorphic: true
 
       # Attirbutes
       t.string :title

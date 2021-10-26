@@ -56,6 +56,7 @@ module Model::User
     include Model::HasSetting
     include Model::Statsable
     include Model::Tokenable
+    has_many :providers, dependent: :destroy, foreign_key: "user_id"
 
     # Status
     include Model::HasStatus
@@ -106,6 +107,52 @@ module Model::User
     def unauthorized?
       # self.status == "unauthorized"
       sign_up_step != :done
+    end
+
+    def connect_provider(info)
+      self.class.find_for_provider(info, self)
+    end
+    # info = { provider, uid, access_token?, refresh_token?, email }
+    def self.connect_provider(info, current_user = nil)
+      # raise Error::Standard.new(message, code, status)
+      provider = Model::Provider.find_by(type: info[:type] || :oauth2, name: info[:provider], uid: info[:uid])
+
+      if current_user and provider 
+        if provider.user != current_user
+          raise '이미 연동된 계정입니다.'
+        else
+          exist = current_user.providers.find { |pr| pr.name == info[:provider] }
+          if exist and exist.uid != info[:uid]
+            raise '이미 다른 계정에 연동되어있습니다.'
+          end
+        end
+      end
+
+      user = current_user
+      user ||= Model::User::Default.find_by(email: info[:email]) if info[:email].present?
+      user ||= Model::User::Default.new do |u|
+        tmp_password = SecureRandom.hex
+
+        u.email = info[:email]
+        u.sign_up_step = :agreement
+        u.password = tmp_password
+        u.password_confirmation = tmp_password
+      end
+      if user.nickname.nil? and ![:nickname, :agreement, :done].include?(user.sign_up_step.to_sym)
+        user.sign_up_step = :agreement
+      end
+      user.save
+
+      provider ||= Model::Provider.new
+      provider.type = info[:type] || :oauth2
+      provider.name = info[:provider]
+      provider.uid = info[:uid]
+      provider.user = user
+      provider.access_token = info[:access_token] if info[:access_token].present?
+      provider.refresh_token = info[:refresh_token] if info[:refresh_token].present?
+      provider.save
+
+      user
     end
 
     def solo_team; teams.find { |a| a.type == Model::Team::Solo.to_s } end

@@ -1,8 +1,11 @@
 module Model::Serializer
   class Topic < Base
     view :base do
-      fields  :title,
-              :type
+      fields :title
+
+      field :type do |a|
+        a.class.name.split('::').last
+      end
     end
 
     view :banner do

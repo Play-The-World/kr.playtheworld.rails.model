@@ -1,5 +1,5 @@
 module Model::Topic
-  class Today < Base
+  class ListCard < Base
     
   end
 end
