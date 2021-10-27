@@ -25,7 +25,7 @@ module Model
     delegate :title,
              :online?,
              :super_theme,
-             :content, :caution, :caution_bold, :start_address, :start_position, :additional_text,
+             :content, :caution, :caution_bold, :start_address, :start_position, :additional_text, :poster_image_url,
              to: :theme
 
     def characters

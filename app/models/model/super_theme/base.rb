@@ -73,6 +73,11 @@ module Model
         return [c.min, c.max]
       end
 
+      def poster_image_url
+        img = images.find { |i| i.type === 'poster' }
+        img&.url
+      end
+
       private
         def init
           return unless fake_id.nil? or fake_id.empty?

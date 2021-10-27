@@ -16,6 +16,22 @@ module Model::Serializer
       # association :super_play, blueprint: SuperPlay, view: :base
     end
 
+    view :simple do
+      fields :type, :user_id, :stage_list_index
+
+      field :image_url do |a|
+        a.theme_data.poster_image_url
+      end
+
+      field :theme_title do |a|
+        a.theme_data.title
+      end
+
+      field :stage_title do |a|
+        a.current_last_stage_list.title
+      end
+    end
+
     view :play do
       include_view :base
       association :super_play, blueprint: SuperPlay, view: :base

@@ -14,6 +14,14 @@ module Model::Serializer
       # association :images, blueprint: Image
     end
 
+    view :with_last_play do
+      include_view :base
+
+      field :last_play do |a|
+        a.plays.where(finished_at: nil).last&.as_json(:simple)
+      end
+    end
+
     view :play do
       include_view :base
     end

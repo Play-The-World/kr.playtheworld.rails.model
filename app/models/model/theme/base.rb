@@ -137,6 +137,12 @@ module Model
         ]
       end
 
+      def poster_image_url
+        img = images.find { |i| i.type === 'poster' }
+        img ||= super_theme.poster_image_url
+        img&.url
+      end
+
       class << self
         def render_types
           RENDER_TYPE.constants.select { |k| RENDER_TYPE.const_get(k).instance_of? Class } - [:Base]
