@@ -19,6 +19,7 @@ module Model
       enumerize :price_type, in: %i(simple complex), default: :simple
 
       # Relations
+      include Model::Classifiable
       belongs_to :super_theme, class_name: Model.config.super_theme.class_name
       has_many :theme_data, dependent: :destroy, foreign_key: "theme_id"
       include Model::Viewable
